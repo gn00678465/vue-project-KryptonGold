@@ -1,6 +1,51 @@
+const path = require('path');
+
+function resolve(dir) {
+  return path.join(__dirname, '.', dir);
+}
+
 module.exports = {
   // publicPath
   publicPath: process.env.NODE_ENV === 'production'
-    ? '/Vue-Final-Project/'
-    : '/'
-}
+    ? '/JS-HomeWork-Week7/'
+    : '/',
+  // scss variable
+  css: {
+    loaderOptions: {
+      scss: {
+        prependData: '@import "~@/assets/_sass/main.scss";',
+      },
+    },
+  },
+  // 設定開發 server port 為 80
+  devServer: {
+    port: 80,
+  },
+  // 設定路徑別名
+  configureWebpack: {
+    resolve: {
+      alias: {
+        components: '@/components',
+        assets: '@/assets',
+      },
+    },
+  },
+  chainWebpack: (config) => {
+    // 先刪除預設的svg配置
+    config.module.rules.delete('svg');
+    // 新增 svg-sprite-loader 設定
+    config.module
+      .rule('svg-sprite-loader')
+      .test(/\.svg$/)
+      .include
+      .add(resolve('src/assets/icons'))
+      .end()
+      .use('svg-sprite-loader')
+      .loader('svg-sprite-loader')
+      .options({ symbolId: '[name]' });
+    // 修改 images-loader 配置
+    config.module
+      .rule('images')
+      .exclude.add(resolve('src/assets/icons'));
+  },
+};
