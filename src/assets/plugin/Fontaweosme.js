@@ -6,6 +6,8 @@ import {
   faMarker,
   faTrashAlt,
   faUserCog,
+  faChevronLeft,
+  faChevronRight,
 } from '@fortawesome/free-solid-svg-icons';
 
 Vue.component('font-awesome-icon', FontAwesomeIcon);
@@ -13,4 +15,6 @@ library.add(
   faMarker,
   faTrashAlt,
   faUserCog,
+  faChevronLeft,
+  faChevronRight,
 );

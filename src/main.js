@@ -24,6 +24,7 @@ import './assets/plugin/VeeValidate';
 import './assets/plugin/vueLoadingOverlay';
 import './assets/plugin/VueToastification';
 import './assets/icons/index';
+import './assets/plugin/vue-agile';
 // filter
 import './assets/_filter';
 

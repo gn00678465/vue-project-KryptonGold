@@ -7,7 +7,13 @@ const routes = [
   { // 前台
     path: '/',
     name: 'Home',
-    component: () => import('../views/About.vue'),
+    component: () => import('../views/Home.vue'),
+    children: [
+      {
+        path: '',
+        component: () => import('../views/Home/Index.vue'),
+      },
+    ],
   },
   {
     path: '/login',
@@ -39,6 +45,10 @@ const routes = [
         component: () => import('../views/DashBoard/Storage.vue'),
       },
     ],
+  },
+  {
+    path: '*',
+    redirect: '/',
   },
 ];
 
