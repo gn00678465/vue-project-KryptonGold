@@ -1,50 +1,44 @@
 <template>
-  <ValidationObserver tag="form" v-slot="{ invalid }" @submit.prevent="submit">
-    <validation-provider
-      tag="div"
-      class="form-input"
-      rules="mimes:image/*"
-      v-slot="{ errors }"
-    >
-      <label for="file">選擇圖片</label>
-      <input type="file" id="file" accept="image/*" @change="preview($event)">
-      <div class="preview">
-        <img id="file-preview" v-if="src !== ''" :src="src">
-      </div>
-      <!-- 錯誤訊息 -->
-      <span class="error">{{ errors[0] }}</span>
-    </validation-provider>
-    <button type="submit" :disabled='invalid'>上傳圖片</button>
-  </ValidationObserver>
+  <form @submit.prevent="submit">
+    <div class="form-input" >
+      <label for="file">
+        <span class="select" v-if="src === ''">選擇圖片</span>
+        <div class="preview" v-else>
+          <img id="file-preview" v-if="src !== ''" :src="src">
+        </div>
+      </label>
+      <input type="file" id="file" name="圖片" accept="image/*" @change="preview">
+    </div>
+    <button type="submit" :disabled="validate">上傳圖片</button>
+  </form>
 </template>
 
 <script>
-
 export default {
   name: 'InputUpload',
   mixins: [],
   data() {
     return {
       src: '',
+      validate: true,
     };
   },
   methods: {
     preview(e) {
+      if (e.target.files[0] === undefined) return;
       const { size } = e.target.files[0];
-      // const subname = this.getFileNameExtension(name);
-      // const newName = `${Math.floor(Date.now() / 1000)}.${subname}`;
       const maxSize = 2 * 1024 * 1024;
       if (size > maxSize) {
         const msg = '檔案大於 2 MB，請重新選擇!';
-        // this.errorNotify(msg);
-        console.log(msg);
+        this.$toast.error(msg);
       } else {
+        this.validate = false;
         this.src = URL.createObjectURL(e.target.files[0]);
-        this.formData(e.target.files[0]);
+        // this.formData(e.target.files[0]);
       }
     },
     getFileNameExtension(name) {
-      return (/[.]/.exec(name)) ? /[^.]+$/.exec(name)[0] : undefined;
+      return /[.]/.exec(name) ? /[^.]+$/.exec(name)[0] : undefined;
     },
     formData(data) {
       const formData = new FormData();
@@ -52,7 +46,9 @@ export default {
       return formData;
     },
     submit() {
-      this.$emit('submit', this.formData());
+      const formdata = new FormData();
+      formdata.append('file', this.$el.querySelector('input[type="file"]').files[0]);
+      this.$emit('uploadSubmit', formdata);
     },
   },
 };
@@ -61,45 +57,56 @@ export default {
 <style lang="scss" scoped>
 .form-input {
   width: 100%;
-  padding:1.5rem;
-  background:#fff;
-  border:2px dashed #555;
+  height: calc(100% - 50px);
+  padding: 1.5rem;
+  background: #fff;
+  border: 2px dashed #555;
   border-radius: 5px;
   input {
     display: none;
   }
   label {
-    display:block;
-    width:100%;
-    height:50px;
-    line-height:50px;
-    text-align:center;
-    background:#333;
-    color:#fff;
-    font-size:1rem;
-    text-transform:Uppercase;
-    font-weight:600;
-    border-radius:10px;
-    cursor:pointer;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    .select {
+      flex: 1 0 0;
+      height: 50px;
+      display: block;
+      width: 100%;
+      line-height: 50px;
+      text-align: center;
+      background: #f8f9fa;
+      color: #343a40ff;
+      font-size: 1.2rem;
+      text-transform: Uppercase;
+      font-weight: 600;
+      border-radius: 10px;
+    }
   }
   #file-preview {
-    width:100%;
-    margin-top:10px;
+    width: 100%;
+    margin-top: 10px;
   }
   + button {
     margin-top: 0.5rem;
+    display: inline-block;
     outline: none;
     width: 100%;
     border: 0;
     border-radius: 5px;
-    padding: 12px 20px;
-    color: #000;
-    font-family: inherit;
-    font-size: inherit;
-    line-height: inherit;
+    padding: 12px 0;
+    background: #007bff;
+    color: #fff;
+    font-size: 1.2rem;
+    font-weight: 600;
+    text-align: center;
     text-transform: uppercase;
     cursor: pointer;
     &:disabled {
+      font-weight: 300;
       opacity: 0.65;
       cursor: auto;
     }

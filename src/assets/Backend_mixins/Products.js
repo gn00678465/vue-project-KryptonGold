@@ -44,7 +44,7 @@ export default {
         .then((res) => {
           if (res.status === 200) {
             this.isLoading = false;
-            this.$parent.getProductList();
+            this.$parent.getProductList(this.page);
             this.successNotify(`${data.title} 編輯成功`);
           }
         })

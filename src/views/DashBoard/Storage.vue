@@ -1,78 +1,98 @@
 <template>
-  <div class="container-fluid">
+  <div class="container-fluid vld-parent">
+    <loading :active.sync="isLoading"
+      :can-cancel="true" background-color="#555"
+      :is-full-page="true">
+      <LoadEffect slot="default"/>
+    </loading>
     <div class="row">
       <div class="col">
         <div class="dashboard">
           <header class="header">
-            <div class="title">產品管理列表</div>
-            <BtnGroup class="newBtn" :btns="btn" @btnEmit="BtnClick"/>
+            <div class="title">檔案管理列表</div>
           </header>
           <main class="body">
-              <div class="table">
-                <div class="table-head">
-                  <div class="tr">
-                    <span class="th">分類</span>
-                    <span class="th">產品名稱</span>
-                    <span class="th">原價</span>
-                    <span class="th">售價</span>
-                    <span class="th">是否啟用</span>
-                    <span class="th"><font-awesome-icon class="icon" :icon="['fas', 'user-cog']" />
-                    </span>
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col">
+                  <div v-scrollbar class="container-fluid" style="height: 650px">
+                    <div class="row">
+                      <div class="col-4" v-for="item in storageList" :key="item.id">
+                        <ImgCard :path="item.path" :id="item.id"/>
+                      </div>
+                    </div>
                   </div>
+                  <pagination :total_pages="total" :page.sync="page" />
                 </div>
-                <div v-scrollbar class="table-body vld-parent">
-                  <loading :active.sync="isLoading"
+                <div class="col-4">
+                  <loading :active.sync="isUplading"
                     :can-cancel="true"
-                    :is-full-page="false"></loading>
+                    :is-full-page="false">
+                    <uploading slot="default"/>
+                  </loading>
+                  <file style="height: 100%" ref="file" @uploadSubmit="upload"/>
                 </div>
               </div>
-            <pagination :total_pages="total" :page="page" />
+            </div>
           </main>
         </div>
       </div>
     </div>
-    <Modal ref="modal"/>
   </div>
 </template>
 
 <script>
+import StorageAPI from 'assets/Backend_mixins/Storage';
+import file from 'components/InputUpload.vue';
+import ImgCard from 'components/ImgCard.vue';
+
 export default {
+  mataInfo: {
+    title: '-檔案管理',
+  },
   name: 'Storage',
-  components: { },
+  components: {
+    uploading: () => import('components/LoadingUpload.vue'),
+    file,
+    ImgCard,
+  },
+  mixins: [StorageAPI],
   data() {
     return {
       isLoading: false,
+      isUplading: false,
       page: 1,
-      total: 5,
-      products: [
-        {
-          id: 'fDlXGowjSmGCzGBzxXd6uJ5791dak9gNfaMegywIAfmMqez2V2qcoiSuLrxwyOWp',
-          title: 'Abysswalker',
-          category: 'T-Shirts',
-          content: 'Its wearer, like Artorias himself, can traverse the Abyss.',
-          imageUrl: ['https://images.unsplash.com/photo-1529374255404-311a2a4f1fd9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1349&q=80'],
-          enabled: true,
-          origin_price: 300,
-          price: 200,
-          unit: '單位',
-        },
-      ],
-      btn: [{
-        class: 'primary',
-        outline: false,
-        content: '新增檔案',
-        icon: '',
-        action: 'new',
-        size: 'xl',
-      }],
+      total: 1,
+      storageList: [],
     };
   },
+  created() {
+    this.getdata();
+  },
   methods: {
-    BtnClick(data) {
-      console.log(data);
+    getdata() {
+      this.getStorageList(this.page);
+    },
+    BtnClick(action, data) {
+      this[`${action}Handler`](data);
+    },
+    newHandler() {
+      this.$refs.modal.ModalShow = true;
+      this.$refs.modal.ModalTitle = '新增檔案';
+    },
+    upload(formdata) {
+      this.editStorage(formdata)
+        .then(() => {
+          this.$refs.file.src = '';
+          this.getStorageList(this.page);
+        });
     },
   },
-  computed: {},
+  watch: {
+    page() {
+      this.getdata();
+    },
+  },
 };
 </script>
 

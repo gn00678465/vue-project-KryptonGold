@@ -6,6 +6,9 @@
 
 <script>
 export default {
+  mataInfo: {
+    title: '後台-主頁',
+  },
   name: 'Main',
   components: {},
   data() {

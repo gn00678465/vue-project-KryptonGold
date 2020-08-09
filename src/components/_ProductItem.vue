@@ -14,7 +14,7 @@
     <span class="td">
       <BtnGroup :btns="btns" @btn-emit="btnClick" :border="true" btnSize="md"/>
     </span>
-    <Dialog ref="dialog" @dialog-emit="confirm">刪除此產品?</Dialog>
+    <Dialog ref="dialog" @dialog="confirm">刪除此產品?</Dialog>
     <Modal ref="modal" size="xl" @dataEmit="updateProd"/>
   </div>
 </template>
@@ -71,10 +71,8 @@ export default {
     delHandler() {
       this.$refs.dialog.isVisible = true;
     },
-    confirm(check) {
-      if (check) {
-        this.destroyProduct(this.prod.id);
-      }
+    confirm() {
+      this.destroyProduct(this.prod.id);
     },
   },
 };

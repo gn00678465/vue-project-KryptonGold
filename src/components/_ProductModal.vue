@@ -12,7 +12,7 @@
         <!-- body -->
         <div class="modal__body">
           <!-- inputs -->
-            <ValidationObserver tag="form" ref="form">
+            <ValidationObserver class="container-fluid" tag="form" ref="form">
               <div class="row">
                 <div class="col-4">
                   <div class="container">
@@ -26,8 +26,13 @@
                         v-model="inputTemp.imageUrl[i]"/>
                       </div>
                       <hr>
-                      <div class="col-12">
-                        <InputUpload ref="file"/>
+                      <div class="col-12 vld-parent">
+                        <loading :active.sync="isUplading"
+                          :can-cancel="true"
+                          :is-full-page="false">
+                          <uploading slot="default"/>
+                        </loading>
+                        <InputUpload ref="file" @uploadSubmit="upload"/>
                       </div>
                     </div>
                   </div>
@@ -79,7 +84,7 @@
         </div>
         <!-- footer -->
         <div class="modal__footer">
-          <BtnGroup class="mr-3" :btns="btnCheck" @btn-emit="excution"/>
+          <BtnGroup class="mr-3" :btns="btnCheck" @btn-emit="validate"/>
           <BtnGroup :btns="cancleBtn" @btn-emit="closeModal"/>
         </div>
       </div>
@@ -89,10 +94,15 @@
 
 <script>
 import InputUpload from 'components/InputUpload.vue';
+import StorageAPI from 'assets/Backend_mixins/Storage';
 
 export default {
   name: 'ProductModal',
-  components: { InputUpload },
+  components: {
+    InputUpload,
+    uploading: () => import('components/LoadingUpload.vue'),
+  },
+  mixins: [StorageAPI],
   props: {
     size: {
       type: String,
@@ -183,13 +193,20 @@ export default {
       this.inputTemp = {};
       this.$set(this.inputTemp, 'imageUrl', []);
     },
-    excution() {
+    validate() {
       this.$refs.form.validate()
         .then((success) => {
           if (success) {
             this.$emit('dataEmit', this.inputTemp);
             this.closeModal();
           }
+        });
+    },
+    upload(formdata) {
+      this.editStorage(formdata)
+        .then((path) => {
+          this.$refs.file.src = '';
+          this.inputTemp.imageUrl.push(path);
         });
     },
   },
