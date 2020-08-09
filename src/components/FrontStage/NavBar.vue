@@ -28,8 +28,8 @@
           </li>
         </ul>
         <div class="nav__content">
-          <a href="#" class=""><icon class="nav-icon" iconName="person" /></a>
-          <a href="#" class=""><icon class="nav-icon" iconName="cart" /></a>
+          <a href="#" class=""><icon class="nav-icon" iconName="user" /></a>
+          <a href="#" class="cart"><icon class="nav-icon" iconName="cart" />0</a>
         </div>
       </div>
     </div>
@@ -70,8 +70,10 @@ $light-text: #3c4858;
 };
 
 .nav-light {
-  .nav__item {
+  * {
     color: $light-text;
+  }
+  .nav__item {
     &:hover {
       background: $light-hover;
     }
@@ -123,6 +125,7 @@ $light-text: #3c4858;
     background: #fff;
     transition: all 0.5s;
     transform: translateX(-100%);
+    z-index: 500;
     &.show {
       transform: translateX(0);
     }
@@ -166,6 +169,18 @@ $light-text: #3c4858;
       * {
         margin-left: 0.25rem;
         margin-right: 0.25rem;
+        display: flex;
+        align-items: center;
+        font-size: 1.4rem;
+      }
+      .nav-icon {
+        width: 1.4rem;
+        height: 1.4rem;
+      }
+      .cart {
+        border: 1px solid #f44336;
+        padding: .25rem .325rem;
+        border-radius: 5px;
       }
     }
   }
