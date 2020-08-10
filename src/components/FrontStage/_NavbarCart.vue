@@ -15,7 +15,7 @@
       </li>
     </ul>
     <footer class="cart__footer">
-      <a href="#" class="btn btn-cart">前往結帳</a>
+      <router-link to="carts" class="btn btn-cart">前往結帳</router-link>
       <div class="cart__total">總計: <span>$123456</span></div>
     </footer>
   </div>

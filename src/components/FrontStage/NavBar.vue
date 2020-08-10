@@ -1,5 +1,5 @@
 <template>
-  <nav class="nav-bg nav-light nav-fixed">
+  <nav class="nav-light nav-fixed" :class="classes">
     <div class="container navbar">
       <a href="#" class="navbar__brand"><slot>Logo</slot></a>
       <button type="button" class="navbar__toggle" @click="showMenu">
@@ -46,7 +46,11 @@ export default {
     return {
       isShow: false,
       top: 0,
+      navHeight: 0,
       dropdown: {},
+      classes: {
+        'nav-bg': false,
+      },
     };
   },
   mounted() {
@@ -68,6 +72,7 @@ export default {
         const { height } = this.$el.querySelector('.navbar').getBoundingClientRect();
         this.top = height;
       }
+      this.navHeight = this.$el.querySelector('.navbar').getBoundingClientRect().height;
     },
   },
   computed: {},
@@ -109,7 +114,11 @@ $logo-font: 'Kaushan Script';
   left: 0;
   right: 0;
   z-index: 500;
-  background: rgba(255, 255, 255, 0.5);
+}
+
+.nav-bg {
+  background: rgba(255,255,255,0.9);
+  box-shadow: 0 2px 16px 0 rgba(0,0,0,0.08);;
 }
 
 .nav-icon {
@@ -211,9 +220,6 @@ $logo-font: 'Kaushan Script';
       }
     }
   }
-}
-.nav-bg {
-  box-shadow: 0 2px 16px 0 rgba(0,0,0,0.08);;
 }
 
 // Small devices (landscape phones, 576px and up)

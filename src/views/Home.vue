@@ -24,5 +24,6 @@ export default {
 
 .home {
   background: #F7F7F7;
+  min-height: 100%;
 }
 </style>

@@ -1,5 +1,6 @@
 <template>
-  <div>
+  <div class="carts" :style="{'padding-top': mt + 'px'}">
+    cart
   </div>
 </template>
 
@@ -8,13 +9,23 @@ export default {
   name: 'Carts',
   components: {},
   data() {
-    return {};
+    return {
+      mt: 0,
+    };
   },
-  methods: {},
+  mounted() {
+    this.marginTop();
+  },
+  methods: {
+    marginTop() {
+      this.mt = this.$parent.$refs.navbar.navHeight;
+    },
+  },
   computed: {},
 };
 </script>
 
 <style lang="scss" scoped>
-
+.carts {
+}
 </style>

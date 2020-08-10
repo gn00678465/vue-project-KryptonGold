@@ -36,12 +36,13 @@ html, body {
   padding: 0;
   width: 100%;
   height: 100%;
-  min-height: 100%;
 }
 
 #app {
   width: 100%;
   height: 100%;
+  overflow: scroll;
+  overflow-x: hidden;
 }
 
 </style>

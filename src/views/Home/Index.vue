@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <agile :initial-slide="2">
+  <div class="index">
+    <agile :initial-slide="2" ref="banner">
       <img class="slide" src="https://images.unsplash.com/photo-1506260408121-e353d10b87c7?ixlib=rb-1.2.1&amp;q=85&amp;fm=jpg&amp;crop=entropy&amp;cs=srgb&amp;w=1600&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjE0NTg5fQ"/>
       <img class="slide" src="https://images.unsplash.com/photo-1523712999610-f77fbcfc3843?ixlib=rb-1.2.1&amp;q=85&amp;fm=jpg&amp;crop=entropy&amp;cs=srgb&amp;w=1600&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjE0NTg5fQ"/>
       <img class="slide" src="https://images.unsplash.com/photo-1524260855046-f743b3cdad07?ixlib=rb-1.2.1&amp;q=85&amp;fm=jpg&amp;crop=entropy&amp;cs=srgb&amp;w=1600&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjE0NTg5fQ"/>
@@ -30,9 +30,28 @@ export default {
   name: 'Index',
   components: {},
   data() {
-    return {};
+    return {
+      bannerHeight: 0,
+    };
+  },
+  mounted() {
+    const vm = this;
+    this.getBannerHeight();
+    window.addEventListener('scroll', vm.onScroll, true);
   },
   methods: {
+    onScroll(e) {
+      if (e.target.scrollTop > 1) {
+        this.$parent.$refs.navbar.classes['nav-bg'] = true;
+      } else {
+        this.$parent.$refs.navbar.classes['nav-bg'] = false;
+      }
+      // console.log(this.$parent.$refs.navbar.$el);
+    },
+    getBannerHeight() {
+      const { height } = this.$refs.banner.$el.getBoundingClientRect();
+      this.bannerHeight = height;
+    },
   },
   computed: {},
 };
@@ -40,6 +59,10 @@ export default {
 
 <style lang="scss" scoped>
 @import './style/vue-agile.css';
+
+.index {
+  height: auto;
+}
 
 section {
   padding-top: 50px;
