@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <Navbar>KryptonGold</Navbar>
+    <Navbar ref="navbar">KryptonGold</Navbar>
     <router-view></router-view>
   </div>
 </template>
@@ -13,7 +13,10 @@ export default {
   components: {
     Navbar,
   },
-  methods: {},
+  created() {
+  },
+  methods: {
+  },
 };
 </script>
 <style lang="scss" scoped>

@@ -1,5 +1,5 @@
 <template>
-  <nav class="nav-bg nav-light">
+  <nav class="nav-bg nav-light nav-fixed">
     <div class="container navbar">
       <a href="#" class="navbar__brand"><slot>Logo</slot></a>
       <button type="button" class="navbar__toggle" @click="showMenu">
@@ -10,22 +10,22 @@
           <slot>Logo</slot>
         </div>
         <ul class="nav__menu">
-          <li class="nav__item">
+          <router-link to="/" tag="li" class="nav__item" exact-active-class="active">
             <icon class="nav-icon" iconName="home" />
             <span class="nav__link">首頁</span>
-          </li>
-          <li class="nav__item">
+          </router-link>
+          <router-link to="Products" tag="li" class="nav__item" exact-active-class="active">
             <icon class="nav-icon" iconName="boxes" />
             <span class="nav__link">所有產品</span>
-          </li>
-          <li class="nav__item">
+          </router-link>
+          <router-link to="About" tag="li" class="nav__item" exact-active-class="active">
             <icon class="nav-icon" iconName="info" />
             <span class="nav__link">關於我們</span>
-          </li>
-          <li class="nav__item">
+          </router-link>
+          <router-link to="Contactus" tag="li" class="nav__item" exact-active-class="active">
             <icon class="nav-icon" iconName="contact_mail" />
             <span class="nav__link">聯繫我們</span>
-          </li>
+          </router-link>
         </ul>
         <div class="nav__content">
           <dropdown icon="user" :top="top"/>
@@ -52,7 +52,7 @@ export default {
   mounted() {
     window.addEventListener('resize', this.onResize());
   },
-  beforeUpdate() {
+  beforeDestroy() {
     window.addEventListener('resize', this.onResize());
   },
   methods: {
@@ -101,6 +101,15 @@ $logo-font: 'Kaushan Script';
       color: #fff;
     }
   }
+}
+
+.nav-fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 500;
+  background: rgba(255, 255, 255, 0.5);
 }
 
 .nav-icon {
