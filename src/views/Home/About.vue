@@ -1,6 +1,7 @@
 <template>
-  <div class="about" :style="{'padding-top': mt + 'px'}">
-    About
+  <div class="container" :style="{'padding-top': mt + 'px'}">
+    <div class="about">
+    </div>
   </div>
 </template>
 
@@ -26,7 +27,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.container {
+  flex: 1 0 auto;
+}
 .about {
-  height: 100%;
+  margin-top: 1.5rem;
 }
 </style>

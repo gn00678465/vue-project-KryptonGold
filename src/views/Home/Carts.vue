@@ -1,6 +1,7 @@
 <template>
-  <div class="carts" :style="{'padding-top': mt + 'px'}">
-    cart
+  <div class="container" :style="{'padding-top': mt + 'px'}">
+    <div class="carts">
+    </div>
   </div>
 </template>
 
@@ -26,6 +27,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.container {
+  flex: 1 0 auto;
+}
 .carts {
+  margin-top: 1.5rem;
 }
 </style>

@@ -8,7 +8,13 @@ import {
   faUserCog,
   faChevronLeft,
   faChevronRight,
+  faCog,
 } from '@fortawesome/free-solid-svg-icons';
+import {
+  faFacebookF,
+  faTwitter,
+  faGithub,
+} from '@fortawesome/free-brands-svg-icons';
 
 Vue.component('font-awesome-icon', FontAwesomeIcon);
 library.add(
@@ -17,4 +23,8 @@ library.add(
   faUserCog,
   faChevronLeft,
   faChevronRight,
+  faFacebookF,
+  faTwitter,
+  faGithub,
+  faCog,
 );
