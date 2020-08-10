@@ -1,14 +1,19 @@
 <template>
   <div class="container" :style="{'padding-top': mt + 'px'}">
     <div class="carts">
+      <Flow/>
     </div>
   </div>
 </template>
 
 <script>
+import Flow from 'components/FrontStage/_CartFlow.vue';
+
 export default {
   name: 'Carts',
-  components: {},
+  components: {
+    Flow,
+  },
   data() {
     return {
       mt: 0,

@@ -28,8 +28,8 @@
           </router-link>
         </ul>
         <div class="nav__content">
-          <dropdown icon="user" :top="top"/>
-          <dropdown icon="cart" :top="top"/>
+          <dropdown :icons="['user', 'cart']" :top="top"/>
+          <!-- <dropdown icon="cart" :top="top"/> -->
         </div>
       </div>
     </div>

@@ -1,10 +1,11 @@
 <template>
-  <div class="dropdown" :class="{open: isShow}">
-    <button @click.prevent="dropdownHandler(!isShow)">
-      <icon class="nav-icon" :iconName="icon"/>
+  <div class="dropdown">
+    <button v-for="(icon, i) in icons" :key="i" :data-btn="icon"
+    @click.prevent="dropdownHandler" :class="{'open': nowSelect === icon && isShow}">
+      <icon  class="nav-icon" :iconName="icon"/>
     </button>
-    <div class="dropdownMenu" :style="{top: top + 'px'}" @mouseleave="dropdownHandler(false)">
-      <component :is="view"></component>
+    <div class="dropdownMenu" :style="{top: top + 'px'}">
+      <component :is="nowSelect"></component>
     </div>
   </div>
 </template>
@@ -18,8 +19,8 @@ export default {
     user: () => import('./_NavbarLogin.vue'),
   },
   props: {
-    icon: {
-      type: String,
+    icons: {
+      type: Array,
     },
     top: {
       type: Number,
@@ -27,6 +28,7 @@ export default {
   },
   data() {
     return {
+      nowSelect: '',
       isShow: false,
       view: this.icon,
     };
@@ -34,8 +36,12 @@ export default {
   mounted() {
   },
   methods: {
-    dropdownHandler(fix) {
-      this.isShow = fix;
+    dropdownHandler(e) {
+      if (this.nowSelect !== e.currentTarget.dataset.btn && this.isShow) {
+        this.nowSelect = e.currentTarget.dataset.btn;
+      } else {
+        this.isShow = !this.isShow;
+      }
     },
   },
   computed: {
@@ -48,8 +54,10 @@ export default {
   // position: relative;
   margin-left: 0.25rem;
   margin-right: 0.25rem;
-  display: inline-block;
+  display: inline-block;;
   align-items: center;
+  display: flex;
+  flex-flow: row nowrap;
   button {
     border: none;
     outline: none;
@@ -61,9 +69,10 @@ export default {
     padding: 5px;
     width: 2.1rem;
     height: 2.1rem;
+    user-select: none;
   }
-  &.open {
-    .dropdownMenu {
+  button.open {
+    ~ .dropdownMenu {
       opacity: 1;
       display: flex;
     }
@@ -91,7 +100,7 @@ export default {
   border-left: 1px solid #ddd;
   border-right: 1px solid #ddd;
   border-bottom: 1px solid #ddd;
-  opacity: 0;
+  // opacity: 0;
 }
 
 @media (min-width: 768px) {}
