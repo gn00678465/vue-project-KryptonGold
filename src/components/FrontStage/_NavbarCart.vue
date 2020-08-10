@@ -40,8 +40,6 @@ export default {
   height: 100%;
 }
 .cart {
-  &__list {
-  }
   &__item, &__footer {
     display: flex;
     align-items: center;
@@ -83,14 +81,7 @@ export default {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    &::before {
-      position: absolute;
-      top: 0;
-      left: 0;
-      content: '';
-      border-bottom: 1px solid #f5f5f5;
-      width: 100%;
-    }
+    background: rgba(0,0,0,0.03);
     .btn {
       @include btn;
       margin-top: .25rem;
