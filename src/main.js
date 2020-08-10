@@ -3,6 +3,7 @@ import Pagination from 'components/Pagination.vue';
 import ToggleSwitch from 'components/ToggleSwitch.vue';
 import BtnGroup from 'components/BtnGroup.vue';
 import InputField from 'components/InputField.vue';
+import ItemCard from 'components/FrontStage/ItemCard.vue';
 import Vue from 'vue';
 // normalize
 import 'normalize.css';
@@ -40,6 +41,7 @@ Vue.component('BtnGroup', BtnGroup);
 Vue.component('InputField', InputField);
 Vue.component('Dialog', () => import('components/Dialog.vue'));
 Vue.component('LoadEffect', () => import('components/Loading.vue'));
+Vue.component('ItemCard', ItemCard);
 
 Vue.config.productionTip = false;
 

@@ -3,7 +3,7 @@
     <button @click.prevent="dropdownHandler(!isShow)">
       <icon class="nav-icon" :iconName="icon"/>
     </button>
-    <div class="dropdownMenu" :style="{top: top + 'px'}">
+    <div class="dropdownMenu" :style="{top: top + 'px'}" @mouseleave="dropdownHandler(false)">
       <component :is="view"></component>
     </div>
   </div>

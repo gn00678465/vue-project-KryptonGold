@@ -19,4 +19,7 @@ export default {
 <style lang="scss" scoped>
 @import './Home/style/font.css';
 
+.home {
+  background: #F7F7F7;
+}
 </style>
