@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <Navbar/>
+    <Navbar>KryptonGold</Navbar>
     <router-view></router-view>
   </div>
 </template>
@@ -16,3 +16,7 @@ export default {
   methods: {},
 };
 </script>
+<style lang="scss" scoped>
+@import './Home/style/font.css';
+
+</style>

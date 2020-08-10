@@ -1,13 +1,13 @@
 <template>
   <nav class="nav-bg nav-light">
     <div class="container navbar">
-      <a href="#" class="navbar__brand">navbar - Logo</a>
+      <a href="#" class="navbar__brand"><slot>Logo</slot></a>
       <button type="button" class="navbar__toggle" @click="showMenu">
         <icon class="nav-icon" iconName="menu" />
       </button>
       <div class="navbar__collapse" :class="{show: isShow}">
         <div class="nav__logo">
-          nav - Logo
+          <slot>Logo</slot>
         </div>
         <ul class="nav__menu">
           <li class="nav__item">
@@ -28,8 +28,10 @@
           </li>
         </ul>
         <div class="nav__content">
-          <a href="#" class=""><icon class="nav-icon" iconName="user" /></a>
-          <a href="#" class="cart"><icon class="nav-icon" iconName="cart" />0</a>
+          <div class="dropdown" @mouseenter="getPosition($event)">
+            <icon class="nav-icon" iconName="user" />
+          </div>
+          <dropdown/>
         </div>
       </div>
     </div>
@@ -37,18 +39,41 @@
 </template>
 
 <script>
+import dropdown from './NavBaeDropdown.vue';
+
 export default {
   name: 'NavBar',
-  components: {},
+  components: { dropdown },
   data() {
     return {
       isShow: false,
+      top: 0,
+      dropdown: {},
     };
+  },
+  mounted() {
   },
   methods: {
     showMenu() {
       this.isShow = !this.isShow;
     },
+    // getTop() {
+    //   this.top = this.$el.querySelector('.nav__content').getBoundingClientRect().height;
+    // },
+    // getPosition(e) {
+    //   const {
+    //     top,
+    //     left,
+    //     width,
+    //     height,
+    //   } = e.target.getBoundingClientRect();
+    //   this.dropdown = {
+    //     top,
+    //     left,
+    //     width,
+    //     height,
+    //   };
+    // },
   },
   computed: {},
 };
@@ -59,6 +84,7 @@ $title-size: 1.5rem;
 $light-actived: #f44336;
 $light-hover: #F7F7F7;
 $light-text: #3c4858;
+$logo-font: 'Kaushan Script';
 
 @mixin toggle() {
   padding: .15rem .75rem;
@@ -70,9 +96,7 @@ $light-text: #3c4858;
 };
 
 .nav-light {
-  * {
-    color: $light-text;
-  }
+  color: $light-text;
   .nav__item {
     &:hover {
       background: $light-hover;
@@ -106,6 +130,8 @@ $light-text: #3c4858;
     font-size: $title-size;
     line-height: inherit;
     white-space: nowrap;
+    font-family: $logo-font;
+    color: $light-text;
   }
   &__toggle {
     @include toggle;
@@ -114,8 +140,6 @@ $light-text: #3c4858;
   &__collapse {
     flex-grow: 1;
     flex-basis: 100%;
-    align-items: center;
-    display: block;
     padding: .5rem 1rem;
     position: fixed;
     top: 0;
@@ -126,6 +150,10 @@ $light-text: #3c4858;
     transition: all 0.5s;
     transform: translateX(-100%);
     z-index: 500;
+    display: block;
+    // flex
+    display: flex;
+    flex-direction: column;
     &.show {
       transform: translateX(0);
     }
@@ -136,25 +164,27 @@ $light-text: #3c4858;
       font-size: $title-size;
       padding-top: .3125rem;
       padding-bottom: .3125rem;
+      font-family: $logo-font;
     }
     &__close {
       @include toggle;
     }
     &__menu {
-      flex-grow: 1;
-      flex-basis: 100%;
+      // flex-grow: 1;
+      // flex-basis: 100%;
       align-items: center;
       width: 100%;
       display: block;
+      order: 2;
     }
     &__item {
       padding: .5rem 1rem;
       // display: inline-block;
       // width: 100%;
       // height: auto;
+      // align-items: center;
       display: flex;
       width: 100%;
-      align-items: center;
       margin-top: .5rem;
       margin-bottom: .5rem;
       border-radius: 5px;
@@ -166,21 +196,24 @@ $light-text: #3c4858;
     }
     &__content {
       padding: .5rem 1rem;
-      * {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      justify-content: flex-end;
+      order: 1;
+      .dropdown {
         margin-left: 0.25rem;
         margin-right: 0.25rem;
-        display: flex;
+        display: inline-block;
         align-items: center;
-        font-size: 1.4rem;
+        cursor: pointer;
+        &:first-child {
+          margin-right: 1rem;
+        }
       }
       .nav-icon {
         width: 1.4rem;
         height: 1.4rem;
-      }
-      .cart {
-        border: 1px solid #f44336;
-        padding: .25rem .325rem;
-        border-radius: 5px;
       }
     }
   }
@@ -203,13 +236,18 @@ $light-text: #3c4858;
       background: transparent;
       flex-basis: 100%;
       display: flex;
+      flex-direction: row;
       padding: 0;
       transform: initial;
       .nav {
         &__menu {
           display: flex;
+          order: 1;
+          flex-grow: 1;
+          flex-basis: 100%;
         }
         &__item {
+          align-items: center;
           padding-left: 0.5rem;
           padding-right: 0.5rem;
           width: auto;
@@ -220,6 +258,8 @@ $light-text: #3c4858;
         }
         &__content {
           display: flex;
+          flex: 1 0 0;
+          order: 2;
         }
       }
     }
