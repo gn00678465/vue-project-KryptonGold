@@ -1,7 +1,9 @@
 <template>
-  <div class="dropdown" :class="{open: isShow}" @click.prevent="dropdownHandler(!isShow)">
-    <icon class="nav-icon" iconName="cart" />
-    <div class="dropdownMenu">
+  <div class="dropdown" :class="{open: isShow}">
+    <button @click.prevent="dropdownHandler(!isShow)">
+      <icon class="nav-icon" :iconName="icon"/>
+    </button>
+    <div class="dropdownMenu" :style="{top: top + 'px'}">
       <component :is="view"></component>
     </div>
   </div>
@@ -12,12 +14,21 @@
 export default {
   name: 'NavBaeDropdown',
   components: {
-    NavbarCart: () => import('./_NavbarCart.vue'),
+    cart: () => import('./_NavbarCart.vue'),
+    user: () => import('./_NavbarLogin.vue'),
+  },
+  props: {
+    icon: {
+      type: String,
+    },
+    top: {
+      type: Number,
+    },
   },
   data() {
     return {
       isShow: false,
-      view: 'NavbarCart',
+      view: this.icon,
     };
   },
   mounted() {
@@ -34,20 +45,31 @@ export default {
 
 <style lang="scss" scoped>
 .dropdown {
-  position: relative;
+  // position: relative;
   margin-left: 0.25rem;
   margin-right: 0.25rem;
   display: inline-block;
   align-items: center;
-  cursor: pointer;
+  button {
+    border: none;
+    outline: none;
+    background: transparent;
+    cursor: pointer;
+  }
   .nav-icon {
-    width: 1.8rem;
-    height: 1.8rem;
+    border-radius: 3px;
+    padding: 5px;
+    width: 2.1rem;
+    height: 2.1rem;
   }
   &.open {
     .dropdownMenu {
       opacity: 1;
       display: flex;
+    }
+    .nav-icon {
+      background: #f44336;
+      color: #fff;
     }
   }
 }
@@ -64,8 +86,7 @@ export default {
   display: none;
   justify-content: center;
   top: 0;
-  right: 0;
-  top: 50px;
+  right: 4%;
   border-top: 5px solid #f44336;
   border-left: 1px solid #ddd;
   border-right: 1px solid #ddd;
@@ -73,8 +94,7 @@ export default {
   opacity: 0;
 }
 
-@media (min-width: 768px) {
-}
+@media (min-width: 768px) {}
 
 @media (min-width: 992px) {}
 </style>

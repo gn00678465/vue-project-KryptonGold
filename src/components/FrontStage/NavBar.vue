@@ -28,10 +28,8 @@
           </li>
         </ul>
         <div class="nav__content">
-          <div class="dropdown" @mouseenter="getPosition($event)">
-            <icon class="nav-icon" iconName="user" />
-          </div>
-          <dropdown/>
+          <dropdown icon="user" :top="top"/>
+          <dropdown icon="cart" :top="top"/>
         </div>
       </div>
     </div>
@@ -52,28 +50,25 @@ export default {
     };
   },
   mounted() {
+    window.addEventListener('resize', this.onResize());
+  },
+  beforeUpdate() {
+    window.addEventListener('resize', this.onResize());
   },
   methods: {
     showMenu() {
       this.isShow = !this.isShow;
     },
-    // getTop() {
-    //   this.top = this.$el.querySelector('.nav__content').getBoundingClientRect().height;
-    // },
-    // getPosition(e) {
-    //   const {
-    //     top,
-    //     left,
-    //     width,
-    //     height,
-    //   } = e.target.getBoundingClientRect();
-    //   this.dropdown = {
-    //     top,
-    //     left,
-    //     width,
-    //     height,
-    //   };
-    // },
+    onResize() {
+      if (window.innerWidth < 767) {
+        const { top } = this.$el.querySelector('.nav__content').getBoundingClientRect();
+        const height = this.$el.querySelector('.nav__content').clientHeight;
+        this.top = top + height;
+      } else if (window.innerWidth >= 768) {
+        const { height } = this.$el.querySelector('.navbar').getBoundingClientRect();
+        this.top = height;
+      }
+    },
   },
   computed: {},
 };
@@ -201,16 +196,6 @@ $logo-font: 'Kaushan Script';
       width: 100%;
       justify-content: flex-end;
       order: 1;
-      .dropdown {
-        margin-left: 0.25rem;
-        margin-right: 0.25rem;
-        display: inline-block;
-        align-items: center;
-        cursor: pointer;
-        &:first-child {
-          margin-right: 1rem;
-        }
-      }
       .nav-icon {
         width: 1.4rem;
         height: 1.4rem;
