@@ -7,7 +7,7 @@ function resolve(dir) {
 module.exports = {
   // publicPath
   publicPath: process.env.NODE_ENV === 'production'
-    ? '/JS-HomeWork-Week7/'
+    ? '/vue-project-KryptonGold/'
     : '/',
   // scss variable
   css: {
