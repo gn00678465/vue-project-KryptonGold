@@ -8,6 +8,8 @@ import InputSelect from 'components/InputSelect.vue';
 import Vue from 'vue';
 // normalize
 import 'normalize.css';
+// Animate.css
+import 'animate.css';
 // HTML meta
 import VueMeta from 'vue-meta';
 // axios

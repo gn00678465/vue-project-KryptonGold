@@ -2,7 +2,11 @@
   <div class="body" :style="{'padding-top': mt + 'px'}">
     <div class="carts">
       <Progressbar :steps="steps" :current.sync="current"/>
-      <component :is="componentId" @goNext="goNext" @goBack="goBack"/>
+      <transition mode="out-in"
+      enter-active-class="animate__animated animate__fadeInUp"
+      leave-active-class="animate__animated animate__fadeOutDown">
+        <component :is="componentId" @goNext="goNext" @goBack="goBack"/>
+      </transition>
     </div>
   </div>
 </template>
@@ -28,6 +32,7 @@ export default {
       mt: 0,
       componentId: '',
       current: 1,
+      animation: 'test',
     };
   },
   mounted() {

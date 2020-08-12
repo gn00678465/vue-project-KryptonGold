@@ -2,7 +2,7 @@
   <div class="container">
     <header class="header">
       <div class="wrapper-btn">
-        <div class="btn-back">
+        <div class="btn-back" @click.prevent="goProduct">
           <div class="icon"><font-awesome-icon :icon="['fas', 'arrow-left']" /></div>
           <span>繼續購物</span>
         </div>
@@ -83,6 +83,9 @@ export default {
   methods: {
     goNextStep() {
       this.$emit('goNext');
+    },
+    goProduct() {
+      this.$router.push('/products');
     },
   },
   computed: {},
@@ -213,7 +216,7 @@ $wrapper-btn-sm: 38px;
     height: 5rem;
     display: flex;
     border-radius: 5px;
-    background: #fff;
+    border: 1px solid #ddd;
     overflow: hidden;
     margin-bottom: 0.25rem;
   }
