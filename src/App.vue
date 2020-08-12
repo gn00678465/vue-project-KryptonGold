@@ -11,7 +11,7 @@
 *::after {
   box-sizing: border-box;
 }
-h1, tr, th, td{
+h1, h2, h3, tr, th, td{
   margin: 0;
   padding: 0;
 }

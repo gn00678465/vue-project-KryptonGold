@@ -9,6 +9,7 @@ import {
   faChevronLeft,
   faChevronRight,
   faCog,
+  faArrowLeft,
 } from '@fortawesome/free-solid-svg-icons';
 import {
   faFacebookF,
@@ -27,4 +28,5 @@ library.add(
   faTwitter,
   faGithub,
   faCog,
+  faArrowLeft,
 );

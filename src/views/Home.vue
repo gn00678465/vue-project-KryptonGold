@@ -16,9 +16,9 @@ export default {
     Navbar,
     Footer,
   },
-  created() {
+  mounted() {
   },
-  methods: {
+  created() {
   },
 };
 </script>

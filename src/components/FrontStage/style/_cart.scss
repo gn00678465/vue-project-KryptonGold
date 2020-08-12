@@ -1,0 +1,64 @@
+$default-color:#EA0002;
+$hover-color: #06A503;
+
+@mixin borderTop () {
+  border-top: 5px solid #f44336;
+  background: #fff;
+  border-radius: 5px;
+  margin-bottom: 0.5rem;
+};
+
+.btn {
+  @include btn;
+  &-next {
+    width: 100%;
+    background: $hover-color;
+    margin-bottom: 0.5rem;
+    color: #fff;
+    &:hover {
+      background: darken($hover-color, 10%);
+    }
+  }
+  &:last-child {
+    margin-bottom: 1rem;
+  }
+}
+
+.cartdetail {
+  display: flex;
+}
+
+.cart__summary {
+  @include borderTop;
+}
+.cart__summary {
+  .summary {
+    &__title {
+      width: 100%;
+      text-align: center;
+    }
+  }
+  li {
+    padding: 0.4rem 0.5rem;
+    text-align: right;
+    span {
+      display: inline-block;
+      padding: 0 0 0 1rem;
+      text-align: right;
+    }
+    .label {
+      font-size: .85rem;
+      color: #777;
+    }
+    .value {
+      letter-spacing: -.025em;
+      width: 50%;
+    }
+    &.total {
+      .label, .value {
+        font-size: 1.25em;
+        font-weight: bold;
+      }
+    }
+  }
+}

@@ -56,7 +56,7 @@ export default {
   mounted() {
     window.addEventListener('resize', this.onResize());
   },
-  beforeDestroy() {
+  destroyed() {
     window.addEventListener('resize', this.onResize());
   },
   methods: {
