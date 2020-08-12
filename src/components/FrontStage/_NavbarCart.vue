@@ -15,7 +15,7 @@
       </li>
     </ul>
     <footer class="cart__footer">
-      <router-link to="carts" class="btn btn-cart">前往結帳</router-link>
+      <button type="button" class="btn btn-cart" @click.prevent="clickHandler">前往結帳</button>
       <div class="cart__total">總計: <span>$123456</span></div>
     </footer>
   </div>
@@ -28,7 +28,12 @@ export default {
   data() {
     return {};
   },
-  methods: {},
+  methods: {
+    clickHandler() {
+      this.$parent.isShow = false;
+      if (this.$route.path !== '/carts') this.$router.push('carts');
+    },
+  },
   computed: {},
 };
 </script>

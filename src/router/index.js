@@ -14,23 +14,23 @@ const routes = [
         component: () => import('../views/Home/Index.vue'),
       },
       {
-        path: 'Products',
+        path: 'products',
         component: () => import('../views/Home/Products.vue'),
       },
       {
-        path: 'Product',
+        path: 'product',
         component: () => import('../views/Home/Product.vue'),
       },
       {
-        path: 'About',
+        path: 'about',
         component: () => import('../views/Home/About.vue'),
       },
       {
-        path: 'Carts',
+        path: 'carts',
         component: () => import('../views/Home/Carts.vue'),
       },
       {
-        path: 'Contactus',
+        path: 'contactus',
         component: () => import('../views/Home/ContactUs.vue'),
       },
     ],

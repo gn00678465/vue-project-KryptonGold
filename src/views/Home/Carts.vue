@@ -2,7 +2,7 @@
   <div class="body" :style="{'padding-top': mt + 'px'}">
     <div class="carts">
       <Progressbar :steps="steps" :current.sync="current"/>
-      <component :is="componentId"></component>
+      <component :is="componentId" @goNext="goNext" @goBack="goBack"/>
     </div>
   </div>
 </template>
@@ -27,7 +27,7 @@ export default {
       ],
       mt: 0,
       componentId: '',
-      current: 3,
+      current: 1,
     };
   },
   mounted() {
@@ -52,6 +52,12 @@ export default {
         this.$parent.$refs.navbar.classes['nav-bg'] = false;
       }
       // console.log(this.$parent.$refs.navbar.$el);
+    },
+    goNext() {
+      this.current += 1;
+    },
+    goBack() {
+      this.current -= 1;
     },
   },
   computed: {

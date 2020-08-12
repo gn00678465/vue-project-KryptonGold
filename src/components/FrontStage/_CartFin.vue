@@ -20,7 +20,7 @@
       <button type="button" class="btn btn-order">
         <span>確認訂單</span>
       </button>
-      <button type="button" class="btn btn-shopping">
+      <button type="button" class="btn btn-shopping" @click.prevent="goProduct">
         <span>繼續選購</span>
       </button>
     </div>
@@ -34,7 +34,11 @@ export default {
   data() {
     return {};
   },
-  methods: {},
+  methods: {
+    goProduct() {
+      this.$router.push('/products');
+    },
+  },
   computed: {},
 };
 </script>
@@ -93,10 +97,11 @@ export default {
     }
     &-shopping {
       border: 1px solid $hover-color;
+      background: $hover-color;
+      color: #fff;
       &:hover {
         border: 1px solid $hover-color;
-        background: $hover-color;
-        color: #fff;
+        background: darken($hover-color, 10%);
       }
     }
   }

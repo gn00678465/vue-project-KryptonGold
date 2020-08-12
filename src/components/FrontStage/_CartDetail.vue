@@ -53,10 +53,10 @@
         </ul>
       </div>
       <div class="cart__btn">
-        <button type="button" class="btn btn-next">
+        <button type="button" class="btn btn-next" @click.prevent="goNextStep">
           <span>確認付款</span>
         </button>
-        <button type="button" class="btn btn-prev">
+        <button type="button" class="btn btn-prev" @click.prevent="goBackStep">
           <span>回購物車</span>
         </button>
       </div>
@@ -103,7 +103,14 @@ export default {
       inputTemp: {},
     };
   },
-  methods: {},
+  methods: {
+    goNextStep() {
+      this.$emit('goNext');
+    },
+    goBackStep() {
+      this.$emit('goBack');
+    },
+  },
   computed: {},
 };
 </script>

@@ -64,8 +64,7 @@
           </ul>
         </div>
         <div class="cart__btn">
-          <button type="button" class="btn btn-next">
-            <div class="icon"></div>
+          <button type="button" class="btn btn-next" @click.prevent="goNextStep">
             <span>繼續結帳</span>
           </button>
         </div>
@@ -81,7 +80,11 @@ export default {
   data() {
     return {};
   },
-  methods: {},
+  methods: {
+    goNextStep() {
+      this.$emit('goNext');
+    },
+  },
   computed: {},
 };
 </script>

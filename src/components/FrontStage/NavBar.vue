@@ -14,21 +14,21 @@
             <icon class="nav-icon" iconName="home" />
             <span class="nav__link">首頁</span>
           </router-link>
-          <router-link to="Products" tag="li" class="nav__item" exact-active-class="active">
+          <router-link to="products" tag="li" class="nav__item" exact-active-class="active">
             <icon class="nav-icon" iconName="boxes" />
             <span class="nav__link">所有產品</span>
           </router-link>
-          <router-link to="About" tag="li" class="nav__item" exact-active-class="active">
+          <router-link to="about" tag="li" class="nav__item" exact-active-class="active">
             <icon class="nav-icon" iconName="info" />
             <span class="nav__link">關於我們</span>
           </router-link>
-          <router-link to="Contactus" tag="li" class="nav__item" exact-active-class="active">
+          <router-link to="contactus" tag="li" class="nav__item" exact-active-class="active">
             <icon class="nav-icon" iconName="contact_mail" />
             <span class="nav__link">聯繫我們</span>
           </router-link>
         </ul>
         <div class="nav__content">
-          <dropdown :icons="['user', 'cart']" :top="top"/>
+          <dropdown :icons="['cart']" :top="top"/>
           <!-- <dropdown icon="cart" :top="top"/> -->
         </div>
       </div>
