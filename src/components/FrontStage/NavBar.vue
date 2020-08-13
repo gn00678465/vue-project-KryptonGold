@@ -2,6 +2,9 @@
   <nav class="nav-light nav-fixed" :class="classes">
     <div class="container navbar">
       <a href="#" class="navbar__brand"><slot>Logo</slot></a>
+      <button type="button" class="navbar__mobile-cart" @click="goToCart">
+        <icon class="nav-icon" iconName="cart" />
+      </button>
       <button type="button" class="navbar__toggle" @click="showMenu">
         <icon class="nav-icon" iconName="menu" />
       </button>
@@ -27,21 +30,22 @@
             <span class="nav__link">聯繫我們</span>
           </router-link>
         </ul>
-        <div class="nav__content">
+        <!-- <div class="nav__content">
           <dropdown :icons="['cart']" :top="top"/>
-          <!-- <dropdown icon="cart" :top="top"/> -->
-        </div>
+        </div> -->
+        <router-link to="carts" tag="li" class="nav__cart" exact-active-class="active">
+          <icon class="nav-icon" iconName="cart" />
+        </router-link>
       </div>
     </div>
   </nav>
 </template>
 
 <script>
-import dropdown from './NavBaeDropdown.vue';
 
 export default {
   name: 'NavBar',
-  components: { dropdown },
+  components: {},
   data() {
     return {
       isShow: false,
@@ -63,11 +67,14 @@ export default {
     showMenu() {
       this.isShow = !this.isShow;
     },
+    goToCart() {
+      this.$router.push('/carts');
+    },
     onResize() {
       if (window.innerWidth < 767) {
-        const { top } = this.$el.querySelector('.nav__content').getBoundingClientRect();
-        const height = this.$el.querySelector('.nav__content').clientHeight;
-        this.top = top + height;
+        const { height } = this.$el.querySelector('.navbar').getBoundingClientRect();
+        // const height = this.$el.querySelector('.nav__content').clientHeight;
+        this.top = height;
       } else if (window.innerWidth >= 768) {
         const { height } = this.$el.querySelector('.navbar').getBoundingClientRect();
         this.top = height;
@@ -82,22 +89,21 @@ export default {
 <style lang="scss" scoped>
 $title-size: 1.5rem;
 $light-actived: #f44336;
-$light-hover: #F7F7F7;
+$light-hover: #eee;
 $light-text: #3c4858;
 $logo-font: 'Kaushan Script';
 
 @mixin toggle() {
-  padding: .15rem .75rem;
+  padding: .15rem;
   background-color: transparent;
   border: 1px solid transparent;
   border-radius: .25rem;
   cursor: pointer;
-  z-index: 999;
 };
 
 .nav-light {
   color: $light-text;
-  .nav__item {
+  .nav__item, .nav__cart {
     &:hover {
       background: $light-hover;
     }
@@ -136,6 +142,7 @@ $logo-font: 'Kaushan Script';
   padding: .5rem 1rem;
   transition: all 0.5s;
   &__brand {
+    flex: 1 0 0;
     display: inline-block;
     padding-top: .3125rem;
     padding-bottom: .3125rem;
@@ -146,8 +153,15 @@ $logo-font: 'Kaushan Script';
     font-family: $logo-font;
     color: $light-text;
   }
+  &__mobile-cart {
+    @include toggle;
+    padding-right: 0.25rem;
+    border-right: 1px solid #ddd;
+    height: 100%;
+  }
   &__toggle {
     @include toggle;
+    z-index: 999;
   }
   // collapse
   &__collapse {
@@ -214,10 +228,14 @@ $logo-font: 'Kaushan Script';
       width: 100%;
       justify-content: flex-end;
       order: 1;
+      display: none;
       .nav-icon {
         width: 1.4rem;
         height: 1.4rem;
       }
+    }
+    &__cart {
+      display: none;
     }
   }
 }
@@ -228,7 +246,10 @@ $logo-font: 'Kaushan Script';
 // Medium devices (tablets, 768px and up)
 @media (min-width: 768px) {
   .navbar {
-    &__toggle, .nav__logo {
+    &__brand {
+      flex: 0 0 0;
+    }
+    &__toggle, .nav__logo, &__mobile-cart {
       display: none;
     }
     &__collapse {
@@ -259,6 +280,14 @@ $logo-font: 'Kaushan Script';
         &__content {
           display: flex;
           flex: 1 0 0;
+          order: 2;
+        }
+        &__cart {
+          @include toggle;
+          display: inline-block;
+          padding: 0.5rem 1rem;
+          margin-top: 0.5rem;
+          margin-bottom: 0.5rem;
           order: 2;
         }
       }
