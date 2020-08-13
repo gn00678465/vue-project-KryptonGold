@@ -1,14 +1,14 @@
 <template>
   <nav class="nav-light nav-fixed" :class="classes">
     <div class="container navbar">
-      <a href="#" class="navbar__brand"><slot>Logo</slot></a>
+      <router-link to="/" class="navbar__brand"><slot>Logo</slot></router-link>
       <button type="button" class="navbar__mobile-cart" @click="goToCart">
         <icon class="nav-icon" iconName="cart" />
       </button>
       <button type="button" class="navbar__toggle" @click="showMenu">
         <icon class="nav-icon" iconName="menu" />
       </button>
-      <div class="navbar__collapse" :class="{show: isShow}">
+      <div class="navbar__collapse" :class="{show: isShow}" @click="showMenu">
         <div class="nav__logo">
           <slot>Logo</slot>
         </div>
@@ -65,7 +65,7 @@ export default {
   },
   methods: {
     showMenu() {
-      this.isShow = !this.isShow;
+      if (window.innerWidth < 768) this.isShow = !this.isShow;
     },
     goToCart() {
       this.$router.push('/carts');

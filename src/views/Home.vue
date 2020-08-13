@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <Navbar ref="navbar">KryptonGold</Navbar>
+    <Navbar ref="navbar">Confidant</Navbar>
     <router-view></router-view>
     <Footer/>
   </div>
