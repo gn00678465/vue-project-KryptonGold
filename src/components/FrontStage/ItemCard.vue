@@ -1,6 +1,6 @@
 <template>
   <div class="ItemCard">
-    <img src="https://picsum.photos/id/10/300/200" alt="" class="ItemCard__img">
+    <img :src="url" alt="" class="ItemCard__img">
     <div class="ItemCard__content">
       <h4 class="ItemCard__title">Test Card</h4>
       <div class="ItemCard__description">Lorem ipsum dolor,
@@ -19,7 +19,9 @@ export default {
   name: 'ItemCard',
   components: {},
   data() {
-    return {};
+    return {
+      url: 'https://hexschool-api.s3.us-west-2.amazonaws.com/custom/xDlnhD6WfhFj3bmwrzSWQVqYGJrTegdXwRQpSIDZqYKkrzDwGWCrrFiuiwrfn3W5B8sL0nlB2Y6GRmmIS57LxLmDXGwVHI0xYk7KjxqZNiJ6hfUbUrya0GjA17S2uEBH.png',
+    };
   },
   methods: {},
   computed: {},

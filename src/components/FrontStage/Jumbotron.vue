@@ -1,6 +1,6 @@
 <template>
   <div class="jumbotron">
-    <img class="slide" src="https://images.unsplash.com/photo-1436076863939-06870fe779c2?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"/>
+    <img class="slide" src="https://hexschool-api.s3.us-west-2.amazonaws.com/custom/SDoPfqZGNHS4Ucvuzph02opaqnOfcXi9CQrpCwzrM6S189RZcAk1jLKttOOuXmvH0xtz5GudbOFcsq7Py3qq18fxY7N2R8hrBIkhSxY15if6ydxHTDzk3nqo5iVpLSU5.jpg"/>
     <transition enter-active-class="animate__animated animate__fadeInDown">
       <div class="container-fluid" v-if="show">
         <p class="h1">酒逢知己千杯少</p>
@@ -41,7 +41,7 @@ export default {
   position: relative;
   .container-fluid {
     position: absolute;
-    top: 65%;
+    bottom: 5%;;
     text-align: center;
   }
   .h1 {
@@ -102,9 +102,6 @@ export default {
     height: 100vh;
   }
   .jumbotron {
-    .container {
-      top: 70%;
-    }
     .h1 {
       font-size: 75px;
     }

@@ -1,20 +1,332 @@
 <template>
-  <div>
+  <div class="container" :style="{'padding-top': mt + 'px'}">
+    <div class="product">
+      <div class="product__photo">
+        <img src="https://images.unsplash.com/photo-1501817931860-6b22e34ca1a8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=808&q=80">
+        <div class="photo-main">
+          <img :src="url" alt="">
+        </div>
+      </div>
+      <div class="product__info">
+        <div class="product-content" ref="content">
+          <div class="title">可倫堡 1664 (1 罐)</div>
+          <div class="subtext">啤酒 | 500ml</div>
+          <div class="price">
+            <span>$85元</span>
+            <span>$79元</span>
+          </div>
+          <div class="active">
+            <Increment :quantity.sync="quantity"/>
+            <button type="button" class="btn btn-cart">加入購物車</button>
+          </div>
+          <hr>
+          <div class="description">
+            <span>介紹：</span>
+            <p>
+              XXXXXXXXXXXXXXXXXXXXXXXXXX
+            </p>
+            <span>資訊：</span>
+            <ul class="information">
+              <li class="item"><font-awesome-icon :icon="['fas', 'beer']" /><span>種類：</span>
+                <span>拉格啤酒</span>
+              </li>
+              <li class="item"><font-awesome-icon :icon="['fas', 'flag']" /><span>品牌：</span>
+                <span>可倫堡</span>
+              </li>
+              <li class="item"><font-awesome-icon :icon="['fas', 'globe']" /><span>國家：</span>
+                <span>法國</span>
+              </li>
+              <li class="item"><font-awesome-icon :icon="['fas', 'prescription-bottle']" />
+                <span>容量：</span>
+                <span>330 ml</span>
+              </li>
+              <li class="item"><font-awesome-icon :icon="['fas', 'percent']" /><span>濃度：</span>
+                <span>5 %</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
+import Increment from 'components/Increment.vue';
+
 export default {
   name: 'Product',
-  components: {},
+  components: { Increment },
   data() {
-    return {};
+    return {
+      mt: 0,
+      quantity: 1,
+      url: 'https://hexschool-api.s3.us-west-2.amazonaws.com/custom/xDlnhD6WfhFj3bmwrzSWQVqYGJrTegdXwRQpSIDZqYKkrzDwGWCrrFiuiwrfn3W5B8sL0nlB2Y6GRmmIS57LxLmDXGwVHI0xYk7KjxqZNiJ6hfUbUrya0GjA17S2uEBH.png',
+    };
   },
-  methods: {},
+  mounted() {
+    this.marginTop();
+  },
+  methods: {
+    marginTop() {
+      this.mt = this.$parent.$refs.navbar.navHeight;
+    },
+  },
   computed: {},
 };
 </script>
 
 <style lang="scss" scoped>
+/* ----- Variables ----- */
+$color-primary: #4c4c4c;
+$color-secondary: #a6a6a6;
+$color-highlight: #ff3f40;
 
+.container {
+  flex: 1 0 auto;
+  padding-top: 1.5rem;
+}
+
+img {
+  max-width: 100%;
+}
+
+.btn {
+  @include btn;
+}
+
+.product {
+  display: flex;
+  flex-flow: column nowrap;
+  &__photo {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    border-top-right-radius: 30px;
+    border-top-left-radius: 30px;
+    > img {
+      border-top-right-radius: 30px;
+      border-top-left-radius: 30px;
+    }
+    .photo-main {
+      position: absolute;
+      width: 60%;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 20;
+      > img {
+        filter: drop-shadow(1px 1px 3px #a6a6a6);
+      }
+    }
+  }
+  &__info {
+    position: relative;
+    width: 100%;
+    .product-content {
+      border-radius: 30px 30px 15px 15px;
+      padding: 1rem 1.5rem;
+      width: 100%;
+      transform: translateY(-2rem);
+      box-shadow: 4px 4px 25px -2px rgba(0, 0, 0, 0.3);
+      background: #FFF;
+      z-index: 5;
+    }
+    .title, .subtext, .price, .active {
+      display: block;
+      width: 100%;
+      margin-bottom: 0.5rem;
+    }
+    .title {
+      text-align: center;
+      margin-bottom: 0.1rem;
+      color: #4c4c4c;
+      font-size: 1.7rem;
+      font-weight: 900;
+    }
+    .subtext {
+      font-size: 1rem;
+      color: $color-secondary;
+      font-weight: 500;
+    }
+    .price {
+      span {
+        &:first-child {
+          font-size: 1.3rem;
+          text-decoration: line-through;
+          color: $color-secondary;
+          margin-right: 0.5rem;
+        }
+        &:last-child {
+          padding-left: 0.15rem;
+          font-size: 2rem;
+          color: $color-highlight;
+        }
+      }
+    }
+    .active {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.5rem;
+      .btn {
+        background: #ddd;
+      }
+    }
+    hr {
+      width: 100%;
+      border-top: 1px solid $color-secondary;
+      margin: 1rem 0;
+    }
+    .description {
+      > span {
+        font-size: 1.4rem;
+        margin-bottom: 0.5rem;
+        display: block;
+      }
+      p {
+        font-size: 1rem;
+        margin-bottom: 0.5rem;
+        letter-spacing: 1px;
+        text-indent: 2rem;
+        word-break: break-all;
+      }
+      ul.information {
+        li.item {
+          display: inline-block;
+          width: 100%;
+          font-size: 1rem;
+          text-align: left;
+          margin-bottom: 0.5rem;
+          color: #6b6b6b;
+          span:nth-of-type(1) {
+            color: #000;
+            margin-left: 0.5rem;
+          }
+          span:nth-of-type(2) {
+            margin-left: 0.75rem;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .product {
+    &__info {
+      .title {
+        font-size: 2rem;
+      }
+      .subtext {
+        font-size: 1.3rem;
+      }
+      .price {
+        span {
+          &:first-child {
+            font-size: 1.5rem;
+          }
+          &:last-child {
+            font-size: 2.3rem;
+          }
+        }
+      }
+      .description {
+        > span {
+          font-size: 1.5rem;
+        }
+        > p {
+          font-size: 1.1rem;
+          text-indent: 2.2rem;
+        }
+        ul.information {
+          li.item {
+            font-size: 1.1rem;
+            width: 50%;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 992px) {
+  .container {
+    display: flex;
+    align-items: center;
+  }
+  .product {
+    flex-flow: row nowrap;
+    background: #fff;
+    padding: 2.5rem 0;
+    border-radius: 6px;
+    box-shadow: 4px 4px 25px -2px rgba(0, 0, 0, 0.3);
+    &__photo {
+      > img {
+        transform: translateX(-2.5rem);
+        border-radius: 6px;
+      }
+      .photo-main {
+        width: 70%;
+        transform: translate(calc(-50% - 2.5rem), -50%);
+      }
+    }
+    &__info {
+      min-height: 100% !important;
+      .product-content {
+        display: flex;
+        flex-flow: column nowrap;
+        position: initial;
+        box-shadow: initial;
+        background: transparent;
+        transform: initial;
+        height: 100%;
+        justify-content: space-between;
+      }
+      .title {
+        font-size: 2.3rem;
+        text-align: left;
+      }
+      .subtext {
+        font-size: 1.5rem;
+      }
+      .price {
+        span {
+          &:first-child {
+            font-size: 1.8rem;
+          }
+          &:last-child {
+            font-size: 2.5rem;
+          }
+        }
+      }
+      .active {
+        order: 3;
+        .btn {
+          margin-right: 2rem;
+          padding: 0.5rem 0.75rem;
+          font-size: 1.3rem;
+        }
+      }
+      .description {
+        order: 2;
+        > span {
+          font-size: 1.8rem;
+        }
+        > p {
+          font-size: 1.3rem;
+          text-indent: 2.6rem;
+          margin-bottom: 0.8rem;
+        }
+        ul.information {
+          margin-bottom: 0.8rem;
+          li.item {
+            font-size: 1.3rem;
+            width: 50%;
+          }
+        }
+      }
+    }
+  }
+}
 </style>

@@ -76,6 +76,7 @@ $social-colors: (
   font-size:15px;
   line-height:24px;
   color:#737373;
+  z-index: 20;
   .copyright {
     word-break: keep-all;
   }

@@ -10,6 +10,13 @@ import {
   faChevronRight,
   faCog,
   faArrowLeft,
+  faMapMarkedAlt, // map-marker-alt
+  faWineBottle, // wine-bottle
+  faBeer, // beer
+  faPrescriptionBottle, // prescription-bottle
+  faGlobe, // globe
+  faFlag, // flag
+  faPercent, // percent
 } from '@fortawesome/free-solid-svg-icons';
 import {
   faFacebookF,
@@ -29,4 +36,11 @@ library.add(
   faGithub,
   faCog,
   faArrowLeft,
+  faMapMarkedAlt,
+  faWineBottle,
+  faBeer,
+  faPrescriptionBottle,
+  faGlobe,
+  faFlag,
+  faPercent,
 );
