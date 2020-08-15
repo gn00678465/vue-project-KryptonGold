@@ -15,7 +15,9 @@
       <BtnGroup :btns="btns" @btn-emit="btnClick" :border="true" btnSize="md"/>
     </span>
     <Dialog ref="dialog" @dialog="confirm">刪除此產品?</Dialog>
-    <Modal ref="modal" size="xl" @dataEmit="updateProd"/>
+    <Modal ref="modal" size="xl" @dataEmit="updateProd">
+      <span slot="header">編輯產品</span>
+    </Modal>
   </div>
 </template>
 
@@ -59,10 +61,12 @@ export default {
       this[`${action}Handler`]();
     },
     editHandler() {
-      this.$refs.modal.ModalShow = true;
-      this.$refs.modal.ModalTitle = '編輯產品';
-      this.$refs.modal.body = 'Product';
-      this.$refs.modal.inputTemp = this.prod;
+      const vm = this;
+      this.showProduct(this.prod.id)
+        .then((data) => {
+          vm.$refs.modal.ModalShow = true;
+          vm.$refs.modal.inputTemp = data;
+        });
     },
     updateProd(data) {
       this.editProduct(data);

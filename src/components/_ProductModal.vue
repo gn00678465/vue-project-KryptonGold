@@ -5,7 +5,7 @@
         <!-- header -->
         <header class="modal__header">
           <slot name="header">
-            {{ ModalTitle }}
+            Modal
           </slot>
           <div class="times" @click.prevent="closeModal">&times;</div>
         </header>

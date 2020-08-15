@@ -20,6 +20,21 @@ export default {
           this.errorNotify(err.response.data.message);
         });
     },
+    // 取得單一商品細節
+    showProduct(id) {
+      this.isLoading = true;
+      return this.$http.get(`${process.env.VUE_APP_PATH}api/${process.env.VUE_APP_UUID}/admin/ec/product/${id}`)
+        .then((res) => {
+          if (res.status === 200) {
+            this.isLoading = false;
+          }
+          return res.data.data;
+        })
+        .catch((err) => {
+          this.isLoading = false;
+          this.errorNotify(err.response.data.message);
+        });
+    },
     // 新增商品資訊
     // use in Products.vue
     createProduct(data) {
