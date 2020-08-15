@@ -35,7 +35,9 @@
         </div>
       </div>
     </div>
-    <Modal ref="modal" size="xl" @dataEmit="newProd"/>
+    <Modal ref="modal" size="xl" @dataEmit="newProd">
+      <span slot="header">新增產品</span>
+    </Modal>
   </div>
 </template>
 
@@ -78,7 +80,6 @@ export default {
     },
     newHandler() {
       this.$refs.modal.ModalShow = true;
-      this.$refs.modal.ModalTitle = '新增產品';
     },
     newProd(data) {
       this.createProduct(data);

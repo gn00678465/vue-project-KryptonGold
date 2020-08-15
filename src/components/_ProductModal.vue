@@ -71,10 +71,33 @@
                         v-model="inputTemp.content"/>
                       </div>
                       <div class="col-12">
-                        <!-- <span class="label">商品說明：</span> -->
-                        <!-- <vue-editor v-model="inputTemp.description" /> -->
                         <InputField type="textarea" label="產品說明" :attrs="inputSet"
                         v-model="inputTemp.description"/>
+                      </div>
+                      <!-- options -->
+                      <hr class="options" :class="{show: ShowOptions}"
+                      @click.prevent="ShowOptions = !ShowOptions">
+                      <div class="row" v-if="ShowOptions">
+                        <div class="col-3">
+                          <InputField label="種類" :attrs="inputSet"
+                          v-model.number="inputTemp.options.type"/>
+                        </div>
+                        <div class="col-3">
+                          <InputField label="品牌" :attrs="inputSet"
+                          v-model.number="inputTemp.options.brand"/>
+                        </div>
+                        <div class="col-2">
+                          <InputField label="國家" :attrs="inputSet"
+                          v-model.number="inputTemp.options.country"/>
+                        </div>
+                        <div class="col-2">
+                          <InputField label="容量" :attrs="inputSet"
+                          v-model.number="inputTemp.options.ml"/>
+                        </div>
+                        <div class="col-2">
+                          <InputField label="濃度" :attrs="inputSet"
+                          v-model.number="inputTemp.options.percent"/>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -112,6 +135,7 @@ export default {
   data() {
     return {
       ModalShow: false,
+      ShowOptions: false,
       ModalTitle: '',
       inputSet: {
         標題: {
@@ -159,6 +183,26 @@ export default {
           placeholder: '請輸入圖片網址',
           type: 'text',
         },
+        種類: {
+          rules: '',
+          type: 'text',
+        },
+        容量: {
+          rules: '',
+          type: 'Number',
+        },
+        濃度: {
+          rules: 'max:100',
+          type: 'Number',
+        },
+        國家: {
+          rules: '',
+          type: 'text',
+        },
+        品牌: {
+          rules: '',
+          type: 'text',
+        },
       },
       btnCheck: [
         {
@@ -181,17 +225,22 @@ export default {
       isUplading: false,
       inputTemp: {
         imageUrl: [],
+        options: {
+          type: '',
+        },
       },
     };
   },
   methods: {
     closeModal() {
       this.ModalShow = false;
+      this.ShowOptions = false;
       this.clearInput();
     },
     clearInput() {
       this.inputTemp = {};
       this.$set(this.inputTemp, 'imageUrl', []);
+      this.$set(this.inputTemp, 'options', {});
     },
     validate() {
       this.$refs.form.validate()
@@ -264,6 +313,32 @@ export default {
       display: flex;
       flex-flow: row nowrap;
       justify-content: flex-end;
+    }
+  }
+  .options {
+    width: 80%;
+    border-top: 1px solid rgba(0, 0, 0, 0.01);
+    position:relative;
+    &::after {
+      content: "Show Options";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: #fff;
+      padding: 0 10px;
+    }
+    &.show {
+      margin-bottom: 1rem;
+      &::after {
+        content: "Hide Options";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #fff;
+        padding: 0 10px;
+      }
     }
   }
 }
