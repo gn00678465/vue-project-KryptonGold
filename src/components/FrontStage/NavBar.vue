@@ -123,8 +123,9 @@ $logo-font: 'Kaushan Script';
 }
 
 .nav-bg {
-  background: rgba(255,255,255,0.9);
+  background: rgba(245,245,247,0.72);
   box-shadow: 0 2px 16px 0 rgba(0,0,0,0.08);;
+  backdrop-filter: saturate(180%) blur(20px);
 }
 
 .nav-icon {
