@@ -27,7 +27,14 @@ table { border-collapse: collapse; border-spacing: 0; }
 
 // colors
 :root {
-  --info: #379BDE;
+  --theme-info: #379BDE;
+  --theme-info-hover: #{darken(#379BDE, 10%)};
+  --theme-primary: #f44336;
+  --thtme-btn-cart: #e67e22;
+  --theme-btn-cart-hover: #{darken(#e67e22, 10%)};
+  --theme-card-title: #4c4c4c;
+  --theme-card-subtitle: #a6a6a6;
+  --theme-card-price: #ff3f40;
 }
 
 // body

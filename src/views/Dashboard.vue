@@ -35,7 +35,7 @@ export default {
       childs: [
         {
           name: '產品列表',
-          path: 'products',
+          path: 'editproducts',
           icon: 'boxes',
         },
         {

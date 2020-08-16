@@ -4,7 +4,6 @@
     <section class="container-xl" v-for="i in 2" :key="i">
       <div class="row">
         <div class="col-sm-12 col-lg-6 col-xl-3" v-for="j in 4" :key="j">
-          <ItemCard />
         </div>
       </div>
     </section>

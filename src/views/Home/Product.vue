@@ -1,19 +1,23 @@
 <template>
   <div class="container" :style="{'padding-top': mt + 'px'}">
-    <div class="product">
+    <div class="product" v-if="product" v-cloak>
       <div class="product__photo">
         <img src="https://images.unsplash.com/photo-1501817931860-6b22e34ca1a8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=808&q=80">
         <div class="photo-main">
-          <img :src="url" alt="">
+          <img :src="product.imageUrl[0]" alt="">
         </div>
       </div>
       <div class="product__info">
         <div class="product-content" ref="content">
-          <div class="title">可倫堡 1664 (1 罐)</div>
-          <div class="subtext">啤酒 | 500ml</div>
+          <div class="title">{{product.title}}( 1 {{product.unit}})</div>
+          <div class="subtext">
+            {{product.options.type}} |
+            {{product.options.ml|ml}} |
+            {{product.options.percent|percent}}
+          </div>
           <div class="price">
-            <span>$85元</span>
-            <span>$79元</span>
+            <span>{{product.origin_price|Dollar}}元</span>
+            <span>{{product.price|Dollar}}元</span>
           </div>
           <div class="active">
             <Increment :quantity.sync="quantity"/>
@@ -22,26 +26,24 @@
           <hr>
           <div class="description">
             <span>介紹：</span>
-            <p>
-              XXXXXXXXXXXXXXXXXXXXXXXXXX
-            </p>
+            <p>{{product.description}}</p>
             <span>資訊：</span>
             <ul class="information">
               <li class="item"><font-awesome-icon :icon="['fas', 'beer']" /><span>種類：</span>
-                <span>拉格啤酒</span>
+                <span>{{product.options.type}}</span>
               </li>
               <li class="item"><font-awesome-icon :icon="['fas', 'flag']" /><span>品牌：</span>
-                <span>可倫堡</span>
+                <span>{{product.options.brand}}</span>
               </li>
               <li class="item"><font-awesome-icon :icon="['fas', 'globe']" /><span>國家：</span>
-                <span>法國</span>
+                <span>{{product.options.country}}</span>
               </li>
               <li class="item"><font-awesome-icon :icon="['fas', 'prescription-bottle']" />
                 <span>容量：</span>
-                <span>330 ml</span>
+                <span>{{product.options.ml|ml}}</span>
               </li>
               <li class="item"><font-awesome-icon :icon="['fas', 'percent']" /><span>濃度：</span>
-                <span>5 %</span>
+                <span>{{product.options.percent|percent}}</span>
               </li>
             </ul>
           </div>
@@ -53,16 +55,22 @@
 
 <script>
 import Increment from 'components/Increment.vue';
+import FrontProductAPI from 'assets/Frontend_mixins/Product'; // mixins: [FrontProductAPI]
 
 export default {
   name: 'Product',
+  mixins: [FrontProductAPI],
   components: { Increment },
   data() {
     return {
+      product: '',
       mt: 0,
       quantity: 1,
-      url: 'https://hexschool-api.s3.us-west-2.amazonaws.com/custom/xDlnhD6WfhFj3bmwrzSWQVqYGJrTegdXwRQpSIDZqYKkrzDwGWCrrFiuiwrfn3W5B8sL0nlB2Y6GRmmIS57LxLmDXGwVHI0xYk7KjxqZNiJ6hfUbUrya0GjA17S2uEBH.png',
     };
+  },
+  created() {
+    const { id } = this.$route.params;
+    this.GetProductDetial(id);
   },
   mounted() {
     this.marginTop();
@@ -81,6 +89,10 @@ export default {
 $color-primary: #4c4c4c;
 $color-secondary: #a6a6a6;
 $color-highlight: #ff3f40;
+
+[v-cloak] {
+  display: none;
+}
 
 .container {
   flex: 1 0 auto;
@@ -110,8 +122,8 @@ img {
     }
     .photo-main {
       position: absolute;
-      width: 60%;
-      top: 50%;
+      width: 90%;
+      top: 40%;
       left: 50%;
       transform: translate(-50%, -50%);
       z-index: 20;
@@ -267,8 +279,8 @@ img {
         border-radius: 6px;
       }
       .photo-main {
-        width: 70%;
-        transform: translate(calc(-50% - 2.5rem), -50%);
+        width: 90%;
+        transform: translate(calc(-50% - 2.5rem), -60%);
       }
     }
     &__info {
@@ -286,6 +298,7 @@ img {
       .title {
         font-size: 2.3rem;
         text-align: left;
+        margin-bottom: 1rem;
       }
       .subtext {
         font-size: 1.5rem;

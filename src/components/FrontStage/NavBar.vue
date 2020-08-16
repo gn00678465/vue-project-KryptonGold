@@ -17,7 +17,7 @@
             <icon class="nav-icon" iconName="home" />
             <span class="nav__link">首頁</span>
           </router-link>
-          <router-link to="products" tag="li" class="nav__item" exact-active-class="active">
+          <router-link to="/products" tag="li" class="nav__item" exact-active-class="active">
             <icon class="nav-icon" iconName="boxes" />
             <span class="nav__link">所有產品</span>
           </router-link>

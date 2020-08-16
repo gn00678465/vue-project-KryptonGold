@@ -6,6 +6,12 @@ Vue.filter('Dollar', (val) => `$${val}`);
 // 加入百分比符號
 Vue.filter('Percent', (val) => `${val}%`);
 
+// 加入 ml
+Vue.filter('ml', (val) => `${val}ml`);
+
+// r加入 percent
+Vue.filter('percent', (val) => `${val}%`);
+
 // 貨幣千分位
 Vue.filter('Currency', (num) => {
   const parts = num.toString().split('.');

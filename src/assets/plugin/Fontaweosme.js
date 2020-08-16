@@ -17,6 +17,8 @@ import {
   faGlobe, // globe
   faFlag, // flag
   faPercent, // percent
+  faCartPlus, // cart-plus
+  faInfo,
 } from '@fortawesome/free-solid-svg-icons';
 import {
   faFacebookF,
@@ -43,4 +45,6 @@ library.add(
   faGlobe,
   faFlag,
   faPercent,
+  faCartPlus,
+  faInfo,
 );

@@ -1,18 +1,35 @@
 <template>
   <div class="container" :style="{'padding-top': mt + 'px'}">
     <div class="products">
+      <section>
+        <BrushTitle>啤酒</BrushTitle>
+        <div class="row">
+          <div class="col-xl-3" v-for="prod in products" :key="prod.id">
+            <ItemCard :data="prod" />
+            </div>
+        </div>
+      </section>
     </div>
   </div>
 </template>
 
 <script>
+import BrushTitle from 'components/BrushTitle.vue';
+import FrontProductAPI from 'assets/Frontend_mixins/Product'; // mixins: [FrontProductAPI]
+
 export default {
   name: 'Products',
-  components: {},
+  components: { BrushTitle },
+  mixins: [FrontProductAPI],
   data() {
     return {
       mt: 0,
+      isLoading: false,
+      products: [],
     };
+  },
+  created() {
+    this.GetProductList(1);
   },
   mounted() {
     this.marginTop();

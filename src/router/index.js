@@ -18,7 +18,7 @@ const routes = [
         component: () => import('../views/Home/Products.vue'),
       },
       {
-        path: 'product',
+        path: 'product/:id',
         component: () => import('../views/Home/Product.vue'),
       },
       {
@@ -49,7 +49,7 @@ const routes = [
         component: () => import('../views/DashBoard/Main.vue'),
       },
       {
-        path: 'products',
+        path: 'editproducts',
         component: () => import('../views/DashBoard/Products.vue'),
       },
       {
