@@ -7,7 +7,7 @@
       </loading>
     <div class="product" v-if="product" v-cloak>
       <div class="product__photo">
-        <img src="https://images.unsplash.com/photo-1501817931860-6b22e34ca1a8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=808&q=80">
+        <img src="https://images.unsplash.com/photo-1576469362314-919c415e747d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=80">
         <div class="photo-main">
           <img :src="product.imageUrl[0]" alt="">
         </div>
@@ -187,7 +187,14 @@ img {
       align-items: center;
       margin-bottom: 0.5rem;
       .btn {
-        background: #ddd;
+        @include btn;
+        &-cart {
+          color: #fff;
+          background: v(thtme-btn-cart);
+          &:hover {
+            background: v(theme-btn-cart-hover);
+          }
+        }
       }
     }
     hr {
