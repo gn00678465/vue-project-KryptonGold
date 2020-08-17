@@ -50,6 +50,9 @@ Vue.component('ItemCard', ItemCard);
 
 Vue.config.productionTip = false;
 
+// event bus
+Vue.prototype.$bus = new Vue();
+
 new Vue({
   router,
   render: (h) => h(App),

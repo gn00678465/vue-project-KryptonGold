@@ -20,6 +20,7 @@ export default {
         .then((res) => {
           if (res.status === 200) {
             this.addCarting = false;
+            this.$bus.$emit('get-cart');
           }
         })
         .catch((err) => {

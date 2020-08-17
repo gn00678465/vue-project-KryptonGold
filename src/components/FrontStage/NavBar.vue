@@ -62,11 +62,10 @@ export default {
     };
   },
   created() {
-    const vm = this;
-    this.GetCartList()
-      .then((data) => {
-        vm.cartLength = data.meta.pagination.total;
-      });
+    this.getCartLength();
+    this.$bus.$on('get-cart', () => {
+      this.getCartLength();
+    });
   },
   mounted() {
     window.addEventListener('resize', this.onResize());
@@ -91,6 +90,13 @@ export default {
         this.top = height;
       }
       this.navHeight = this.$el.querySelector('.navbar').getBoundingClientRect().height;
+    },
+    getCartLength() {
+      const vm = this;
+      this.GetCartList()
+        .then((data) => {
+          vm.cartLength = data.meta.pagination.total;
+        });
     },
   },
   computed: {},
