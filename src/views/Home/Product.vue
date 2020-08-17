@@ -1,5 +1,10 @@
 <template>
-  <div class="container" :style="{'padding-top': mt + 'px'}">
+  <div class="container vld-parent" :style="{'padding-top': mt + 'px'}">
+    <loading :active.sync="isLoading"
+      :can-cancel="true"
+      :is-full-page="false">
+      <LoadEffect2 slot="default"/>
+      </loading>
     <div class="product" v-if="product" v-cloak>
       <div class="product__photo">
         <img src="https://images.unsplash.com/photo-1501817931860-6b22e34ca1a8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=808&q=80">

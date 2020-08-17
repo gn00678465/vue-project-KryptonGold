@@ -1,5 +1,10 @@
 <template>
-  <div class="container" :style="{'padding-top': mt + 'px'}">
+  <div class="container vld-parent" :style="{'padding-top': mt + 'px'}">
+    <loading :active.sync="isLoading"
+      :can-cancel="true"
+      :is-full-page="false">
+      <LoadEffect2 slot="default"/>
+      </loading>
     <div class="products">
       <section>
         <BrushTitle>啤酒</BrushTitle>

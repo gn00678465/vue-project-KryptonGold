@@ -45,6 +45,7 @@ Vue.component('InputField', InputField);
 Vue.component('InputSelect', InputSelect);
 Vue.component('Dialog', () => import('components/Dialog.vue'));
 Vue.component('LoadEffect', () => import('components/Loading.vue'));
+Vue.component('LoadEffect2', () => import('components/Loading2.vue'));
 Vue.component('ItemCard', ItemCard);
 
 Vue.config.productionTip = false;
