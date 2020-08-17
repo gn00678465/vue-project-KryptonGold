@@ -19,6 +19,7 @@ import {
   faPercent, // percent
   faCartPlus, // cart-plus
   faInfo,
+  faSpinner,
 } from '@fortawesome/free-solid-svg-icons';
 import {
   faFacebookF,
@@ -47,4 +48,5 @@ library.add(
   faPercent,
   faCartPlus,
   faInfo,
+  faSpinner,
 );

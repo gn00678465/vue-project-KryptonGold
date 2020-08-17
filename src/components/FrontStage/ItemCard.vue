@@ -14,8 +14,9 @@
         <button type="button" class="btn btn-info" @click.prevent="goToDetial">
           <font-awesome-icon :icon="['fas', 'info']" />
         </button>
-        <button type="button" class="btn btn-cart">
-          <font-awesome-icon :icon="['fas', 'cart-plus']" />
+        <button type="button" class="btn btn-cart" @click.prevent="addCart">
+          <font-awesome-icon v-if="addCarting" icon="spinner" pulse />
+          <font-awesome-icon v-else icon="cart-plus" />
         </button>
       </footer>
     </div>
@@ -23,8 +24,11 @@
 </template>
 
 <script>
+import FrontCartAPI from 'assets/Frontend_mixins/Cart'; // mixins: [FrontCartAPI]
+
 export default {
   name: 'ItemCard',
+  mixins: [FrontCartAPI],
   props: {
     data: {
       type: Object,
@@ -33,12 +37,15 @@ export default {
   components: {},
   data() {
     return {
-      url: '',
+      addCarting: false,
     };
   },
   methods: {
     goToDetial() {
       this.$router.push(`product/${this.data.id}`);
+    },
+    addCart() {
+      this.CreateCart(this.data.id);
     },
   },
   computed: {},

@@ -2,7 +2,7 @@
   <div class="container vld-parent" :style="{'padding-top': mt + 'px'}">
     <loading :active.sync="isLoading"
       :can-cancel="true"
-      :is-full-page="false">
+      :is-full-page="true">
       <LoadEffect2 slot="default"/>
       </loading>
     <div class="products">

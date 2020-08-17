@@ -2,12 +2,12 @@
   <div class="container vld-parent" :style="{'padding-top': mt + 'px'}">
     <loading :active.sync="isLoading"
       :can-cancel="true"
-      :is-full-page="false">
+      :is-full-page="true">
       <LoadEffect2 slot="default"/>
       </loading>
     <div class="product" v-if="product" v-cloak>
       <div class="product__photo">
-        <img src="https://images.unsplash.com/photo-1576469362314-919c415e747d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=80">
+        <img src="https://images.unsplash.com/photo-1554314591-31236f6872d6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=80">
         <div class="photo-main">
           <img :src="product.imageUrl[0]" alt="">
         </div>
@@ -26,7 +26,11 @@
           </div>
           <div class="active">
             <Increment :quantity.sync="quantity"/>
-            <button type="button" class="btn btn-cart">加入購物車</button>
+            <button type="button" class="btn btn-cart" :class="{onActive: addCarting}"
+              @click.prevent="addCart">
+              <font-awesome-icon v-if="addCarting" icon="spinner" pulse />
+              加入購物車
+            </button>
           </div>
           <hr>
           <div class="description">
@@ -61,13 +65,16 @@
 <script>
 import Increment from 'components/Increment.vue';
 import FrontProductAPI from 'assets/Frontend_mixins/Product'; // mixins: [FrontProductAPI]
+import FrontCartAPI from 'assets/Frontend_mixins/Cart'; // mixins: [FrontCartAPI]
 
 export default {
   name: 'Product',
-  mixins: [FrontProductAPI],
+  mixins: [FrontProductAPI, FrontCartAPI],
   components: { Increment },
   data() {
     return {
+      isLoading: false,
+      addCarting: false,
       product: '',
       mt: 0,
       quantity: 1,
@@ -83,6 +90,9 @@ export default {
   methods: {
     marginTop() {
       this.mt = this.$parent.$refs.navbar.navHeight;
+    },
+    addCart() {
+      this.CreateCart(this.product.id, this.quantity);
     },
   },
   computed: {},
@@ -115,6 +125,7 @@ img {
 .product {
   display: flex;
   flex-flow: column nowrap;
+  margin-bottom: 1rem;
   &__photo {
     width: 100%;
     height: 100%;
@@ -191,7 +202,7 @@ img {
         &-cart {
           color: #fff;
           background: v(thtme-btn-cart);
-          &:hover {
+          &:hover, &.onActive {
             background: v(theme-btn-cart-hover);
           }
         }
