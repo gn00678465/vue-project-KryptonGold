@@ -4,6 +4,7 @@
       <router-link to="/" class="navbar__brand"><slot>Logo</slot></router-link>
       <button type="button" class="navbar__mobile-cart" @click="goToCart">
         <icon class="nav-icon" iconName="cart" />
+        <span class="badge">{{cartLength}}</span>
       </button>
       <button type="button" class="navbar__toggle" @click="showMenu">
         <icon class="nav-icon" iconName="menu" />
@@ -78,6 +79,7 @@ export default {
       if (window.innerWidth < 768) this.isShow = !this.isShow;
     },
     goToCart() {
+      if (this.$route.path === '/carts') return;
       this.$router.push('/carts');
     },
     onResize() {
@@ -105,7 +107,6 @@ export default {
 
 <style lang="scss" scoped>
 $title-size: 1.5rem;
-$light-actived: #f44336;
 $light-hover: #eee;
 $light-text: #3c4858;
 $logo-font: 'Kaushan Script';
@@ -118,6 +119,20 @@ $logo-font: 'Kaushan Script';
   cursor: pointer;
 };
 
+@mixin badge() {
+  display: inline-block;
+  padding: .25em .6em;
+  font-size: 75%;
+  font-weight: 700;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  background: v(theme-primary);
+  border-radius: 10rem;
+  color: #fff;
+};
+
 .nav-light {
   color: $light-text;
   .nav__item, .nav__cart {
@@ -125,7 +140,7 @@ $logo-font: 'Kaushan Script';
       background: $light-hover;
     }
     &.active {
-      background: #f44336;
+      background: v(theme-primary);
       color: #fff;
     }
   }
@@ -174,8 +189,21 @@ $logo-font: 'Kaushan Script';
   &__mobile-cart {
     @include toggle;
     padding-right: 0.25rem;
-    border-right: 1px solid #ddd;
     height: 100%;
+    position: relative;
+    &.active {
+      .badge {
+        display: none;
+      }
+    }
+    &:not(.active) {
+      .badge {
+        position: absolute;
+        top: 0;
+        left: 15px;
+        @include badge;
+      }
+    }
   }
   &__toggle {
     @include toggle;
@@ -238,6 +266,7 @@ $logo-font: 'Kaushan Script';
     &__link {
       margin-left: 1rem;
       font-size: 1.2rem;
+      font-weight: 700;
     }
     &__content {
       padding: .5rem 1rem;
@@ -318,17 +347,7 @@ $logo-font: 'Kaushan Script';
               position: absolute;
               top: 5px;
               left: 30px;
-              display: inline-block;
-              padding: .25em .6em;
-              font-size: 75%;
-              font-weight: 700;
-              line-height: 1;
-              text-align: center;
-              white-space: nowrap;
-              vertical-align: baseline;
-              background: v(theme-primary);
-              border-radius: 10rem;
-              color: #fff;
+              @include badge;
             }
           }
         }
