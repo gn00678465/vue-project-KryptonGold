@@ -32,6 +32,7 @@
             </li>
           </ul>
         </div>
+        <div class="alert">喝酒過量，有礙健康！喝酒勿開車！</div>
       </div>
     </div>
   </footer>
@@ -103,6 +104,16 @@ $social-colors: (
       color: #fff;
     }
   }
+}
+
+.alert {
+  margin-top: 1rem;
+  width: 100%;
+  text-align: center;
+  letter-spacing: 0.5rem;
+  font-size: 2.3rem;
+  color: #fff;
+  line-height: 1.3;
 }
 
 @media (min-width: 768px) {
