@@ -23,7 +23,7 @@
           </router-link>
           <router-link to="about" tag="li" class="nav__item" exact-active-class="active">
             <icon class="nav-icon" iconName="info" />
-            <span class="nav__link">關於我們</span>
+            <span class="nav__link">豆知識</span>
           </router-link>
           <router-link to="contactus" tag="li" class="nav__item" exact-active-class="active">
             <icon class="nav-icon" iconName="contact_mail" />
@@ -35,6 +35,7 @@
         </div> -->
         <router-link to="carts" tag="li" class="nav__cart" exact-active-class="active">
           <icon class="nav-icon" iconName="cart" />
+          <span class="badge">{{cartLength}}</span>
         </router-link>
       </div>
     </div>
@@ -42,9 +43,11 @@
 </template>
 
 <script>
+import FrontCartAPI from 'assets/Frontend_mixins/Cart'; // mixins: [FrontCartAPI]
 
 export default {
   name: 'NavBar',
+  mixins: [FrontCartAPI],
   components: {},
   data() {
     return {
@@ -52,10 +55,18 @@ export default {
       top: 0,
       navHeight: 0,
       dropdown: {},
+      cartLength: 0,
       classes: {
         'nav-bg': false,
       },
     };
+  },
+  created() {
+    const vm = this;
+    this.GetCartList()
+      .then((data) => {
+        vm.cartLength = data.meta.pagination.total;
+      });
   },
   mounted() {
     window.addEventListener('resize', this.onResize());
@@ -290,6 +301,30 @@ $logo-font: 'Kaushan Script';
           margin-top: 0.5rem;
           margin-bottom: 0.5rem;
           order: 2;
+          position: relative;
+          &.active {
+            .badge {
+              display: none;
+            }
+          }
+          &:not(.active) {
+            .badge {
+              position: absolute;
+              top: 5px;
+              left: 30px;
+              display: inline-block;
+              padding: .25em .6em;
+              font-size: 75%;
+              font-weight: 700;
+              line-height: 1;
+              text-align: center;
+              white-space: nowrap;
+              vertical-align: baseline;
+              background: v(theme-primary);
+              border-radius: 10rem;
+              color: #fff;
+            }
+          }
         }
       }
     }
