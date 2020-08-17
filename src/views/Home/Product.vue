@@ -280,7 +280,7 @@ img {
       }
       .photo-main {
         width: 90%;
-        transform: translate(calc(-50% - 2.5rem), -60%);
+        transform: translate(calc(-50% - 2.5rem), -50%);
       }
     }
     &__info {

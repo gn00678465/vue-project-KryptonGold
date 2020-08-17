@@ -8,7 +8,9 @@
         </span>
       <div class="ItemCard__description">{{ data.content }}</div>
       <footer class="ItemCard__footer">
-        <div class="ItemCard__price">{{data.price|Currency|Dollar}}</div>
+        <div class="ItemCard__price">{{data.price|Currency|Dollar}}
+          <span>/ 1{{data.unit}}</span>
+        </div>
         <button type="button" class="btn btn-info" @click.prevent="goToDetial">
           <font-awesome-icon :icon="['fas', 'info']" />
         </button>
@@ -100,6 +102,10 @@ h5 {
   &__price {
     font-size: 2rem;
     color: v(theme-card-price);
+    span {
+      font-size: 1.2rem;
+      color: v(theme-card-subtitle);
+    }
   }
   &__footer {
     display: flex;
