@@ -2,7 +2,7 @@
   <div class="increment">
     <button type="button" class="minus" :disabled="quantity === 1"
     @click.prevent="count(-1)"> - </button>
-    <input type="text" name="" class="quantity" v-model.number="quantity">
+    <input type="text" name="" class="quantity" v-model.number.lazy="quantity">
     <button type="button" class="plus"
     @click.prevent="count(1)"> + </button>
   </div>
@@ -13,11 +13,18 @@ export default {
   name: 'Increment',
   components: {},
   props: {
+    data: {
+      type: Number,
+      default: 1,
+    },
   },
   data() {
     return {
-      quantity: 1,
+      quantity: this.data,
     };
+  },
+  mounted() {
+    this.$emit('update:quantity', this.quantity * 1);
   },
   methods: {
     count(fix) {
@@ -36,9 +43,9 @@ export default {
 <style lang="scss" scoped>
 .increment {
   .plus, .minus {
-    height: 40px;
+    height: 30px;
     padding: 0;
-    width: 40px;
+    width: 30px;
     border-style: solid;
     border-color: #aaa;
     border-width: 1px;
@@ -62,14 +69,23 @@ export default {
   }
   input {
     text-align: center;
-    height: 40px;
+    height: 30px;
     border-width: 1px 0;
-    width: 40px;
+    width: 30px;
     border-style: solid;
     border-color: #ccc;
     padding: 6px 3px;
     background-color: #fff;
     border-radius: 0;
+  }
+}
+
+@media (min-width: 768px) {
+  .increment {
+    .plus, .minus, input {
+      height: 40px;
+      width: 40px;
+    }
   }
 }
 

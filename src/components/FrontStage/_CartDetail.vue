@@ -2,7 +2,7 @@
   <div class="container">
     <div class="row">
       <div class="col-sm-12 col-lg-8">
-        <div class="cart__detail">
+        <ValidationObserver class="cart__detail" tag="form" ref="form">
           <h3 class="detail-title">填寫收件人資訊</h3>
           <hr>
           <div class="col-sm-12 col-md-6">
@@ -29,32 +29,13 @@
             <InputField label="留言" :attrs="inputSet"
                 v-model="inputTemp.message"/>
           </div>
-        </div>
+        </ValidationObserver>
       </div>
       <div class="col-sm-12 col-lg-4">
-        <div class="cart__summary">
-        <ul>
-          <li>
-            <span class="label">小計：</span>
-            <span class="value">$123 元</span>
-          </li>
-          <li>
-            <span class="label">運費：</span>
-            <span class="value">$200 元</span>
-          </li>
-          <li>
-            <span class="label">折扣：</span>
-            <span class="value">- $200 元</span>
-          </li>
-          <li class="total">
-            <span class="label">總金額：</span>
-            <span class="value">$555 元</span>
-          </li>
-        </ul>
-      </div>
+        <Summary/>
       <div class="cart__btn">
         <button type="button" class="btn btn-next" @click.prevent="goNextStep">
-          <span>確認付款</span>
+          <span>送出訂單</span>
         </button>
         <button type="button" class="btn btn-prev" @click.prevent="goBackStep">
           <span>回購物車</span>
@@ -66,10 +47,12 @@
 </template>
 
 <script>
+import { mutation } from 'assets/store';
+import Summary from './_CartSummary.vue';
 
 export default {
   name: 'CartDetail',
-  components: {},
+  components: { Summary },
   data() {
     return {
       payments: ['WebATM', 'ATM', 'Barcode', 'Credit', 'ApplePay', 'GooglePay'],
@@ -85,7 +68,7 @@ export default {
           type: 'email',
         },
         收件人電話: {
-          rules: 'required|',
+          rules: 'required|integer|min:10',
           placeholder: '請輸入收件人電話',
           type: '',
         },
@@ -105,10 +88,20 @@ export default {
   },
   methods: {
     goNextStep() {
-      this.$emit('goNext');
+      this.submit();
     },
     goBackStep() {
       this.$emit('goBack');
+    },
+    submit() {
+      const vm = this;
+      this.$refs.form.validate()
+        .then((success) => {
+          if (success) {
+            mutation.setPersonObj(vm.inputTemp);
+            vm.$emit('goNext');
+          }
+        });
     },
   },
   computed: {},

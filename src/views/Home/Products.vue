@@ -1,11 +1,14 @@
 <template>
-  <div class="container vld-parent" :style="{'padding-top': mt + 'px'}">
+  <div class="vld-parent" :style="{'padding-top': mt + 'px'}">
     <loading :active.sync="isLoading"
       :can-cancel="true"
       :is-full-page="true">
       <LoadEffect2 slot="default"/>
       </loading>
-    <div class="products">
+    <div class="banner">
+      <img class="slide" src="https://hexschool-api.s3.us-west-2.amazonaws.com/custom/PLKhk6JeCtmopqGlcl7jphiYmfpXreT4aMUWjwNzF8prekNolukphssTKiRrLt2FGbCAhu5MJZ6plErksVT8ETngzFIOJEWk2hoI3m7dFAyxQWw1nWh43aidPsRcOt91.jpg"/>
+    </div>
+    <div class="container products">
       <section>
         <BrushTitle>啤酒</BrushTitle>
         <div class="row">
@@ -49,10 +52,18 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.container {
-  flex: 1 0 auto;
+.banner {
+  margin-top: 0.15rem;
+  .slide {
+    display: block;
+    height: 500px;
+    object-fit: cover;
+    width: 100%;
+  }
 }
+
 .products {
-  margin-top: 1.5rem;
+  padding-top: 0.5rem;
+  flex: 1 0 auto;
 }
 </style>

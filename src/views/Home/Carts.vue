@@ -3,8 +3,8 @@
     <div class="carts">
       <Progressbar :steps="steps" :current.sync="current"/>
       <transition mode="out-in"
-      enter-active-class="animate__animated animate__fadeInUp"
-      leave-active-class="animate__animated animate__fadeOutDown">
+      enter-active-class="animate__animated animate__fadeIn"
+      leave-active-class="animate__animated animate__fadeOut">
         <component :is="componentId" @goNext="goNext" @goBack="goBack"/>
       </transition>
     </div>

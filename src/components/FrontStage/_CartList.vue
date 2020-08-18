@@ -1,40 +1,27 @@
 <template>
-  <div class="container">
+  <div class="container vld-parent">
+    <loading :active.sync="isLoading"
+      :can-cancel="true"
+      :is-full-page="true">
+      <LoadEffect2 slot="default"/>
+      </loading>
     <header class="header">
-      <div class="wrapper-btn">
-        <div class="btn-back" @click.prevent="goProduct">
-          <div class="icon"><font-awesome-icon :icon="['fas', 'arrow-left']" /></div>
-          <span>繼續購物</span>
-        </div>
-      </div>
-      <button type="button" class="btn btn-clear">清空購物車</button>
+      <BackBtn @click-emit="goProduct">繼續購物</BackBtn>
+      <button type="button" class="btn btn-clear" @click.prevent="clearCart">清空購物車</button>
     </header>
     <div class="row">
       <div class="col-sm-12 col-lg-8">
-        <ul class="cart__list">
-          <h3 class="list-title">購物車</h3>
-          <hr>
-          <li class="cart__item" v-for="i in 2" :key="i">
-            <div class="cart__img" style="background-image: url('http://lorempixel.com/output/technics-q-c-300-300-4.jpg')"></div>
-            <div class="cart__content">
-              <div class="cart__description">
-                <span class="title">XXXXX</span>
-                <span class="price">單價：$5566 元</span>
-                <span class="price">總計：$5566 元</span>
-              </div>
-              <div class="cart__increment">
-                <button type="button" class="minus"> - </button>
-                <input type="number" name="" class="amount" value="1">
-                <button type="button" class="plus"> + </button>
-              </div>
-              <div class="cart__item-btn">
-                <button type="button" class="btn-cancle">
-                  <font-awesome-icon :icon="['fas', 'trash-alt']" />
-                </button>
-              </div>
-            </div>
-          </li>
+        <ul v-if="CartList.length !== 0" class="cart__list">
+          <!-- <h3 class="list-title">購物車</h3> -->
+          <!-- <hr> -->
+          <CartItem v-for="cart in CartList" :key="cart.product.id" :data="cart"/>
         </ul>
+        <h2 class="empty" v-else >
+          購物車是空的，趕緊<router-link to="/products"
+          style="border-bottom: 1px solid #000; color: #4c4c4c">
+          購物
+          </router-link>去吧!!
+        </h2>
       </div>
       <div class="col-sm-12 col-lg-4">
         <div class="cart__coupon">
@@ -43,26 +30,7 @@
             <button type="button" class="btn-search">套用</button>
           </div>
         </div>
-        <div class="cart__summary">
-          <ul>
-            <li>
-              <span class="label">小計：</span>
-              <span class="value">$123 元</span>
-            </li>
-            <li>
-              <span class="label">運費：</span>
-              <span class="value">$200 元</span>
-            </li>
-            <li>
-              <span class="label">折扣：</span>
-              <span class="value">- $200 元</span>
-            </li>
-            <li class="total">
-              <span class="label">總金額：</span>
-              <span class="value">$555 元</span>
-            </li>
-          </ul>
-        </div>
+        <Summary/>
         <div class="cart__btn">
           <button type="button" class="btn btn-next" @click.prevent="goNextStep">
             <span>繼續結帳</span>
@@ -74,21 +42,44 @@
 </template>
 
 <script>
+import BackBtn from 'components/FrontStage/BackBtn.vue';
+import FrontCartAPI from 'assets/Frontend_mixins/Cart'; // mixins: [FrontCartAPI]
+import { store } from 'assets/store';
+import CartItem from './_CartListItem.vue';
+import Summary from './_CartSummary.vue';
+
 export default {
   name: 'CartList',
-  components: {},
+  mixins: [FrontCartAPI],
+  components: { BackBtn, CartItem, Summary },
   data() {
-    return {};
+    return {
+      isLoading: false,
+      carts: [],
+    };
+  },
+  created() {
   },
   methods: {
     goNextStep() {
-      this.$emit('goNext');
+      if (this.CartList.length === 0) {
+        this.$toast.info('目前購物車無品項喔!');
+      } else {
+        this.$emit('goNext');
+      }
     },
     goProduct() {
       this.$router.push('/products');
     },
+    clearCart() {
+      this.DestroyAllCart();
+    },
   },
-  computed: {},
+  computed: {
+    CartList() {
+      return store.cartList;
+    },
+  },
 };
 </script>
 
@@ -98,8 +89,6 @@ export default {
 $increment-s: 24px;
 $increment-m: 29px;
 $increment-l: 34px;
-
-$wrapper-btn-sm: 38px;
 
 .btn {
   @include btn;
@@ -138,47 +127,8 @@ $wrapper-btn-sm: 38px;
   }
 }
 
-.wrapper-btn {
-  width: $wrapper-btn-sm * 2;
-  height: $wrapper-btn-sm;
-  position: relative;
-  &::after {
-    content: '';
-    clear: both;
-  }
-.btn-back {
-  position: absolute;
-  top: 0;
-    width: $wrapper-btn-sm;
-    height: $wrapper-btn-sm;
-    border-radius: $wrapper-btn-sm - 10px;
-    float: left;
-    overflow: hidden;
-    cursor: pointer;
-    background: #fff;
-    box-shadow: 0 10px 10px rgba(0,0,0,0.1);
-    transition: width .3s ease-out;
-    &:hover {
-      width: $wrapper-btn-sm * 3;
-    }
-    .icon {
-      display: inline-block;
-      width: $wrapper-btn-sm;
-      height: $wrapper-btn-sm;
-      border-radius: $wrapper-btn-sm - 10px;
-      line-height: $wrapper-btn-sm;
-      font-size: $wrapper-btn-sm / 2 - 3px;
-      text-align: center;
-    }
-    span {
-      font-size: $wrapper-btn-sm / 2 - 5px;
-      font-weight: 400;
-    }
-}
-}
-
 .header {
-  margin-bottom: 0.75rem;
+  margin-bottom: 1rem;
   width: 100%;
   display: flex;
   align-items: center;
@@ -192,10 +142,15 @@ $wrapper-btn-sm: 38px;
   }
 }
 
+.empty {
+  width: 100%;
+  text-align: center;
+  margin: 3rem 0;
+}
+
 .cart {
   &__list {
-    @include borderTop;
-    padding: 0.4rem 0.5rem;
+    padding: 0 0.5rem;
     .list-title {
       display: block;
       width: 100%;
@@ -203,6 +158,7 @@ $wrapper-btn-sm: 38px;
       position: relative;
       margin-top: 0.5rem;
       margin-bottom: 0.5rem;
+      font-size: 1.3rem;
     }
     hr {
       margin-top: 0.5rem;
@@ -210,98 +166,6 @@ $wrapper-btn-sm: 38px;
       border: 1px solid rgba(0,0,0,0.05) ;
       width: 100%;
     }
-  }
-  &__item {
-    width: 100%;
-    height: 5rem;
-    display: flex;
-    border-radius: 5px;
-    border: 1px solid #ddd;
-    overflow: hidden;
-    margin-bottom: 0.25rem;
-  }
-  &__img {
-    min-width: 5rem;
-    padding: 0;
-    height: 100%;
-    background-size: cover;
-    background-position: center center;
-    border-top-left-radius: 5px;
-    border-bottom-left-radius: 5px;
-  }
-  &__content {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    width: 100%;
-    padding: 0.5rem 0.75rem;
-  }
-  &__description {
-    flex: 2 0 0;
-    .title, .price {
-      display: inline-block;
-      width: 100%;
-    }
-    .title {
-      font-size: 0.8rem;
-    }
-    .price {
-      font-size: 0.75rem;
-      color: #a8a8b2;
-      margin-top: 0.15rem;
-      &:last-child {
-        font-size: .85rem;
-        font-weight: 400;
-        color: #000;
-      }
-    }
-  }
-  &__increment {
-    flex: 1 0 0;
-    position: relative;
-    display: flex;
-    flex-flow: column-reverse nowrap;
-    align-items: center;
-    button {
-      &:first-child:not(:last-child) {
-        border-bottom-right-radius: 0;
-        border-top-right-radius: 0;
-      }
-      &:last-child:not(:first-child) {
-        border-bottom-left-radius: 0;
-        border-top-left-radius: 0;
-      }
-    }
-    .plus, .minus {
-      height: $increment-s;
-      padding: 0;
-      width: $increment-s + 10px;
-      border-style: solid;
-      border-color: #ccc;
-      border-width: 1px;
-      background: transparent;
-      color: #333;
-      outline: none;
-      &:hover {
-        background: $hover-color;
-        color: #fff;
-      }
-    }
-    input {
-      text-align: center;
-      height: $increment-s;
-      border-width: 0 1px;
-      width: $increment-s + 10px;
-      border-style: solid;
-      border-color: #ccc;
-      padding: 6px 3px;
-      background-color: #fff;
-      border-radius: 0;
-    }
-  }
-  &__item-btn {
-    display: inline-block;
-    text-align: center;
   }
 }
 
@@ -358,6 +222,9 @@ $wrapper-btn-sm: 38px;
         width: $increment-l + 10px;
       }
     }
+  }
+  .empty {
+    margin: 7rem 0;
   }
 }
 </style>

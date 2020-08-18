@@ -18,22 +18,7 @@ export default {
   components: { Jumbotron },
   data() {
     return {
-      bannerHeight: 0,
     };
-  },
-  mounted() {
-    const vm = this;
-    window.addEventListener('scroll', vm.onScroll, true);
-  },
-  methods: {
-    onScroll(e) {
-      if (e.target.scrollTop > 1) {
-        this.$parent.$refs.navbar.classes['nav-bg'] = true;
-      } else {
-        this.$parent.$refs.navbar.classes['nav-bg'] = false;
-      }
-      // console.log(this.$parent.$refs.navbar.$el);
-    },
   },
   computed: {},
 };

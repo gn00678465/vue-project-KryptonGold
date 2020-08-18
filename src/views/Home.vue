@@ -9,9 +9,11 @@
 <script>
 import Navbar from 'components/FrontStage/NavBar.vue';
 import Footer from 'components/FrontStage/Footer.vue';
+import NavBg from 'assets/Frontend_mixins/Nav'; // mixins: [NavBg]
 
 export default {
   name: 'Home',
+  mixins: [NavBg],
   components: {
     Navbar,
     Footer,

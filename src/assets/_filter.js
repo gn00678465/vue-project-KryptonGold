@@ -1,16 +1,13 @@
 import Vue from 'vue';
 
 // 加入貨幣符號
-Vue.filter('Dollar', (val) => `$${val}`);
+Vue.filter('Dollar', (val) => `$ ${val}`);
 
 // 加入百分比符號
-Vue.filter('Percent', (val) => `${val}%`);
+Vue.filter('Percent', (val) => `${val} %`);
 
 // 加入 ml
-Vue.filter('ml', (val) => `${val}ml`);
-
-// r加入 percent
-Vue.filter('percent', (val) => `${val}%`);
+Vue.filter('ml', (val) => `${val} ml`);
 
 // 貨幣千分位
 Vue.filter('Currency', (num) => {

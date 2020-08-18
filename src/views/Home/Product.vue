@@ -5,7 +5,10 @@
       :is-full-page="true">
       <LoadEffect2 slot="default"/>
       </loading>
-    <div class="product" v-if="product" v-cloak>
+    <div>
+      <BackBtn @click-emit="goBack">繼續購物</BackBtn>
+    </div>
+    <div class="product" v-if="product">
       <div class="product__photo">
         <img src="https://images.unsplash.com/photo-1554314591-31236f6872d6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=80">
         <div class="photo-main">
@@ -64,13 +67,14 @@
 
 <script>
 import Increment from 'components/Increment.vue';
+import BackBtn from 'components/FrontStage/BackBtn.vue';
 import FrontProductAPI from 'assets/Frontend_mixins/Product'; // mixins: [FrontProductAPI]
 import FrontCartAPI from 'assets/Frontend_mixins/Cart'; // mixins: [FrontCartAPI]
 
 export default {
   name: 'Product',
   mixins: [FrontProductAPI, FrontCartAPI],
-  components: { Increment },
+  components: { Increment, BackBtn },
   data() {
     return {
       isLoading: false,
@@ -88,6 +92,9 @@ export default {
     this.marginTop();
   },
   methods: {
+    goBack() {
+      window.history.back();
+    },
     marginTop() {
       this.mt = this.$parent.$refs.navbar.navHeight;
     },
@@ -105,10 +112,6 @@ $color-primary: #4c4c4c;
 $color-secondary: #a6a6a6;
 $color-highlight: #ff3f40;
 
-[v-cloak] {
-  display: none;
-}
-
 .container {
   flex: 1 0 auto;
   padding-top: 1.5rem;
@@ -125,7 +128,7 @@ img {
 .product {
   display: flex;
   flex-flow: column nowrap;
-  margin-bottom: 1rem;
+  margin: 1rem 0;
   &__photo {
     width: 100%;
     height: 100%;
@@ -195,7 +198,7 @@ img {
     .active {
       display: flex;
       justify-content: space-between;
-      align-items: center;
+      align-items: flex-end;
       margin-bottom: 0.5rem;
       .btn {
         @include btn;
@@ -288,7 +291,8 @@ img {
 @media (min-width: 992px) {
   .container {
     display: flex;
-    align-items: center;
+    // align-items: center;
+    flex-flow: column nowrap;
   }
   .product {
     flex-flow: row nowrap;

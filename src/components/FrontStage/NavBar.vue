@@ -1,5 +1,5 @@
 <template>
-  <nav class="nav-light nav-fixed" :class="classes">
+  <nav class="nav-light nav-fixed" :class="classes" :style="{}">
     <div class="container navbar">
       <router-link to="/" class="navbar__brand"><slot>Logo</slot></router-link>
       <button type="button" class="navbar__mobile-cart" @click="goToCart">
@@ -34,7 +34,7 @@
         <!-- <div class="nav__content">
           <dropdown :icons="['cart']" :top="top"/>
         </div> -->
-        <router-link to="carts" tag="li" class="nav__cart" exact-active-class="active">
+        <router-link to="/carts" tag="li" class="nav__cart">
           <icon class="nav-icon" iconName="cart" />
           <span class="badge">{{cartLength}}</span>
         </router-link>
@@ -45,6 +45,7 @@
 
 <script>
 import FrontCartAPI from 'assets/Frontend_mixins/Cart'; // mixins: [FrontCartAPI]
+import { mutation } from 'assets/store';
 
 export default {
   name: 'NavBar',
@@ -76,7 +77,9 @@ export default {
   },
   methods: {
     showMenu() {
-      if (window.innerWidth < 768) this.isShow = !this.isShow;
+      if (window.innerWidth < 768) {
+        this.isShow = !this.isShow;
+      }
     },
     goToCart() {
       if (this.$route.path === '/carts') return;
@@ -98,6 +101,7 @@ export default {
       this.GetCartList()
         .then((data) => {
           vm.cartLength = data.meta.pagination.total;
+          mutation.setCartsArray(data.data);
         });
     },
   },
@@ -223,7 +227,6 @@ $logo-font: 'Kaushan Script';
     transition: all 0.5s;
     transform: translateX(-100%);
     z-index: 500;
-    display: block;
     // flex
     display: flex;
     flex-direction: column;

@@ -1,7 +1,8 @@
 <template>
   <div class="root container-xl">
     <ul class="progressbar">
-      <li class="progressbar-indicator" :class="{active: current >= (i + 1)}"
+      <li class="progressbar-indicator"
+        :class="{active: current >= (i + 1), now: current === (i + 1)}"
       v-for="(step, i) in steps" :key="i" :data-count="i+1">{{step}}</li>
     </ul>
   </div>
@@ -84,6 +85,9 @@ $page-animDuration: .2s;
       &.active::after {
         background: #27AE60;
         color: white;
+      }
+      &.now {
+        font-weight: 600;
       }
     }
   }

@@ -1,10 +1,10 @@
 <template>
-  <validation-provider class="form-group" tag="div" rules="required"
+  <validation-provider class="form-group" tag="div" rules="required|excluded:0"
   v-slot="{ errors, classes }">
     <label for="payment">{{ label }}</label>
     <select class="form-control" id="payment" :class="classes"
     @input="$emit('input', $event.target.value)">
-      <option disabled selected>請選擇{{ label }}</option>
+      <option disabled selected value="0">請選擇{{ label }}</option>
       <option v-for="(option, index) in options"
       :key="index" :value="option">{{ option }}</option>
     </select>
