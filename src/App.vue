@@ -35,6 +35,8 @@ table { border-collapse: collapse; border-spacing: 0; }
   --theme-card-title: #4c4c4c;
   --theme-card-subtitle: #a6a6a6;
   --theme-card-price: #ff3f40;
+  --theme-order-success: #06A503;
+  --theme-order-success-hover: #{darken(#06A503, 10%)};
 }
 
 // body

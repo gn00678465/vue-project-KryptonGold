@@ -45,7 +45,6 @@
 
 <script>
 import FrontCartAPI from 'assets/Frontend_mixins/Cart'; // mixins: [FrontCartAPI]
-import { mutation } from 'assets/store';
 
 export default {
   name: 'NavBar',
@@ -101,7 +100,6 @@ export default {
       this.GetCartList()
         .then((data) => {
           vm.cartLength = data.meta.pagination.total;
-          mutation.setCartsArray(data.data);
         });
     },
   },

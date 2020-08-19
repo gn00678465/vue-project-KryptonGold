@@ -2,14 +2,14 @@ import Vue from 'vue';
 
 export const store = Vue.observable({
   cartList: [],
-  personDetial: {},
+  orderID: '',
 });
 
 export const mutation = {
   setCartsArray(data) {
     store.cartList = [...data];
   },
-  setPersonObj(data) {
-    store.personDetial = { ...data };
+  getOrderID(data) {
+    store.orderID = data;
   },
 };

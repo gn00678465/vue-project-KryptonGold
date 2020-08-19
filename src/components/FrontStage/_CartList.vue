@@ -26,6 +26,7 @@
       <div class="col-sm-12 col-lg-4">
         <div class="cart__coupon">
           <div class="input-group">
+            <!-- TODO: 待加入優惠碼功能 -->
             <input type="text" class="coupon" placeholder="請輸入優惠碼">
             <button type="button" class="btn-search">套用</button>
           </div>
@@ -76,8 +77,16 @@ export default {
     },
   },
   computed: {
-    CartList() {
-      return store.cartList;
+    // CartList() {
+    //   return store.cartList;
+    // },
+    CartList: {
+      get() {
+        return store.cartList;
+      },
+      set(val) {
+        this.carts = val;
+      },
     },
   },
 };
@@ -85,10 +94,6 @@ export default {
 
 <style lang="scss" scoped>
 @import './style/_cart.scss';
-
-$increment-s: 24px;
-$increment-m: 29px;
-$increment-l: 34px;
 
 .btn {
   @include btn;
@@ -119,10 +124,12 @@ $increment-l: 34px;
   }
   &-next {
     width: 100%;
-    background: $hover-color;
     color: #fff;
+    border: 1px solid v(theme-order-success);
+    background: v(theme-order-success);
     &:hover {
-      background: darken($hover-color, 10%);
+      border: 1px solid v(theme-order-success);
+      background: v(theme-order-success-hover);
     }
   }
 }
@@ -199,7 +206,8 @@ $increment-l: 34px;
     background: transparent;
     outline: none;
     &:hover {
-      background: $hover-color;
+      border: 1px solid v(theme-order-success);
+      background: v(theme-order-success);
       color: #fff;
     }
   }
@@ -210,16 +218,6 @@ $increment-l: 34px;
     &__detail {
       .detail-title {
         margin-top: 0;
-      }
-    }
-    &__increment {
-      flex: 2 0 0;
-      display: inline-block;
-      vertical-align: middle;
-      input {
-        border-width: 1px 0;
-        text-align: center;
-        width: $increment-l + 10px;
       }
     }
   }

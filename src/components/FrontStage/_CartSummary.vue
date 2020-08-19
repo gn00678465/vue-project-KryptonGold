@@ -3,7 +3,8 @@
     <ul>
       <li>
         <span class="label">小計：</span>
-        <span class="value">{{OriginTotalPrice|Currency|Dollar}} 元</span>
+        <AnimatedIngeter class="value" :value="OriginTotalPrice" >元</AnimatedIngeter>
+        <!-- <span class="value">{{OriginTotalPrice|Currency|Dollar}} 元</span> -->
       </li>
       <li>
         <span class="label">運費：</span>
@@ -14,8 +15,10 @@
         <span class="value">{{DisCount|Currency|Dollar}} 元</span>
       </li>
       <li class="total">
+        <!-- TODO: tween.js version 16.6 now is 18 -->
         <span class="label">總金額：</span>
-        <span class="value">{{FinalPrice|Currency|Dollar}} 元</span>
+        <AnimatedIngeter class="value" :value="FinalPrice" >元</AnimatedIngeter>
+        <!-- <span class="value">{{FinalPrice|Currency|Dollar}} 元</span> -->
       </li>
     </ul>
   </div>

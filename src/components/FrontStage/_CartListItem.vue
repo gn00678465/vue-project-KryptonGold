@@ -83,8 +83,14 @@ export default {
       font-size: 1.2rem;
       font-weight: 600;
     }
-    .increment {
+    .increment, .quantity {
       order: 3;
+    }
+    .quantity {
+      display: inline-block;
+      flex-basis: 60%;
+      align-self: flex-end;
+      font-size: 1.1rem;
     }
     .price {
       order: 4;
@@ -120,12 +126,15 @@ img {
     &-content {
       justify-content: space-between;
       align-items: center;
-      .title, .increment, .price, .destroy {
+      .title, .increment, .price, .destroy, .quantity {
         order: 1;
         align-self: initial;
       }
       .title {
         flex: 0 0 40%;
+      }
+      .quantity {
+        flex: 0 0 auto;
       }
     }
   }

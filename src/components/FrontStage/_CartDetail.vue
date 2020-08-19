@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <validation-observer tag="form" class="container" v-slot="{ invalid }">
     <div class="row">
       <div class="col-sm-12 col-lg-8">
         <ValidationObserver class="cart__detail" tag="form" ref="form">
@@ -19,11 +19,25 @@
           </div>
           <div class="col-sm-12 col-md-6">
             <InputField label="收件人地址" :attrs="inputSet"
-                v-model="inputTemp.adress"/>
+                v-model="inputTemp.address"/>
           </div>
           <div class="col-sm-12 col-md-6">
-            <InputSelect label="付款方式" :options="payments"
-            v-model="inputTemp.payment"/>
+            <!-- select -->
+            <validation-provider tag="div" rules="required"
+            class="form-group" v-slot="{ errors, classes }">
+              <label for="payment">付款方式</label>
+              <select
+                name="付款方式"
+                id="payment"
+                class="form-control"
+                :class="classes"
+                v-model="inputTemp.payment"
+              >
+                <option value="" selected disabled>請選擇付款方式</option>
+                <option v-for="pay in payments" :key="pay" :value="pay">{{pay}}</option>
+              </select>
+              <span class="error">{{ errors[0] }}</span>
+            </validation-provider>
           </div>
           <div class="col-12">
             <InputField label="留言" :attrs="inputSet"
@@ -33,25 +47,27 @@
       </div>
       <div class="col-sm-12 col-lg-4">
         <Summary/>
-      <div class="cart__btn">
-        <button type="button" class="btn btn-next" @click.prevent="goNextStep">
-          <span>送出訂單</span>
-        </button>
-        <button type="button" class="btn btn-prev" @click.prevent="goBackStep">
-          <span>回購物車</span>
-        </button>
-      </div>
+        <div class="cart__btn">
+          <button type="button" class="btn btn-next" :disabled="invalid"
+            @click.prevent="goNextStep">
+            <span><font-awesome-icon v-if="isSpin" icon="spinner" pulse /> 送出訂單</span>
+          </button>
+          <button type="button" class="btn btn-prev" @click.prevent="goBackStep">
+            <span>回購物車</span>
+          </button>
+        </div>
       </div>
     </div>
-  </div>
+  </validation-observer>
 </template>
 
 <script>
-import { mutation } from 'assets/store';
+import FrontCartAPI from 'assets/Frontend_mixins/Cart'; // mixins: [FrontCartAPI],
 import Summary from './_CartSummary.vue';
 
 export default {
   name: 'CartDetail',
+  mixins: [FrontCartAPI],
   components: { Summary },
   data() {
     return {
@@ -84,24 +100,18 @@ export default {
         },
       },
       inputTemp: {},
+      isSpin: false,
     };
   },
   methods: {
     goNextStep() {
-      this.submit();
+      this.CreateOrder(this.inputTemp)
+        .then(() => {
+          this.$emit('goNext');
+        });
     },
     goBackStep() {
       this.$emit('goBack');
-    },
-    submit() {
-      const vm = this;
-      this.$refs.form.validate()
-        .then((success) => {
-          if (success) {
-            mutation.setPersonObj(vm.inputTemp);
-            vm.$emit('goNext');
-          }
-        });
     },
   },
   computed: {},
@@ -110,6 +120,7 @@ export default {
 
 <style lang="scss" scoped>
 @import './style/_cart.scss';
+@import '../style/input.scss';
 
 .btn-prev {
   width: 100%;

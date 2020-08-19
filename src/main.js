@@ -27,7 +27,6 @@ import './assets/plugin/VeeValidate';
 import './assets/plugin/vueLoadingOverlay';
 import './assets/plugin/VueToastification';
 import './assets/icons/index';
-import './assets/plugin/vue-agile';
 // filter
 import './assets/_filter';
 
@@ -47,6 +46,7 @@ Vue.component('Dialog', () => import('components/Dialog.vue'));
 Vue.component('LoadEffect', () => import('components/Loading.vue'));
 Vue.component('LoadEffect2', () => import('components/Loading2.vue'));
 Vue.component('ItemCard', ItemCard);
+Vue.component('AnimatedIngeter', () => import('components/AnimatedIngeter.vue'));
 
 Vue.config.productionTip = false;
 

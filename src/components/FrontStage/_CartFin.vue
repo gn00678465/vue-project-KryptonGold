@@ -1,28 +1,21 @@
 <template>
   <div class="container">
-    <div class="row ">
-      <div class="col-sm-3 col-md-3"></div>
-      <div class="col-sm-12 col-md-6">
-        <div class="cart__fin-icon">
-          <icon class="icon" iconName="order_confirmed" />
-        </div>
-        <div class="cart__fin-content">
-          <h3 class="fin-title">訂單完成</h3>
-          <hr>
-          <div class="fin-text">
-            非常感謝您訂購我們的商品，我們會盡快確認您的訂單。<br>
-            如有任何問題歡迎來信或來電詢問。我們會有專人為您服務。
+    <div class="row justify-content-center">
+      <div class="col-sm-12 col-md-10 col-lg-8">
+        <div class="fin">
+          <div class="fin-img">
+            <img src="https://images.unsplash.com/photo-1532635231-f2f26d8ad143?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80" alt="">
+          </div>
+          <div class="fin-content">
+            <div class="icon"><icon iconName="order_confirmed" /></div>
+            <div class="text">
+              <span>訂單已完成，感謝你的購買。</span>
+              <button type="button" class="btn">查看訂單</button>
+              <button type="button" class="btn" @click.prevent="goProduct">繼續購物</button>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="cart__btn">
-      <button type="button" class="btn btn-order">
-        <span>確認訂單</span>
-      </button>
-      <button type="button" class="btn btn-shopping" @click.prevent="goProduct">
-        <span>繼續選購</span>
-      </button>
     </div>
   </div>
 </template>
@@ -44,89 +37,74 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import './style/_cart.scss';
-
-.cart {
-  &__fin-icon {
-    width: 100%;
-    display: block;
-    text-align: center;
-    color: $hover-color;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-  }
-  &__fin-content {
-    @include borderTop;
-    .fin-title {
-      display: block;
-      width: 100%;
-      text-align: center;
-      position: relative;
-      margin-top: 0.5rem;
-      margin-bottom: 0.5rem;
-    }
-    hr {
-      margin-top: 0.5rem;
-      margin-bottom: 1rem;
-      border: 1px solid rgba(0,0,0,0.05) ;
-      width: 100%;
-    }
-    .fin-text {
-      padding: 1rem 2rem 2rem 2rem;
-      word-break: break-all;
-      line-height: 1.5;
-    }
-  }
+img {
+  width: 100%;
+  height: 100%;
 }
 
-.cart__btn {
-  width: 100%;
-  .btn {
-    &-order, &-shopping {
-      width: 100%;
-      background-color: transparent;
+.fin {
+  margin: 1rem 0;
+  &-img, &-content  {
+    width: 100%;
+  }
+  &-img {
+    display: none;
+  }
+  &-content {
+    display: flex;
+    flex-direction: column;
+    .icon, .text {
+      flex-basis: 50%;
+      display: flex;
+      align-items: center;
     }
-    &-order {
-      margin-bottom: 0.5rem;
-      border: 1px solid #555;
-      &:hover {
-        border: 1px solid #555;
-        background: #555;
-        color: #fff;
+    .icon {
+      justify-content: center;
+      color: v(theme-order-success);
+    }
+    .text {
+      display: flex;
+      flex-flow: column nowrap;
+      justify-content: flex-end;
+      line-height: 5rem;
+      font-size: 1.2rem;
+      font-weight: 600;
+      text-align: center;
+      padding: 0.5rem 1rem;
+      span {
+        margin-bottom: auto;
       }
-    }
-    &-shopping {
-      border: 1px solid $hover-color;
-      background: $hover-color;
-      color: #fff;
-      &:hover {
-        border: 1px solid $hover-color;
-        background: darken($hover-color, 10%);
+      .btn {
+        @include btn;
+        width: 100%;
+      }
+      button:first-of-type {
+        margin-bottom: 0.5rem;
+      }
+      button:last-of-type {
+        color: #fff;
+        border: 1px solid v(theme-order-success);
+        background: v(theme-order-success);
+        &:hover {
+          border: 1px solid v(theme-order-success);
+          background: v(theme-order-success-hover);
+        }
       }
     }
   }
 }
 
 @media (min-width: 768px) {
-  .cart {
-    &__fin-content {
-      margin-bottom: 1rem;
+  .fin {
+    display: flex;
+    &-img, &-content  {
+      flex: 1 0 50%;
     }
-  }
-  .cart__btn {
-    margin-left: 25%;
-    width: 50%;
-    .btn {
-      width: auto;
-      margin-bottom: 1rem;
-      width: 25%;
-      &:last-child {
-        float: right;
-      }
+    &-img {
+      display: block;
     }
-    &::after {
-      content: '';
-      clear: both;
+    &-content {
+      height: auto;
     }
   }
 }

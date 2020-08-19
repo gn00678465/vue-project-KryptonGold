@@ -20,6 +20,7 @@ export default {
     Progressbar,
     list: () => import('components/FrontStage/_CartList.vue'),
     detail: () => import('components/FrontStage/_CartDetail.vue'),
+    order: () => import('components/FrontStage/_CartOrder.vue'),
     final: () => import('components/FrontStage/_CartFin.vue'),
   },
   data() {
@@ -27,6 +28,7 @@ export default {
       steps: [
         '購物車清單',
         '填寫資料',
+        '確認訂單',
         '訂單完成',
       ],
       mt: 0,
@@ -46,9 +48,23 @@ export default {
       this.mt = this.$parent.$refs.navbar.navHeight;
     },
     stepHandler() {
-      if (this.current === 1) this.componentId = 'list';
-      else if (this.current === 2) this.componentId = 'detail';
-      else if (this.current === 3) this.componentId = 'final';
+      switch (this.current) {
+        case 1:
+          this.componentId = 'list';
+          break;
+        case 2:
+          this.componentId = 'detail';
+          break;
+        case 3:
+          this.componentId = 'order';
+          break;
+        case 4:
+          this.componentId = 'final';
+          break;
+        default:
+          this.componentId = 'list';
+          break;
+      }
     },
     onScroll(e) {
       if (e.target.scrollTop > 1) {
