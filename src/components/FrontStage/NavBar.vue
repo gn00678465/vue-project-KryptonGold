@@ -22,7 +22,7 @@
             <icon class="nav-icon" iconName="boxes" />
             <span class="nav__link">所有產品</span>
           </router-link>
-          <router-link to="about" tag="li" class="nav__item" exact-active-class="active">
+          <router-link to="tips" tag="li" class="nav__item" exact-active-class="active">
             <icon class="nav-icon" iconName="info" />
             <span class="nav__link">豆知識</span>
           </router-link>
@@ -174,7 +174,7 @@ $logo-font: 'Kaushan Script';
   align-items: center;
   justify-content: space-between;
   align-items: center;
-  padding: .5rem 1rem;
+  padding: .15rem 1rem;
   transition: all 0.5s;
   &__brand {
     flex: 1 0 0;

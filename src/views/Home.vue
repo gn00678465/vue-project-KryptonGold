@@ -31,25 +31,30 @@ export default {
   background: #F7F7F7;
   min-height: 100%;
   display: flex;flex-direction: column;
+  font-family: 'Microsoft JhengHei', 'Noto Sans TC', sans-serif;
 }
 
 .stky-body {
-  padding-top: 65px;
+  padding-top: 50px;
   flex: 1 0 auto;
 }
 .products, .index {
   padding-top: 0;
 }
 
+.btn {
+  @include btn;
+}
+
 @media (min-width: 768px) {
   .stky-body {
-    padding-top: 130px;
+    padding-top: 115px;
   }
 }
 
 @media (min-width: 992px) {
   .stky-body {
-    padding-top: 90px;
+    padding-top: 75px;
   }
 }
 </style>

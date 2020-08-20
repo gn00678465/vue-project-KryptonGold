@@ -19,11 +19,17 @@ export default {
 
 <style lang="scss" scoped>
 .brush-title {
+  display: block;
   position: relative;
+  height: 75px;
+  margin-bottom: 1rem;
   .brush {
+    top: 0;
+    left: 0;
+    position: absolute;
     width: auto;
-    height: 75px;
     color: #000;
+    transform: translate(0, -35px);
   }
   .title {
     position: absolute;
@@ -32,7 +38,7 @@ export default {
     color: #fff;
     font-size: 2.5rem;
     font-weight: 600;
-    transform: translate(50%, -50%);
+    transform: translate(25px, -50%);
   }
 }
 </style>

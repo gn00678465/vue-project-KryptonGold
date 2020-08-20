@@ -54,8 +54,8 @@ export default {
     outline: none;
     cursor: pointer;
     &:not(:disabled):hover {
-      background: rgba(0,0,0,0.05);
-      color: #333;
+      background: v(theme-order-success-hover);
+      color: #fff;
     }
     &:disabled {
       cursor: auto;
@@ -94,6 +94,7 @@ export default {
     .plus, .minus, input {
       height: 50px;
       width: 50px;
+      font-size: 1.2rem;
     }
   }
 }

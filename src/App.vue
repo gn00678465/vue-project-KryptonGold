@@ -5,6 +5,7 @@
 </template>
 
 <style lang="scss">
+
 // reboot
 *,
 *::before,

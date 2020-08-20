@@ -10,7 +10,7 @@
     </div>
     <div class="container">
       <section>
-        <BrushTitle>啤酒</BrushTitle>
+        <BrushTitle><span>啤酒</span></BrushTitle>
         <div class="row">
           <div class="col-xl-3 col-md-4 col-sm-6" v-for="prod in products" :key="prod.id">
             <ItemCard :data="prod" />

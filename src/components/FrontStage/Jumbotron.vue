@@ -6,7 +6,7 @@
         <p class="h1">酒逢知己千杯少</p>
         <p class="h2">是兄弟就一起喝</p>
         <hr>
-        <button type="button" class="btn bnt-product">產品列表</button>
+        <button type="button" class="btn bnt-product" @click.prevent="goProduct">產品列表</button>
       </div>
     </transition>
   </div>
@@ -24,7 +24,11 @@ export default {
   mounted() {
     this.show = true;
   },
-  methods: {},
+  methods: {
+    goProduct() {
+      this.$router.push('/products');
+    },
+  },
   computed: {},
 };
 </script>
@@ -59,13 +63,10 @@ export default {
     margin: 15px auto;
     border: 2.5px solid #fff;
   }
-  .btn {
-    @include btn;
-    font-weight: 400;
-  }
 }
 
 .bnt-product {
+  font-weight: 400;
   background: transparent;
   color: #fff;
   border: 1px solid #fff !important;
