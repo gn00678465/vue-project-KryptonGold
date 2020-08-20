@@ -27,18 +27,18 @@ export default {
     top: 0;
     left: 0;
     position: absolute;
+    height: 100%;
     width: auto;
     color: #000;
-    transform: translate(0, -35px);
   }
   .title {
     position: absolute;
     top: 50%;
     left: 0;
     color: #fff;
-    font-size: 2.5rem;
+    font-size: 2.3rem;
     font-weight: 600;
-    transform: translate(25px, -50%);
+    transform: translate(30px, -50%);
   }
 }
 </style>
