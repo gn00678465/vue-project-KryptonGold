@@ -1,13 +1,11 @@
 <template>
-  <div class="body" :style="{'padding-top': mt + 'px'}">
-    <div class="carts">
-      <Progressbar :steps="steps" :current.sync="current"/>
-      <transition mode="out-in"
-      enter-active-class="animate__animated animate__fadeIn"
-      leave-active-class="animate__animated animate__fadeOut">
-        <component :is="componentId" @goNext="goNext" @goBack="goBack"/>
-      </transition>
-    </div>
+  <div class="carts">
+    <Progressbar :steps="steps" :current.sync="current"/>
+    <transition mode="out-in"
+    enter-active-class="animate__animated animate__fadeIn"
+    leave-active-class="animate__animated animate__fadeOut">
+      <component :is="componentId" @goNext="goNext" @goBack="goBack"/>
+    </transition>
   </div>
 </template>
 
@@ -31,22 +29,15 @@ export default {
         '確認訂單',
         '訂單完成',
       ],
-      mt: 0,
       componentId: '',
       current: 1,
       animation: 'test',
     };
   },
   mounted() {
-    const vm = this;
-    this.marginTop();
     this.stepHandler();
-    window.addEventListener('scroll', vm.onScroll, true);
   },
   methods: {
-    marginTop() {
-      this.mt = this.$parent.$refs.navbar.navHeight;
-    },
     stepHandler() {
       switch (this.current) {
         case 1:
@@ -66,14 +57,6 @@ export default {
           break;
       }
     },
-    onScroll(e) {
-      if (e.target.scrollTop > 1) {
-        this.$parent.$refs.navbar.classes['nav-bg'] = true;
-      } else {
-        this.$parent.$refs.navbar.classes['nav-bg'] = false;
-      }
-      // console.log(this.$parent.$refs.navbar.$el);
-    },
     goNext() {
       this.current += 1;
     },
@@ -92,14 +75,4 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-div.body {
-  flex: 1 0 auto;
-}
-.carts {
-  margin-top: 1.5rem;
-}
-
-.container {
-  height: 100%;
-}
 </style>

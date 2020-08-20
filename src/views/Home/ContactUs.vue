@@ -27,10 +27,4 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.container {
-  flex: 1 0 auto;
-}
-.contact-us {
-  margin-top: 1.5rem;
-}
 </style>

@@ -1,15 +1,17 @@
 <template>
   <div class="ItemCard">
-    <img v-if="data" :src="data.imageUrl[0]" alt="" class="ItemCard__img">
+    <div class="ItemCard__img">
+      <img v-if="data" :src="data.imageUrl[0]" alt="" class="ItemCard__img">
+    </div>
     <div class="ItemCard__content">
       <h4 class="ItemCard__title">{{data.title}}</h4>
       <span class="ItemCard__tag">
         {{data.options.type}} | {{data.options.ml|ml}} | {{data.options.percent|percent}}
         </span>
-      <div class="ItemCard__description">{{ data.content }}</div>
+      <div class="ItemCard__description" v-scrollbar>{{ data.content }}</div>
       <footer class="ItemCard__footer">
         <div class="ItemCard__price">{{data.price|Currency|Dollar}}
-          <span>/ 1{{data.unit}}</span>
+          <span>/ {{data.unit}}</span>
         </div>
         <button type="button" class="btn btn-info" @click.prevent="goToDetial">
           <font-awesome-icon :icon="['fas', 'info']" />
@@ -78,16 +80,20 @@ h5 {
     rgba(35,35,35,0.03) 0 64px 64px;
     transform: translate(0, -4px);
   }
-  &__content {
-    padding: 0.5rem 1rem 1rem 1rem;
-  }
   &__img {
     width: 100%;
     display: flex;
-    transform: translateY(-40px);
+    img {
+      width: 100%;
+      height: 100%;
+      transform: translateY(-40px);
+    }
+  }
+  &__content {
+    margin-top: -30px;
+    padding: 0.5rem 1rem;
   }
   &__title, &__tag, &__description {
-    transform: translateY(-30px);
     margin-bottom: 1rem;
   }
   &__title {
@@ -100,17 +106,18 @@ h5 {
     color: v(theme-card-subtitle);
   }
   &__description {
-    line-height: 1.3;
-    letter-spacing: 2px;
+    line-height: 1.2;
+    letter-spacing: 1px;
     font-size: 0.85rem;
-    height: 4rem;
-    text-indent: 2rem;
+    height: 6rem;
   }
   &__price {
-    font-size: 2rem;
+    font-size: 1.7rem;
+    font-weight: 600;
     color: v(theme-card-price);
     span {
       font-size: 1.2rem;
+      font-weight: 500;
       color: v(theme-card-subtitle);
     }
   }
@@ -136,6 +143,19 @@ h5 {
       background: v(theme-info);
       &:hover {
         background: v(theme-info-hover);
+      }
+    }
+  }
+}
+
+@media (min-width: 992px) {
+  .ItemCard {
+    &__price {
+      font-size: 1.9rem;
+      font-weight: 600;
+      span {
+        font-size: 1.3rem;
+        font-weight: 500;
       }
     }
   }

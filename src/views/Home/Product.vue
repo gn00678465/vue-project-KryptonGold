@@ -1,5 +1,5 @@
 <template>
-  <div class="container vld-parent" :style="{'padding-top': mt + 'px'}">
+  <div class="container vld-parent">
     <loading :active.sync="isLoading"
       :can-cancel="true"
       :is-full-page="true">
@@ -80,7 +80,6 @@ export default {
       isLoading: false,
       addCarting: false,
       product: '',
-      mt: 0,
       quantity: 1,
     };
   },
@@ -88,15 +87,9 @@ export default {
     const { id } = this.$route.params;
     this.GetProductDetial(id);
   },
-  mounted() {
-    this.marginTop();
-  },
   methods: {
     goBack() {
       window.history.back();
-    },
-    marginTop() {
-      this.mt = this.$parent.$refs.navbar.navHeight;
     },
     addCart() {
       this.CreateCart(this.product.id, this.quantity);
@@ -112,11 +105,6 @@ $color-primary: #4c4c4c;
 $color-secondary: #a6a6a6;
 $color-highlight: #ff3f40;
 
-.container {
-  flex: 1 0 auto;
-  padding-top: 1.5rem;
-}
-
 img {
   max-width: 100%;
 }
@@ -128,7 +116,6 @@ img {
 .product {
   display: flex;
   flex-flow: column nowrap;
-  margin: 1rem 0;
   &__photo {
     width: 100%;
     height: 100%;

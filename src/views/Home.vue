@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <Navbar ref="navbar">Confidant</Navbar>
-    <router-view></router-view>
+    <router-view class="stky-body"></router-view>
     <Footer/>
   </div>
 </template>
@@ -31,5 +31,22 @@ export default {
   background: #F7F7F7;
   min-height: 100%;
   display: flex;flex-direction: column;
+}
+
+.stky-body {
+  padding-top: 65px;
+  flex: 1 0 auto;
+}
+
+@media (min-width: 768px) {
+  .stky-body {
+    padding-top: 130px;
+  }
+}
+
+@media (min-width: 992px) {
+  .stky-body {
+    padding-top: 90px;
+  }
 }
 </style>

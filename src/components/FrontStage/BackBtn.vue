@@ -26,7 +26,7 @@ $wrapper-btn-sm: 38px;
   width: $wrapper-btn-sm * 2;
   height: $wrapper-btn-sm;
   position: relative;
-  z-index: 500;
+  z-index: 400;
   &::after {
     content: '';
     clear: both;

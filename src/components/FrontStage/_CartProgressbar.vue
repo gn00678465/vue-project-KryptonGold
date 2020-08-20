@@ -93,13 +93,21 @@ $page-animDuration: .2s;
   }
 }
 
+@media (min-width: 768px) {
+  .progressbar {
+    .progressbar-indicator {
+      font-size: 1.1rem;
+    }
+  }
+}
+
 @media (min-width: 992px) {
   .root {
     height: 70px;
   }
   .progressbar{
     .progressbar-indicator {
-      font-size: 1.1rem;
+      font-size: 1.2rem;
       &::before {
         font-size: 0.875rem;
         width: 28px;
