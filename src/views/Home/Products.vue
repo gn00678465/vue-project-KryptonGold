@@ -45,9 +45,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.products {
-  padding-top: 0;
-}
 .banner {
   margin-bottom: 0.5rem;
   .slide {

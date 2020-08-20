@@ -158,6 +158,9 @@ h5 {
         font-weight: 500;
       }
     }
+    &__description {
+      font-size: 1rem;
+    }
   }
 }
 </style>

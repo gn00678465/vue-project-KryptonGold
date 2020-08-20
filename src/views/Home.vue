@@ -24,7 +24,7 @@ export default {
   },
 };
 </script>
-<style lang="scss" scoped>
+<style lang="scss">
 @import './Home/style/font.css';
 
 .home {
@@ -36,6 +36,9 @@ export default {
 .stky-body {
   padding-top: 65px;
   flex: 1 0 auto;
+}
+.products, .index {
+  padding-top: 0;
 }
 
 @media (min-width: 768px) {
