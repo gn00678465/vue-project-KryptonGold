@@ -31,6 +31,11 @@ module.exports = {
     },
   },
   chainWebpack: (config) => {
+    config.plugin('html').tap((args) => {
+      const [obj] = args;
+      obj.title = 'Confidant';
+      return args;
+    });
     // 先刪除預設的svg配置
     config.module.rules.delete('svg');
     // 新增 svg-sprite-loader 設定

@@ -26,10 +26,10 @@
             <icon class="nav-icon" iconName="info" />
             <span class="nav__link">豆知識</span>
           </router-link>
-          <router-link to="contactus" tag="li" class="nav__item" exact-active-class="active">
+          <!-- <router-link to="contactus" tag="li" class="nav__item" exact-active-class="active">
             <icon class="nav-icon" iconName="contact_mail" />
             <span class="nav__link">聯繫我們</span>
-          </router-link>
+          </router-link> -->
         </ul>
         <!-- <div class="nav__content">
           <dropdown :icons="['cart']" :top="top"/>
