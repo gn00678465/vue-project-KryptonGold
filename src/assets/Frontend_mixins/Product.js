@@ -1,8 +1,8 @@
 export default {
   methods: {
-    GetProductList(page) {
+    GetProductList() {
       this.isLoading = true;
-      this.$http.get(`${process.env.VUE_APP_PATH}api/${process.env.VUE_APP_UUID}/ec/products?page=${page}&paged=10`)
+      this.$http.get(`${process.env.VUE_APP_PATH}api/${process.env.VUE_APP_UUID}/ec/products?paged=100`)
         .then((res) => {
           if (res.status === 200) {
             this.isLoading = false;

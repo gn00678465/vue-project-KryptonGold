@@ -10,7 +10,7 @@
     </div>
     <div class="product" v-if="product">
       <div class="product__photo">
-        <img src="https://images.unsplash.com/photo-1554314591-31236f6872d6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=80">
+        <img :src="product.imageUrl[1]">
         <div class="photo-main">
           <img :src="product.imageUrl[0]" alt="">
         </div>
@@ -114,6 +114,7 @@ img {
 }
 
 .product {
+  margin-top: 1rem;
   display: flex;
   flex-flow: column nowrap;
   &__photo {
