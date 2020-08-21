@@ -10,8 +10,6 @@ import Vue from 'vue';
 import 'normalize.css';
 // Animate.css
 import 'animate.css';
-// HTML meta
-import VueMeta from 'vue-meta';
 // axios
 import axios from 'axios';
 import VueAxios from 'vue-axios';
@@ -30,8 +28,6 @@ import './assets/icons/index';
 // filter
 import './assets/_filter';
 
-// HTML meta
-Vue.use(VueMeta);
 // axios
 Vue.use(VueAxios, axios);
 // scrollbar
