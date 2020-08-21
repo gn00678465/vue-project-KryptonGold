@@ -76,9 +76,14 @@ export default {
       return list;
     },
     filterProduct() {
-      if (this.filter === 'all') {
-        return this.products;
-      } return this.products.filter((item) => item.category === this.filter);
+      if (this.filter !== 'all') {
+        return this.products.filter((item) => item.category === this.filter);
+      } return this.products;
+    },
+  },
+  watch: {
+    filter() {
+      if (this.filter !== 'all') this.page = 1;
     },
   },
 };
