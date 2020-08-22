@@ -2,7 +2,8 @@
   <div class="increment">
     <button type="button" class="minus" :disabled="quantity === 1"
     @click.prevent="count(-1)"> - </button>
-    <input type="text" name="" class="quantity" v-model.number.lazy="quantity">
+    <input type="number" name="" class="quantity" @keypress="keypress"
+    v-model.number.trim.lazy="quantity">
     <button type="button" class="plus"
     @click.prevent="count(1)"> + </button>
   </div>
@@ -27,6 +28,9 @@ export default {
     this.$emit('update:quantity', this.quantity * 1);
   },
   methods: {
+    keypress(e) {
+      if (e.key === '+' || e.key === 'e' || e.key === '-') e.preventDefault();
+    },
     count(fix) {
       this.quantity += fix;
       if (this.quantity === 0) this.quantity = 1;
@@ -77,6 +81,14 @@ export default {
     padding: 6px 3px;
     background-color: #fff;
     border-radius: 0;
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+  }
+  input[type=number] {
+    -moz-appearance: textfield;
   }
 }
 
