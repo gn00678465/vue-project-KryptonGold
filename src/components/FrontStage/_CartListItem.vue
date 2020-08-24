@@ -8,7 +8,7 @@
       <img :src="data.product.imageUrl[0]" alt=""></div>
     <div class="item-content">
       <div class="title">{{data.product.title}} <small>({{data.product.unit}})</small> </div>
-      <Increment :quantity.sync="quantity" :data="quantity"/>
+      <Increment :value="data.quantity" :count.sync="quantity" :size="setSize"/>
       <div class="price">{{CalcTotalPrice | Dollar | Currency}}元</div>
       <button type="button" class="destroy" @click.prevent="DelProduct">
         <font-awesome-icon icon="trash-alt" />
@@ -35,7 +35,15 @@ export default {
     return {
       quantity: this.data.quantity,
       isLoading: false,
+      screenWidth: document.body.clientWidth,
     };
+  },
+  mounted() {
+    const vm = this;
+    window.onresize = () => (() => {
+      window.screenWidth = document.body.clientWidth;
+      vm.screenWidth = window.screenWidth;
+    })();
   },
   methods: {
     DelProduct() {
@@ -46,10 +54,26 @@ export default {
     CalcTotalPrice() {
       return this.quantity * this.data.product.price;
     },
+    setSize() {
+      if (this.screenWidth <= 414) return 'xs';
+      if (this.screenWidth <= 768) return 'sm';
+      return 'md';
+    },
   },
   watch: {
     quantity() {
       this.EditCart(this.data.product.id, this.quantity);
+    },
+    screenWidth(val) {
+      if (!this.timer) {
+        this.screenWidth = val;
+        this.timer = true;
+        const vm = this;
+        setTimeout(() => {
+          vm.init();
+          vm.timer = false;
+        }, 400);
+      }
     },
   },
 };
@@ -76,7 +100,7 @@ export default {
     flex-grow: 1;
     display: flex;
     flex-flow: row wrap;
-    padding: 0.25rem 1rem;
+    padding: 0.25rem ;
     .title {
       order: 1;
       flex: 1 0 50%;

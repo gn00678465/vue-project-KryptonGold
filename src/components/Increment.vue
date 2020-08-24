@@ -1,112 +1,258 @@
 <template>
-  <div class="increment">
-    <button type="button" class="minus" :disabled="quantity === 1"
-    @click.prevent="count(-1)"> - </button>
-    <input type="number" name="" class="quantity" @keypress="keypress"
-    v-model.number.trim.lazy="quantity">
-    <button type="button" class="plus"
-    @click.prevent="count(1)"> + </button>
+  <div class="increment" :class="classis">
+    <button type="button" :disabled="isAnimating || isZero"
+      @click.prevent='subtract'><slot name="minus">-</slot></button>
+    <span v-if="!isTypeing" :class="{before: isBefore, after: isAfter}"
+      :data-before="countBefore" :data-after="countAfter" @click.prevent="onChange">
+      {{count}}
+    </span>
+    <input v-else type="number" :value="count"
+      @keypress="keypress" @keyup.enter="enterHandler" @keyup.esc="escHandler">
+    <button type="button" :disabled="isAnimating"
+      @click.prevent='add'><slot name="plus">+</slot></button>
   </div>
 </template>
 
 <script>
 export default {
   name: 'Increment',
-  components: {},
   props: {
-    data: {
+    value: {
       type: Number,
       default: 1,
+    },
+    size: {
+      type: String,
+      default: 'sm',
+    },
+    styled: {
+      type: String,
+      default: 'light',
     },
   },
   data() {
     return {
-      quantity: this.data,
+      count: this.value,
+      isBefore: false,
+      isAfter: false,
+      isTypeing: false,
+      classis: [`increment-${this.size}`, `increment-${this.styled}`],
     };
   },
-  mounted() {
-    this.$emit('update:quantity', this.quantity * 1);
-  },
   methods: {
+    subtract() {
+      this.isBefore = true;
+      setTimeout(() => {
+        this.count -= 1;
+        this.isBefore = false;
+      }, 200);
+    },
+    add() {
+      this.isAfter = true;
+      setTimeout(() => {
+        this.count += 1;
+        this.isAfter = false;
+      }, 200);
+    },
+    onChange() {
+      this.isTypeing = true;
+    },
     keypress(e) {
       if (e.key === '+' || e.key === 'e' || e.key === '-') e.preventDefault();
     },
-    count(fix) {
-      this.quantity += fix;
-      if (this.quantity === 0) this.quantity = 1;
+    enterHandler(e) {
+      this.count = e.target.value.trim() * 1;
+      this.isTypeing = false;
+    },
+    escHandler() {
+      this.isTypeing = false;
+    },
+    emitHandler() {
+      this.$emit('update:count', this.count);
+    },
+  },
+  computed: {
+    isAnimating() {
+      return this.isBefore || this.isAfter;
+    },
+    isZero() {
+      return this.countBefore === 0;
+    },
+    countBefore() {
+      return this.count - 1;
+    },
+    countAfter() {
+      return this.count + 1;
     },
   },
   watch: {
-    quantity() {
-      this.$emit('update:quantity', this.quantity * 1);
+    count: {
+      immediate: false,
+      handler() {
+        this.emitHandler();
+      },
     },
   },
 };
 </script>
 
 <style lang="scss" scoped>
+$size: (
+  'xs': 20px,
+  'sm': 24px,
+  'md': 32px,
+  'lg': 56px
+);
+
 .increment {
-  .plus, .minus {
-    height: 30px;
-    padding: 0;
-    width: 30px;
-    border-style: solid;
-    border-color: #aaa;
-    border-width: 1px;
-    background: transparent;
-    color: #333;
-    outline: none;
+  display: flex;
+  overflow: hidden;
+  position: relative;
+  box-sizing: content-box;
+  &::before {
+    position: absolute;
+    content: '';
+    width: 100%;
+    left: 0;
+    top: 0;
+    z-index: 10;
+  }
+  &::after {
+    position: absolute;
+    content: '';
+    bottom: 0;
+    left: 0;
+    width: 100%;
+  }
+  span {
+    display: block;
+    text-align: center;
     cursor: pointer;
-    &:not(:disabled):hover {
-      background: v(theme-order-success-hover);
-      color: #fff;
+    &::before {
+      display: block;
+      content: attr(data-before);
     }
-    &:disabled {
-      cursor: auto;
+    &::after {
+      display: block;
+      content: attr(data-after);
     }
-  }
-  .plus {
-    border-radius: 0 5px 5px 0;
-  }
-  .minus {
-    border-radius: 5px 0 0 5px;
   }
   input {
+    width: 100%;
+    position: relative;
+    z-index: 10;
     text-align: center;
-    height: 30px;
-    border-width: 1px 0;
-    width: 30px;
-    border-style: solid;
-    border-color: #ccc;
-    padding: 6px 3px;
-    background-color: #fff;
-    border-radius: 0;
-    &::-webkit-outer-spin-button,
-    &::-webkit-inner-spin-button {
-      -webkit-appearance: none;
-      margin: 0;
+    border: none;
+    outline: none;
+  }
+  button {
+    display: block;
+    border: 0;
+    background: none;
+    margin: 0;
+    padding: 0;
+    outline: none;
+    user-select: none;
+    position: relative;
+    border-radius: 50%;
+    z-index: 50;
+    &:not(:disabled) {
+      cursor: pointer;
     }
   }
-  input[type=number] {
-    -moz-appearance: textfield;
+  &-dark {
+    background: #000000;
+    &::before {
+      background: linear-gradient(180deg, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0) 100%);
+    }
+    &::after {
+      background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,.9) 100%);
+    }
+    span {
+      color: #fff;
+    }
+    button {
+      color: #fff;
+    }
+  }
+  &-light {
+    background: #eee;
+    // box-shadow: -8px -8px 10px -8px rgba(255,255,255,1), 8px 8px 10px -8px rgba(0,0,0,.3);
+    &::before {
+      background: linear-gradient(180deg, rgba(238, 238, 238, .9) 0%, rgba(0,0,0,0) 100%);
+    }
+    &::after {
+      background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(238,238,238,.9) 100%);
+    }
+    span {
+      color: #666;
+      &::before {
+        color: #999;
+      }
+      &::after {
+        color: #999;
+      }
+    }
+    button {
+      color: #999;
+      background: linear-gradient(135deg, rgba(230, 230, 230, 1) 0%, rgba(246, 246, 246, 1) 100%);
+      box-shadow: -4px -4px 10px -8px rgba(255,255,255,1), 4px 4px 10px -8px rgba(0,0,0,.3);
+      &:not(:disabled):active {
+      box-shadow: inset -4px -4px 10px -8px rgba(255,255,255,1),
+      inset 4px 4px 10px -8px rgba(0,0,0,.3);
+      }
+    }
   }
 }
 
-@media (min-width: 768px) {
-  .increment {
-    .plus, .minus, input {
-      height: 40px;
-      width: 40px;
+@each $key, $val in $size {
+  .increment-#{$key} {
+    width: 5 * $val;
+    height: 1 * $val;
+    border-radius: .2 * $val;
+    @if $key == 'xs' {
+      padding: 0;
+    } @else {
+      padding: 0.3 * $val 0;
     }
-  }
-}
-
-@media (min-width: 992px) {
-  .increment {
-    .plus, .minus, input {
-      height: 50px;
-      width: 50px;
-      font-size: 1.2rem;
+    &::before {
+      height: 0.3 * $val;
+    }
+    &::after {
+      height: 0.3 * $val;
+    }
+    span {
+      flex: 1 1 5 * $val;
+      line-height: 1 * $val;
+      font-size: 1 * $val;
+      transform: translateY(-1 * $val);
+      &.before {
+        transform: translateY(0 * $val);
+        transition: transform .2s ease-in;
+      }
+      &.after {
+        transform: translateY(-2 * $val);
+        transition: transform .2s ease-in;
+      }
+    }
+    input {
+      flex: 1 1 5 * $val;
+      font-size: 0.7 * $val;
+      margin: 0 0.25 * $val;
+      border-radius: 0.2 * $val;
+    }
+    button {
+      height: 1 * $val;
+      width: 1 * $val;
+      flex: 0 0 1 * $val;
+      line-height: 1 * $val;
+      font-size: 0.6 * $val;
+      &:first-child {
+        margin-left: 0.2 * $val;
+      }
+      &:last-child {
+        margin-right: 0.2 * $val;
+      }
     }
   }
 }

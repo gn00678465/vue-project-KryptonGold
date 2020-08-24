@@ -28,7 +28,7 @@
             <span>{{product.price|Dollar}}元</span>
           </div>
           <div class="active">
-            <Increment :quantity.sync="quantity"/>
+            <Increment :count.sync="quantity" size="xs" styled="dark"/>
             <button type="button" class="btn btn-cart" :class="{onActive: addCarting}"
               @click.prevent="addCart">
               <font-awesome-icon v-if="addCarting" icon="spinner" pulse />
