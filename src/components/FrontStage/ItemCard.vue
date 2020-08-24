@@ -127,24 +127,7 @@ h5 {
     justify-content: space-around;
   }
   .btn {
-    @include btn;
     box-shadow: 0px 4px 4px rgba(0,0,0,0.25);
-    &-cart {
-      color: #fff;
-      background: v(thtme-btn-cart);
-      &:hover {
-        background: v(theme-btn-cart-hover);
-      }
-    }
-    &-info {
-      margin-left: auto;
-      margin-right: 0.5rem;
-      color: #fff;
-      background: v(theme-info);
-      &:hover {
-        background: v(theme-info-hover);
-      }
-    }
   }
 }
 

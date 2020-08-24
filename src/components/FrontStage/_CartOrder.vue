@@ -31,7 +31,7 @@
                 <li class="item"><span>地址：</span><span>{{user.address}}</span></li>
               </ul>
               <div class="footer">
-                <button class="btn btn-submit" type="button" @click.prevent="setPaid">
+                <button class="btn btn-next" type="button" @click.prevent="setPaid">
                   <font-awesome-icon v-if="isSpin" icon="spinner" pulse /> 確認付款</button>
               </div>
             </div>
@@ -132,18 +132,7 @@ img {
       .footer {
         padding: 20px;
         .btn {
-          @include btn;
           margin: 0;
-        }
-        .btn-submit {
-          width: 100%;
-          color: #fff;
-          border: 1px solid v(theme-order-success);
-          background: v(theme-order-success);
-          &:hover {
-            border: 1px solid v(theme-order-success);
-            background: v(theme-order-success-hover);
-          }
         }
       }
     }

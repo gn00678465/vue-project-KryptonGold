@@ -36,7 +36,7 @@
                 <font-awesome-icon icon="minus" />
               </template>
             </Increment>
-            <button type="button" class="btn btn-cart" :class="{onActive: addCarting}"
+            <button type="button" class="btn btn-cart"
               @click.prevent="addCart">
               <font-awesome-icon v-if="addCarting" icon="spinner" pulse />
               加入購物車
@@ -201,16 +201,6 @@ img {
       justify-content: space-between;
       align-items: flex-end;
       margin-bottom: 0.5rem;
-      .btn {
-        @include btn;
-        &-cart {
-          color: #fff;
-          background: v(thtme-btn-cart);
-          &:hover, &.onActive {
-            background: v(theme-btn-cart-hover);
-          }
-        }
-      }
     }
     hr {
       width: 100%;

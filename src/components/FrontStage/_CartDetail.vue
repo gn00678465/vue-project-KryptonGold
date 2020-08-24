@@ -122,18 +122,6 @@ export default {
 @import './style/_cart.scss';
 @import '../style/input.scss';
 
-.btn-prev {
-  width: 100%;
-  background: transparent;
-  border: 1px solid $default-color;
-  color: $default-color;
-  &:hover {
-    background: $default-color;
-    border: 1px solid $default-color;
-    color: #fff;
-  }
-}
-
 .cart {
   &__detail {
     @include borderTop;
@@ -156,6 +144,10 @@ export default {
       width: 100%;
     }
   }
+}
+
+.btn {
+  margin-bottom: 0.5rem;
 }
 
 @media (min-width: 768px) {

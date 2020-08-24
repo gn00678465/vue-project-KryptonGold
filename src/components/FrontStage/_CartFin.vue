@@ -11,7 +11,7 @@
             <div class="text">
               <span>訂單已完成，感謝你的購買。</span>
               <button type="button" class="btn">查看訂單</button>
-              <button type="button" class="btn" @click.prevent="goProduct">繼續購物</button>
+              <button type="button" class="btn btn-next" @click.prevent="goProduct">繼續購物</button>
             </div>
           </div>
         </div>
@@ -75,20 +75,10 @@ img {
         margin-bottom: auto;
       }
       .btn {
-        @include btn;
         width: 100%;
       }
       button:first-of-type {
         margin-bottom: 0.5rem;
-      }
-      button:last-of-type {
-        color: #fff;
-        border: 1px solid v(theme-order-success);
-        background: v(theme-order-success);
-        &:hover {
-          border: 1px solid v(theme-order-success);
-          background: v(theme-order-success-hover);
-        }
       }
     }
   }

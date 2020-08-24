@@ -95,45 +95,6 @@ export default {
 <style lang="scss" scoped>
 @import './style/_cart.scss';
 
-.btn {
-  @include btn;
-  &-clear {
-    padding: 0.125rem 0.25rem;
-    font-size: 0.95rem;
-    background: transparent;
-    border: 1px solid $default-color;
-    color: $default-color;
-    margin-bottom: 0 !important;
-    &:hover {
-      background: $default-color;
-      border: 1px solid $default-color;
-      color: #fff;
-    }
-  }
-  &-cancle {
-    border: none;
-    outline: none;
-    padding: 5px;
-    color: #fff;
-    background: $default-color;
-    border-radius: 3px;
-    cursor: pointer;
-    &:hover {
-      background: darken($default-color, 10%);
-    }
-  }
-  &-next {
-    width: 100%;
-    color: #fff;
-    border: 1px solid v(theme-order-success);
-    background: v(theme-order-success);
-    &:hover {
-      border: 1px solid v(theme-order-success);
-      background: v(theme-order-success-hover);
-    }
-  }
-}
-
 .header {
   margin-bottom: 1rem;
   width: 100%;

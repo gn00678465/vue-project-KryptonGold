@@ -125,7 +125,7 @@ $secondary-color: #1d1f20;
     &.disabled {
       .page__link {
         opacity: 0.65;
-        cursor: auto;
+        cursor: not-allowed;
       }
     }
     &:first-child {

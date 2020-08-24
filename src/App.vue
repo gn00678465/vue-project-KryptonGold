@@ -33,6 +33,8 @@ table { border-collapse: collapse; border-spacing: 0; }
   --theme-primary: #f44336;
   --thtme-btn-cart: #e67e22;
   --theme-btn-cart-hover: #{darken(#e67e22, 10%)};
+  --theme-btn-clear: #EA0002;
+  --theme-btn-clear-hover: #{darken(#EA0002, 10%)};
   --theme-card-title: #4c4c4c;
   --theme-card-subtitle: #a6a6a6;
   --theme-card-price: #ff3f40;
