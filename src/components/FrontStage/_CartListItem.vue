@@ -57,8 +57,7 @@ export default {
     },
     setSize() {
       if (this.screenWidth <= 414) return 'xs';
-      if (this.screenWidth <= 768) return 'sm';
-      return 'md';
+      return 'sm';
     },
   },
   watch: {
