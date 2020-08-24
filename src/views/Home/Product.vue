@@ -28,7 +28,7 @@
             <span>{{product.price|Dollar}}元</span>
           </div>
           <div class="active">
-            <Increment :count.sync="quantity" size="xs" styled="dark"/>
+            <Increment :count.sync="quantity" :size="setSize" styled="dark" :key="setSize"/>
             <button type="button" class="btn btn-cart" :class="{onActive: addCarting}"
               @click.prevent="addCart">
               <font-awesome-icon v-if="addCarting" icon="spinner" pulse />
@@ -70,10 +70,11 @@ import Increment from 'components/Increment.vue';
 import BackBtn from 'components/FrontStage/BackBtn.vue';
 import FrontProductAPI from 'assets/Frontend_mixins/Product'; // mixins: [FrontProductAPI]
 import FrontCartAPI from 'assets/Frontend_mixins/Cart'; // mixins: [FrontCartAPI]
+import Resize from 'assets/Frontend_mixins/Resize';
 
 export default {
   name: 'Product',
-  mixins: [FrontProductAPI, FrontCartAPI],
+  mixins: [FrontProductAPI, FrontCartAPI, Resize],
   components: { Increment, BackBtn },
   data() {
     return {
@@ -95,7 +96,12 @@ export default {
       this.CreateCart(this.product.id, this.quantity);
     },
   },
-  computed: {},
+  computed: {
+    setSize() {
+      if (this.screenWidth <= 768) return 'sm';
+      return 'md';
+    },
+  },
 };
 </script>
 

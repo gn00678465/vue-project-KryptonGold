@@ -8,7 +8,7 @@
       <img :src="data.product.imageUrl[0]" alt=""></div>
     <div class="item-content">
       <div class="title">{{data.product.title}} <small>({{data.product.unit}})</small> </div>
-      <Increment :value="data.quantity" :count.sync="quantity" :size="setSize"/>
+      <Increment :value="data.quantity" :count.sync="quantity" :size="setSize" :key="setSize"/>
       <div class="price">{{CalcTotalPrice | Dollar | Currency}}元</div>
       <button type="button" class="destroy" @click.prevent="DelProduct">
         <font-awesome-icon icon="trash-alt" />
@@ -20,11 +20,12 @@
 <script>
 import Increment from 'components/Increment.vue';
 import FrontCartAPI from 'assets/Frontend_mixins/Cart'; // mixins: [FrontCartAPI]
+import Resize from 'assets/Frontend_mixins/Resize';
 
 export default {
   name: 'CartListItem',
   components: { Increment },
-  mixins: [FrontCartAPI],
+  mixins: [FrontCartAPI, Resize],
   props: {
     data: {
       type: Object,
@@ -35,15 +36,7 @@ export default {
     return {
       quantity: this.data.quantity,
       isLoading: false,
-      screenWidth: document.body.clientWidth,
     };
-  },
-  mounted() {
-    const vm = this;
-    window.onresize = () => (() => {
-      window.screenWidth = document.body.clientWidth;
-      vm.screenWidth = window.screenWidth;
-    })();
   },
   methods: {
     DelProduct() {
@@ -63,17 +56,6 @@ export default {
   watch: {
     quantity() {
       this.EditCart(this.data.product.id, this.quantity);
-    },
-    screenWidth(val) {
-      if (!this.timer) {
-        this.screenWidth = val;
-        this.timer = true;
-        const vm = this;
-        setTimeout(() => {
-          vm.init();
-          vm.timer = false;
-        }, 400);
-      }
     },
   },
 };
