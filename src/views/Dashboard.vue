@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import SideBar from 'components/SideBar.vue';
+import SideBar from 'components/BackendStage/SideBar.vue';
 import auth from 'assets/Backend_mixins/Auth';
 
 export default {

@@ -34,7 +34,7 @@
 
 <script>
 import OrderAPI from 'assets/Backend_mixins/Orders';
-import Item from 'components/_OrderItem.vue';
+import Item from 'components/BackendStage/_OrderItem.vue';
 
 export default {
   mataInfo: {

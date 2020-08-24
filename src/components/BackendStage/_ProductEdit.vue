@@ -66,7 +66,7 @@
 </template>
 
 <script>
-import InputUpload from 'components/InputUpload.vue';
+import InputUpload from 'components/BackendStage/InputUpload.vue';
 
 export default {
   name: 'ProductEdit',

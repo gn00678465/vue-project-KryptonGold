@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import LoginForm from 'components/LoginForm.vue';
+import LoginForm from 'components/BackendStage/LoginForm.vue';
 import auth from 'assets/Backend_mixins/Auth';
 
 export default {

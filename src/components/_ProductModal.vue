@@ -116,14 +116,14 @@
 </template>
 
 <script>
-import InputUpload from 'components/InputUpload.vue';
+import InputUpload from 'components/BackendStage/InputUpload.vue';
 import StorageAPI from 'assets/Backend_mixins/Storage';
 
 export default {
   name: 'ProductModal',
   components: {
     InputUpload,
-    uploading: () => import('components/LoadingUpload.vue'),
+    uploading: () => import('components/BackendStage/LoadingUpload.vue'),
   },
   mixins: [StorageAPI],
   props: {

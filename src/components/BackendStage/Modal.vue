@@ -24,14 +24,13 @@
 </template>
 
 <script>
-import Product from 'components/_ProductEdit.vue';
-import file from 'components/InputUpload.vue';
-import coupon from 'components/_CouponEdit.vue';
+import Product from 'components/BackendStage/_ProductEdit.vue';
+import file from 'components/BackendStage/InputUpload.vue';
 
 export default {
   name: 'Modal',
   mixins: [],
-  components: { Product, file, coupon },
+  components: { Product, file },
   props: {
     size: {
       type: String,
@@ -71,8 +70,7 @@ export default {
     closeModal() {
       this.ModalShow = false;
     },
-    excution(data) {
-      console.log(data);
+    excution() {
     },
   },
 };

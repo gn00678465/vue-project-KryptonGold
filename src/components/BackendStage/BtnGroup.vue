@@ -48,7 +48,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import './../assets/_sass/component/_btn.scss';
 
 $colors: (
   default: #434a54,
@@ -61,7 +60,6 @@ $colors: (
 );
 
 .btn {
-  @include btn;
   border-width: 1px;
   font-size: 1.1rem;
 }

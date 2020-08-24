@@ -39,7 +39,7 @@
 </template>
 
 <script>
-import item from 'components/_CouponItem.vue';
+import item from 'components/BackendStage/_CouponItem.vue';
 import CouponAPI from 'assets/Backend_mixins/Coupons';
 
 export default {
@@ -47,7 +47,7 @@ export default {
   mixins: [CouponAPI],
   components: {
     item,
-    Modal: () => import('components/_CouponModal.vue'),
+    Modal: () => import('components/BackendStage/_CouponModal.vue'),
   },
   data() {
     return {

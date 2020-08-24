@@ -43,7 +43,7 @@
 
 <script>
 import StorageAPI from 'assets/Backend_mixins/Storage';
-import file from 'components/InputUpload.vue';
+import file from 'components/BackendStage/InputUpload.vue';
 import ImgCard from 'components/ImgCard.vue';
 
 export default {
@@ -52,7 +52,7 @@ export default {
   },
   name: 'Storage',
   components: {
-    uploading: () => import('components/LoadingUpload.vue'),
+    uploading: () => import('components/BackendStage/LoadingUpload.vue'),
     file,
     ImgCard,
   },

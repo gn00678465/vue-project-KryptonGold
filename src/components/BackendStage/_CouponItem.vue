@@ -27,7 +27,7 @@ export default {
   name: 'CouponItem',
   mixins: [CouponAPI],
   components: {
-    Modal: () => import('components/_CouponModal.vue'),
+    Modal: () => import('components/BackendStage/_CouponModal.vue'),
   },
   props: {
     coupon: {
