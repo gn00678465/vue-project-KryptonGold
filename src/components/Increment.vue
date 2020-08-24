@@ -154,7 +154,6 @@ $size: (
     outline: none;
     user-select: none;
     position: relative;
-    border-radius: 50%;
     z-index: 50;
     &:not(:disabled) {
       cursor: pointer;
@@ -194,12 +193,40 @@ $size: (
       }
     }
     button {
+      border-radius: 50%;
       color: #999;
       background: linear-gradient(135deg, rgba(230, 230, 230, 1) 0%, rgba(246, 246, 246, 1) 100%);
       box-shadow: -4px -4px 10px -8px rgba(255,255,255,1), 4px 4px 10px -8px rgba(0,0,0,.3);
       &:not(:disabled):active {
       box-shadow: inset -4px -4px 10px -8px rgba(255,255,255,1),
       inset 4px 4px 10px -8px rgba(0,0,0,.3);
+      }
+    }
+  }
+  &-simple {
+    border: 1px solid #999;
+    border-radius: 5px;
+    &::before {
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.9) 0%, rgba(0, 0, 0, 0) 100%);
+    }
+    &::after {
+      background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(255,255,255,.9) 100%);
+    }
+    span {
+      color: #666;
+      &::before {
+        color: #999;
+      }
+      &::after {
+        color: #999;
+      }
+    }
+    button {
+      &:first-child {
+        border-right: 1px solid #999;
+      }
+      &:last-child {
+        border-left: 1px solid #999;
       }
     }
   }
@@ -212,6 +239,12 @@ $size: (
     border-radius: .2 * $val;
     @if $key == 'xs' {
       padding: 0;
+      &::before {
+        content: unset;
+      }
+      &::after {
+        content: initial;
+      }
     } @else {
       padding: 0.3 * $val 0;
     }

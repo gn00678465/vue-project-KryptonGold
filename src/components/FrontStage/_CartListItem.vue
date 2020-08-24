@@ -8,7 +8,15 @@
       <img :src="data.product.imageUrl[0]" alt=""></div>
     <div class="item-content">
       <div class="title">{{data.product.title}} <small>({{data.product.unit}})</small> </div>
-      <Increment :value="data.quantity" :count.sync="quantity" :size="setSize" :key="setSize"/>
+      <Increment :value="data.quantity" styled="simple"
+        :count.sync="quantity" :size="setSize" :key="setSize">
+        <template v-slot:plus>
+          <font-awesome-icon icon="plus" />
+        </template>
+        <template v-slot:minus>
+          <font-awesome-icon icon="minus" />
+        </template>
+      </Increment>
       <div class="price">{{CalcTotalPrice | Dollar | Currency}}元</div>
       <button type="button" class="destroy" @click.prevent="DelProduct">
         <font-awesome-icon icon="trash-alt" />

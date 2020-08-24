@@ -20,6 +20,8 @@ import {
   faCartPlus, // cart-plus
   faInfo,
   faSpinner,
+  faPlus,
+  faMinus,
 } from '@fortawesome/free-solid-svg-icons';
 import {
   faFacebookF,
@@ -49,4 +51,6 @@ library.add(
   faCartPlus,
   faInfo,
   faSpinner,
+  faPlus,
+  faMinus,
 );
