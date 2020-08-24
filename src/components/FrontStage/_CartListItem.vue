@@ -10,10 +10,10 @@
       <div class="title">{{data.product.title}} <small>({{data.product.unit}})</small> </div>
       <Increment :value="data.quantity" styled="simple"
         :count.sync="quantity" :size="setSize" :key="setSize">
-        <template v-slot:plus>
+        <template #plus>
           <font-awesome-icon icon="plus" />
         </template>
-        <template v-slot:minus>
+        <template #minus>
           <font-awesome-icon icon="minus" />
         </template>
       </Increment>

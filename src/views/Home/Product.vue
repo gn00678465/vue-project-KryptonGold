@@ -29,10 +29,10 @@
           </div>
           <div class="active">
             <Increment :count.sync="quantity" :size="setSize" styled="dark" :key="setSize">
-              <template v-slot:plus>
+              <template #plus>
                 <font-awesome-icon icon="plus" />
               </template>
-              <template v-slot:minus>
+              <template #minus>
                 <font-awesome-icon icon="minus" />
               </template>
             </Increment>
