@@ -174,6 +174,10 @@ export default {
   }
 }
 
+.btn {
+  margin-bottom: 1rem;
+}
+
 @media (min-width: 768px) {
   .cart {
     &__detail {

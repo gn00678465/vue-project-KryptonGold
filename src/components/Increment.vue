@@ -1,5 +1,5 @@
 <template>
-  <div class="increment" :class="classis">
+  <div class="increment" :class="[classis, rwdClassis]">
     <button type="button" :disabled="isAnimating || isZero"
       @click.prevent='subtract'><slot name="minus">-</slot></button>
     <span v-if="!isTypeing" :class="{before: isBefore, after: isAfter}"
@@ -29,6 +29,10 @@ export default {
       type: String,
       default: 'light',
     },
+    rwd: {
+      type: Boolean,
+      default: true,
+    },
   },
   data() {
     return {
@@ -37,6 +41,9 @@ export default {
       isAfter: false,
       isTypeing: false,
       classis: [`increment-${this.size}`, `increment-${this.styled}`],
+      rwdClassis: {
+        'increment-rwd-xs': this.rwd,
+      },
     };
   },
   methods: {
@@ -101,7 +108,6 @@ export default {
 
 <style lang="scss" scoped>
 $size: (
-  'xs': 20px,
   'sm': 24px,
   'md': 32px,
   'lg': 56px
@@ -240,17 +246,7 @@ $size: (
     width: 5 * $val;
     height: 1 * $val;
     border-radius: .2 * $val;
-    @if $key == 'xs' {
-      padding: 0;
-      &::before {
-        content: unset;
-      }
-      &::after {
-        content: initial;
-      }
-    } @else {
-      padding: 0.3 * $val 0;
-    }
+    padding: 0.3 * $val 0;
     &::before {
       height: 0.3 * $val;
     }
@@ -289,6 +285,18 @@ $size: (
       &:last-child {
         margin-right: 0.2 * $val;
       }
+    }
+  }
+}
+
+@media (max-width: 374px) {
+  .increment-rwd-xs {
+    padding: 0;
+    &::before {
+      content: unset;
+    }
+    &::after {
+      content: initial;
     }
   }
 }

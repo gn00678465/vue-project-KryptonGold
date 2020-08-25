@@ -8,8 +8,11 @@
       <img :src="data.product.imageUrl[0]" alt=""></div>
     <div class="item-content">
       <div class="title">{{data.product.title}} <small>({{data.product.unit}})</small> </div>
-      <Increment :value="data.quantity" styled="simple"
-        :count.sync="quantity" :size="setSize" :key="setSize">
+      <button type="button" class="destroy" @click.prevent="DelProduct">
+        <font-awesome-icon icon="trash-alt" />
+      </button>
+      <Increment class="increment" :value="data.quantity" styled="simple"
+        :count.sync="quantity" size="sm">
         <template #plus>
           <font-awesome-icon icon="plus" />
         </template>
@@ -17,10 +20,7 @@
           <font-awesome-icon icon="minus" />
         </template>
       </Increment>
-      <div class="price">{{CalcTotalPrice | Dollar | Currency}}元</div>
-      <button type="button" class="destroy" @click.prevent="DelProduct">
-        <font-awesome-icon icon="trash-alt" />
-      </button>
+      <div class="price">{{CalcTotalPrice | Dollar | Currency}}</div>
     </div>
   </li>
 </template>
@@ -55,10 +55,6 @@ export default {
     CalcTotalPrice() {
       return this.quantity * this.data.product.price;
     },
-    setSize() {
-      if (this.screenWidth <= 414) return 'xs';
-      return 'sm';
-    },
   },
   watch: {
     quantity() {
@@ -89,27 +85,25 @@ export default {
     flex-grow: 1;
     display: flex;
     flex-flow: row wrap;
-    padding: 0.25rem ;
+    align-content: space-between;
+    padding: 0.5rem;
+    padding-left: 0;
+    position: relative;
     .title {
-      order: 1;
-      flex: 1 0 50%;
-      font-size: 1.2rem;
       font-weight: 600;
     }
-    .increment, .quantity {
-      order: 3;
-    }
-    .quantity {
-      display: inline-block;
-      flex-basis: 60%;
-      align-self: flex-end;
-      font-size: 1.1rem;
+    .increment {
+      position: absolute;
+      bottom: 0.5rem;
+      left: -.25rem;
+      box-shadow: 0 0 5px -2px rgba(0, 0, 0, 0.9);
     }
     .price {
-      order: 4;
-      margin-left: auto;
+      display: inline-block;
+      width: 100%;
+      text-align: right;
       align-self: flex-end;
-      font-size: 1.3rem;
+      font-size: 1.1rem;
       font-weight: 600;
       color: v(theme-card-price);
     }
@@ -117,10 +111,8 @@ export default {
       background: transparent;
       border: none;
       outline: none;
-      order: 2;
       margin-left: auto;
       cursor: pointer;
-      font-size: 1.1rem;
       color: #2A9FC0;
       &:hover {
         color: darken($color: #2A9FC0, $amount: 10%)
@@ -134,20 +126,52 @@ img {
   transform: translate(-1rem, -3rem);
 }
 
+@media (min-width: 375px) {
+  .item {
+    &-content {
+      .title {
+        font-size: 1.2rem;
+      }
+      .increment {
+        left: 0;
+        bottom: 0;
+        transform: translateY(15px);
+      }
+      .price {
+        font-size: 1.2rem;
+      }
+      .destroy {
+        font-size: 1.1rem;
+      }
+    }
+  }
+}
+
 @media (min-width: 768px) {
   .item {
     &-content {
       justify-content: space-between;
       align-items: center;
-      .title, .increment, .price, .destroy, .quantity {
-        order: 1;
-        align-self: initial;
-      }
       .title {
-        flex: 0 0 40%;
+        order: 1;
+        flex:  0 0 35%;
       }
-      .quantity {
-        flex: 0 0 auto;
+      .increment {
+        position: initial;
+        transform: initial;
+        box-shadow: none;
+        order: 2
+      }
+      .price {
+        flex:  0 0 20%;
+        font-size: 1.4rem;
+        align-self: initial;
+        width: auto;
+        order: 3
+      }
+      .destroy {
+        margin-left: initial;
+        order: 4
       }
     }
   }
