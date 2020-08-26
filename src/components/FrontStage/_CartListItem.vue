@@ -20,7 +20,7 @@
           <font-awesome-icon icon="minus" />
         </template>
       </Increment>
-      <div class="price">{{CalcTotalPrice | Dollar | Currency}}</div>
+      <AnimatedIngeter class="price" :value="CalcTotalPrice" />
     </div>
   </li>
 </template>
@@ -53,7 +53,7 @@ export default {
   },
   computed: {
     CalcTotalPrice() {
-      return this.quantity * this.data.product.price;
+      return this.data.quantity * this.data.product.price;
     },
   },
   watch: {
