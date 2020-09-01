@@ -5,7 +5,7 @@
       @click.prevent="$emit('btn-emit', btn.action)"
     ><font-awesome-icon :icon="['fas', btn.icon]"
     v-if="btn.content === '' && btn.icon !== ''" />
-    <span v-else>{{btn.content}}</span>
+    <span v-else>{{ btn.content }}</span>
     </button>
   </div>
 </template>

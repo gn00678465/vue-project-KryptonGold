@@ -9,7 +9,7 @@
       v-for="page in total_pages" :key="page"
       :class="{active: page === current}"
       @click.prevent="clickHandler($event)">
-        <a class="page__link" href="#" :data-page="page">{{page}}</a></li>
+        <a class="page__link" href="#" :data-page="page">{{ page }}</a></li>
       <li class="page__item" @click.prevent="pageHandler(1)"
       :class="{disabled: current === total_pages}">
         <a class="page__link" href="#"></a>

@@ -1,5 +1,5 @@
 <template>
-  <aside class="l-navbar" :class="`l-navbar-${navStyle}`" :style="{'width': `${navWidth}px`}">
+  <aside class="l-navbar" :class="`l-navbar-${navStyle}`">
     <nav class="nav">
       <div class="nav__logo" :class="{'no-toggler': !showToggler}">
         <div class="nav__toggler" v-if="showToggler">三</div>
@@ -9,12 +9,12 @@
         <router-link :to="home.path" class="nav__item" tag="li"
         active-class="actived" exact>
           <icon class="nav__icon" :iconName="home.icon" />
-          <span class="nav__text">{{home.name}}</span>
+          <span class="nav__text">{{ home.name }}</span>
         </router-link>
         <router-link :to="`${home.path}/${link.path}`" class="nav__item" tag="li"
         v-for="link in childs" :key="link.path" active-class="actived" exact>
           <icon class="nav__icon" :iconName="link.icon" />
-          <span class="nav__text">{{link.name}}</span>
+          <span class="nav__text">{{ link.name }}</span>
         </router-link>
       </ul>
     </nav>
@@ -88,6 +88,7 @@ $z-fixed: 100;
   top: 0;
   bottom: 0;
   left: 0;
+  width: 240px;
   // width: $nav-width;
   padding: 0 1.5rem 2rem 1.5rem;
   transition: .5s;

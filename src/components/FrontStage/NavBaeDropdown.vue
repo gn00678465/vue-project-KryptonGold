@@ -4,7 +4,7 @@
     @click.prevent="dropdownHandler" :class="{'open': nowSelect === icon && isShow}">
       <icon  class="nav-icon" :iconName="icon"/>
     </button>
-    <div class="dropdownMenu" :style="{top: top + 'px'}">
+    <div class="dropdownMenu">
       <component :is="nowSelect"></component>
     </div>
   </div>

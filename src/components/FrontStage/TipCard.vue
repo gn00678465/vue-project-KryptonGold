@@ -1,8 +1,8 @@
 <template>
   <div class="card">
-    <h2 class="title">{{data.zh}}</h2>
-    <h3>{{data.en}}</h3>
-    <p class="description">{{data.description}}</p>
+    <h2 class="title">{{ data.zh }}</h2>
+    <h3>{{ data.en }}</h3>
+    <p class="description">{{ data.description }}</p>
   </div>
 </template>
 

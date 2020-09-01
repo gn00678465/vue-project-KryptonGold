@@ -1,5 +1,5 @@
 <template>
-  <div class="card" :style="{'flex-direction': reverse ? 'row-reverse' : 'row'}">
+  <div class="card" :class="{isReverse: reverse}">
     <div class="card-img">
       <img :src="url" alt="">
     </div>
@@ -76,12 +76,15 @@ img {
       margin: 1rem 0;
     }
   }
+  &.isReverse {
+    flex-direction: row-reverse;
+  }
 }
 
 @media (min-width: 992px) {
   .card {
     .card-img, .card-content {
-      margin: 0 15px;
+      margin: 0 1px;
     }
     .card-content {
       position: initial;

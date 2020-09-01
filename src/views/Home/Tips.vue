@@ -13,7 +13,7 @@
 
 <script>
 import BrushTitle from 'components/BrushTitle.vue';
-import tips from 'assets/_tips.json';
+import tips from 'assets/Tips.json';
 import card from 'components/FrontStage/TipCard.vue';
 
 export default {

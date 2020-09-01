@@ -1,10 +1,10 @@
 <template>
-  <div class="container-fluid bg-color vld-parent">
+  <div class="bg-color vld-parent">
     <loading :active.sync="isLoading"
       :can-cancel="true"
       :is-full-page="true"></loading>
     <div class="row">
-      <header class="header expander-left" style="margin-left: 240px">
+      <header class="header expander__left">
         <p class="title">後台管理系統</p>
         <a class="btn btn-logout" @click.prevent="logout">
           <icon class="btn-icon" iconName="exit" />
@@ -12,7 +12,7 @@
         </a>
       </header>
       <SideBar ref="sidbar" :home="home" :childs="childs" />
-      <router-view style="margin-left: 240px; margin-top: 70px"></router-view>
+      <router-view class="expander__left expander__top"></router-view>
     </div>
   </div>
 </template>
@@ -80,6 +80,9 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  &.expander-left {
+    margin-left: 240px
+  }
   .title {
     margin: 0;
     position: relative;
@@ -100,6 +103,15 @@ export default {
     width: 24px;
     height: 24px;
     margin-right: 5px;
+  }
+}
+
+.expander {
+  &__left {
+    padding-left: 240px !important;
+  }
+  &__top {
+    padding-top: 70px;
   }
 }
 </style>

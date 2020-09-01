@@ -3,7 +3,7 @@
     <ul class="progressbar">
       <li class="progressbar-indicator"
         :class="{active: current >= (i + 1), now: current === (i + 1)}"
-      v-for="(step, i) in steps" :key="i" :data-count="i+1">{{step}}</li>
+      v-for="(step, i) in steps" :key="i" :data-count="i+1">{{ step }}</li>
     </ul>
   </div>
 </template>

@@ -7,7 +7,7 @@
     <div class="item-img">
       <img :src="data.product.imageUrl[0]" alt=""></div>
     <div class="item-content">
-      <div class="title">{{data.product.title}} <small>({{data.product.unit}})</small> </div>
+      <div class="title">{{ data.product.title }} <small>({{ data.product.unit }})</small> </div>
       <button type="button" class="destroy" @click.prevent="DelProduct">
         <font-awesome-icon icon="trash-alt" />
       </button>
@@ -27,7 +27,7 @@
 
 <script>
 import Increment from 'components/Increment.vue';
-import FrontCartAPI from 'assets/Frontend_mixins/Cart'; // mixins: [FrontCartAPI]
+import FrontCartAPI from 'assets/Frontend_mixins/Cart';
 import Resize from 'assets/Frontend_mixins/Resize';
 
 export default {

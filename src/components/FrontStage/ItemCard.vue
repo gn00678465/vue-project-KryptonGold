@@ -4,14 +4,14 @@
       <img v-if="data" :src="data.imageUrl[0]" alt="" class="ItemCard__img">
     </div>
     <div class="ItemCard__content">
-      <h4 class="ItemCard__title">{{data.title}}</h4>
+      <h4 class="ItemCard__title">{{ data.title }}</h4>
       <span class="ItemCard__tag">
-        {{data.options.type}} | {{data.options.ml|ml}} | {{data.options.percent|percent}}
+        {{ data.options.type }} | {{ data.options.ml|ml }} | {{ data.options.percent|percent }}
         </span>
       <div class="ItemCard__description" v-scrollbar>{{ data.content }}</div>
       <footer class="ItemCard__footer">
-        <div class="ItemCard__price">{{data.price|Currency|Dollar}}
-          <span>/ {{data.unit}}</span>
+        <div class="ItemCard__price">{{ data.price|Currency|Dollar }}
+          <span>/ {{ data.unit }}</span>
         </div>
         <button type="button" class="btn btn-info" @click.prevent="goToDetial">
           <font-awesome-icon :icon="['fas', 'info']" />
@@ -26,7 +26,7 @@
 </template>
 
 <script>
-import FrontCartAPI from 'assets/Frontend_mixins/Cart'; // mixins: [FrontCartAPI]
+import FrontCartAPI from 'assets/Frontend_mixins/Cart';
 
 export default {
   name: 'ItemCard',

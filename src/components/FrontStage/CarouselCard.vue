@@ -2,10 +2,10 @@
   <div class="CarouselCard" @click.prevent="goToProduct">
     <div class="CarouselCard__details">
       <div class="CarouselCard__title">
-        <h3>{{data.title}}</h3>
+        <h3>{{ data.title }}</h3>
       </div>
       <div class="CarouselCard__description">
-        <p>{{data.content}}</p>
+        <p>{{ data.content }}</p>
       </div>
     </div>
     <img

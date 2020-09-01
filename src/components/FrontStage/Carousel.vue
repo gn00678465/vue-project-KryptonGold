@@ -3,9 +3,9 @@
     <loading :active.sync="isLoading"
       :is-full-page="false"
       background-color="transparent">
-      <LoadEffect2 slot="default"/>
+      <LoadEffect slot="default"/>
     </loading>
-    <BrushTitle><span>人氣推薦</span></BrushTitle>
+    <p class="title">人氣推薦</p>
     <carousel
     class="carousel"
       :perPage="5"
@@ -25,14 +25,12 @@
 <script>
 import FrontProductAPI from 'assets/Frontend_mixins/Product'; // mixins: [FrontProductAPI]
 import { Carousel, Slide } from 'vue-carousel';
-import BrushTitle from 'components/BrushTitle.vue';
 import Card from './CarouselCard.vue';
 
 export default {
   components: {
     Carousel,
     Slide,
-    BrushTitle,
     Card,
   },
   mixins: [FrontProductAPI],
@@ -68,5 +66,10 @@ export default {
 <style lang="scss" scoped>
 .carousel {
   margin: 0.5rem 0;
+}
+
+.title {
+  font-weight: 700;
+  font-size: 2rem;
 }
 </style>

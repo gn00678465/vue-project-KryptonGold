@@ -4,7 +4,7 @@
       @click.prevent='subtract'><slot name="minus">-</slot></button>
     <span v-if="!isTypeing" :class="{before: isBefore, after: isAfter}"
       :data-before="countBefore" :data-after="countAfter" @click.prevent="onChange">
-      {{countCurrent}}
+      {{ countCurrent }}
     </span>
     <input v-else type="number" :value="count"
       @keypress="keypress" @keyup.enter="enterHandler" @keyup.esc="escHandler">

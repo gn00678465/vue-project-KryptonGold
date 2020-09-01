@@ -52,7 +52,7 @@ export default {
   name: 'Products',
   components: {
     item,
-    Modal: () => import('components/_ProductModal.vue'),
+    Modal: () => import('components/BackendStage/_ProductModal.vue'),
   },
   mixins: [ProductsAPI],
   created() {

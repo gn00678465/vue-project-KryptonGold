@@ -3,7 +3,7 @@
     <loading :active.sync="isLoading"
       :can-cancel="true"
       :is-full-page="true">
-      <LoadEffect2 slot="default"/>
+      <LoadEffect slot="default"/>
       </loading>
     <header class="header">
       <BackBtn @click-emit="goProduct">繼續購物</BackBtn>
@@ -12,13 +12,11 @@
     <div class="row">
       <div class="col-sm-12 col-lg-8">
         <ul v-if="CartList.length !== 0" class="cart__list">
-          <!-- <h3 class="list-title">購物車</h3> -->
-          <!-- <hr> -->
           <CartItem v-for="cart in CartList" :key="cart.product.id" :data="cart"/>
         </ul>
         <h2 class="empty" v-else >
-          購物車是空的，趕緊<router-link to="/products"
-          style="border-bottom: 1px solid #000; color: #4c4c4c">
+          購物車是空的，趕緊
+          <router-link to="/products" class="link">
           購物
           </router-link>去吧!!
         </h2>
@@ -44,8 +42,8 @@
 
 <script>
 import BackBtn from 'components/FrontStage/BackBtn.vue';
-import FrontCartAPI from 'assets/Frontend_mixins/Cart'; // mixins: [FrontCartAPI]
-import { store } from 'assets/store';
+import FrontCartAPI from 'assets/Frontend_mixins/Cart';
+import { store } from 'assets/Store';
 import CartItem from './_CartListItem.vue';
 import Summary from './_CartSummary.vue';
 
@@ -77,9 +75,6 @@ export default {
     },
   },
   computed: {
-    // CartList() {
-    //   return store.cartList;
-    // },
     CartList: {
       get() {
         return store.cartList;
@@ -176,6 +171,11 @@ export default {
 
 .btn {
   margin-bottom: 1rem;
+}
+
+.link {
+  border-bottom: 1px solid #000;
+  color: #4c4c4c
 }
 
 @media (min-width: 768px) {

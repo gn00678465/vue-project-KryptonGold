@@ -1,4 +1,4 @@
-import { mutation } from 'assets/store';
+import { mutation } from 'assets/Store';
 
 export default {
   methods: {

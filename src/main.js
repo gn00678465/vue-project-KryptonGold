@@ -22,11 +22,11 @@ import router from './router';
 // plugin
 import './assets/plugin/Fontaweosme';
 import './assets/plugin/VeeValidate';
-import './assets/plugin/vueLoadingOverlay';
+import './assets/plugin/VueLoadingOverlay';
 import './assets/plugin/VueToastification';
 import './assets/icons/index';
 // filter
-import './assets/_filter';
+import './assets/Filter';
 
 // axios
 Vue.use(VueAxios, axios);
@@ -39,8 +39,7 @@ Vue.component('BtnGroup', BtnGroup);
 Vue.component('InputField', InputField);
 Vue.component('InputSelect', InputSelect);
 Vue.component('Dialog', () => import('components/BackendStage/Dialog.vue'));
-Vue.component('LoadEffect', () => import('components/BackendStage/Loading.vue'));
-Vue.component('LoadEffect2', () => import('components/Loading2.vue'));
+Vue.component('LoadEffect', () => import('components/Loading.vue'));
 Vue.component('ItemCard', ItemCard);
 Vue.component('AnimatedIngeter', () => import('components/AnimatedIngeter.vue'));
 

@@ -7,19 +7,19 @@
           <hr>
           <div class="col-sm-12 col-md-6">
             <InputField label="收件人姓名" :attrs="inputSet"
-                v-model="inputTemp.name"/>
+              v-model="inputTemp.name"/>
           </div>
           <div class="col-sm-12 col-md-6">
             <InputField label="收件人信箱" :attrs="inputSet"
-                v-model="inputTemp.email"/>
+              v-model="inputTemp.email"/>
           </div>
           <div class="col-sm-12 col-md-6">
             <InputField label="收件人電話" :attrs="inputSet"
-                v-model="inputTemp.tel"/>
+              v-model="inputTemp.tel"/>
           </div>
           <div class="col-sm-12 col-md-6">
             <InputField label="收件人地址" :attrs="inputSet"
-                v-model="inputTemp.address"/>
+              v-model="inputTemp.address"/>
           </div>
           <div class="col-sm-12 col-md-6">
             <!-- select -->
@@ -34,14 +34,14 @@
                 v-model="inputTemp.payment"
               >
                 <option value="" selected disabled>請選擇付款方式</option>
-                <option v-for="pay in payments" :key="pay" :value="pay">{{pay}}</option>
+                <option v-for="pay in payments" :key="pay" :value="pay">{{ pay }}</option>
               </select>
               <span class="error">{{ errors[0] }}</span>
             </validation-provider>
           </div>
           <div class="col-12">
             <InputField label="留言" :attrs="inputSet"
-                v-model="inputTemp.message"/>
+              v-model="inputTemp.message"/>
           </div>
         </ValidationObserver>
       </div>
@@ -62,7 +62,7 @@
 </template>
 
 <script>
-import FrontCartAPI from 'assets/Frontend_mixins/Cart'; // mixins: [FrontCartAPI],
+import FrontCartAPI from 'assets/Frontend_mixins/Cart';
 import Summary from './_CartSummary.vue';
 
 export default {

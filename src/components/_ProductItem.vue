@@ -3,10 +3,10 @@
     <loading :active.sync="isLoading" color="#218DFE"
       :can-cancel="true" loader="dots"
       :is-full-page="false"></loading>
-    <span class="td">{{prod.category}}</span>
-    <span class="td">{{prod.title}}</span>
-    <span class="td">{{prod.origin_price | Currency | Dollar}}</span>
-    <span class="td">{{prod.price | Currency | Dollar}}</span>
+    <span class="td">{{ prod.category }}</span>
+    <span class="td">{{ prod.title }}</span>
+    <span class="td">{{ prod.origin_price | Currency | Dollar }}</span>
+    <span class="td">{{ prod.price | Currency | Dollar }}</span>
     <span class="td">
       <toggle :prodId="prod.id.substr(0, 5)" :disabled="true"
       :checked="prod.enabled"/>
@@ -23,7 +23,7 @@
 
 <script>
 import ProductsAPI from 'assets/Backend_mixins/Products';
-import Modal from 'components/_ProductModal.vue';
+import Modal from 'components/BackendStage/_ProductModal.vue';
 
 export default {
   name: 'ProductItem',

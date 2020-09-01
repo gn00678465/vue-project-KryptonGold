@@ -3,7 +3,7 @@
     <loading :active.sync="isLoading"
       :can-cancel="true"
       :is-full-page="true">
-      <LoadEffect2 slot="default"/>
+      <LoadEffect slot="default"/>
       </loading>
     <div class="row justify-content-center">
       <div class="col-sm-12 col-md-10 col-lg-8">
@@ -16,19 +16,19 @@
               <div class="title">訂單資訊</div>
               <ul class="content">
                 <li class="item" v-for="prod in products" :key="prod.product.id">
-                  <span>{{prod.product.title}}</span>
-                  <span>{{prod.quantity}} {{prod.product.unit}}</span>
+                  <span>{{ prod.product.title }}</span>
+                  <span>{{ prod.quantity }} {{ prod.product.unit }}</span>
                 </li>
               </ul>
-              <div class="footer"><span>總共：</span>{{amount|Currency|Dollar}}</div>
+              <div class="footer"><span>總共：</span>{{ amount|Currency|Dollar }}</div>
             </div>
             <div class="user">
               <div class="title">訂購人資料</div>
               <ul class="content">
-                <li class="item"><span>姓名：</span><span>{{user.name}}</span></li>
-                <li class="item"><span>信箱：</span><span>{{user.email}}</span></li>
-                <li class="item"><span>電話：</span><span>{{user.tel}}</span></li>
-                <li class="item"><span>地址：</span><span>{{user.address}}</span></li>
+                <li class="item"><span>姓名：</span><span>{{ user.name }}</span></li>
+                <li class="item"><span>信箱：</span><span>{{ user.email }}</span></li>
+                <li class="item"><span>電話：</span><span>{{ user.tel }}</span></li>
+                <li class="item"><span>地址：</span><span>{{ user.address }}</span></li>
               </ul>
               <div class="footer">
                 <button class="btn btn-next" type="button" @click.prevent="setPaid">
@@ -43,8 +43,8 @@
 </template>
 
 <script>
-import { store } from 'assets/store';
-import FrontCartAPI from 'assets/Frontend_mixins/Cart'; // mixins: [FrontCartAPI],
+import { store } from 'assets/Store';
+import FrontCartAPI from 'assets/Frontend_mixins/Cart';
 
 export default {
   name: 'CartOrder',

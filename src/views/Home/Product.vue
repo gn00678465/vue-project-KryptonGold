@@ -3,7 +3,7 @@
     <loading :active.sync="isLoading"
       :can-cancel="true"
       :is-full-page="true">
-      <LoadEffect2 slot="default"/>
+      <LoadEffect slot="default"/>
       </loading>
     <div>
       <BackBtn @click-emit="goBack">繼續購物</BackBtn>
@@ -17,15 +17,15 @@
       </div>
       <div class="product__info">
         <div class="product-content" ref="content">
-          <div class="title">{{product.title}}( 1 {{product.unit}})</div>
+          <div class="title">{{ product.title }}( 1 {{ product.unit }})</div>
           <div class="subtext">
-            {{product.options.type}} |
-            {{product.options.ml|ml}} |
-            {{product.options.percent|percent}}
+            {{ product.options.type }} |
+            {{ product.options.ml|ml }} |
+            {{ product.options.percent|percent }}
           </div>
           <div class="price">
-            <span>{{product.origin_price|Dollar}}元</span>
-            <span>{{product.price|Dollar}}元</span>
+            <span>{{ product.origin_price|Dollar }}元</span>
+            <span>{{ product.price|Dollar }}元</span>
           </div>
           <div class="active">
             <Increment :count.sync="quantity" :size="setSize" styled="dark" :key="setSize">
@@ -45,24 +45,24 @@
           <hr>
           <div class="description">
             <span>介紹：</span>
-            <p>{{product.description}}</p>
+            <p>{{ product.description }}</p>
             <span>資訊：</span>
             <ul class="information">
               <li class="item"><font-awesome-icon :icon="['fas', 'beer']" /><span>種類：</span>
-                <span>{{product.options.type}}</span>
+                <span>{{ product.options.type }}</span>
               </li>
               <li class="item"><font-awesome-icon :icon="['fas', 'flag']" /><span>品牌：</span>
-                <span>{{product.options.brand}}</span>
+                <span>{{ product.options.brand }}</span>
               </li>
               <li class="item"><font-awesome-icon :icon="['fas', 'globe']" /><span>國家：</span>
-                <span>{{product.options.country}}</span>
+                <span>{{ product.options.country }}</span>
               </li>
               <li class="item"><font-awesome-icon :icon="['fas', 'prescription-bottle']" />
                 <span>容量：</span>
-                <span>{{product.options.ml|ml}}</span>
+                <span>{{ product.options.ml|ml }}</span>
               </li>
               <li class="item"><font-awesome-icon :icon="['fas', 'percent']" /><span>濃度：</span>
-                <span>{{product.options.percent|percent}}</span>
+                <span>{{ product.options.percent|percent }}</span>
               </li>
             </ul>
           </div>
@@ -75,8 +75,8 @@
 <script>
 import Increment from 'components/Increment.vue';
 import BackBtn from 'components/FrontStage/BackBtn.vue';
-import FrontProductAPI from 'assets/Frontend_mixins/Product'; // mixins: [FrontProductAPI]
-import FrontCartAPI from 'assets/Frontend_mixins/Cart'; // mixins: [FrontCartAPI]
+import FrontProductAPI from 'assets/Frontend_mixins/Product';
+import FrontCartAPI from 'assets/Frontend_mixins/Cart';
 import Resize from 'assets/Frontend_mixins/Resize';
 
 export default {

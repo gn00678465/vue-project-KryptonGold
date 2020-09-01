@@ -10,7 +10,6 @@ export default {
       } else {
         this.$refs.navbar.classes['nav-bg'] = false;
       }
-      // console.log(this.$parent.$refs.navbar.$el);
     },
   },
 };

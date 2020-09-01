@@ -3,21 +3,21 @@
     <loading :active.sync="isLoading" color="#218DFE"
       :can-cancel="true" loader="dots"
       :is-full-page="false"></loading>
-    <span class="td">{{order.created.datetime}}</span>
+    <span class="td">{{ order.created.datetime }}</span>
     <span class="td">
       <ul>
         <li v-for="(prod, i) in order.products" :key="i">
-          {{`${prod.product.title} 數量：${prod.quantity} ${prod.product.unit}`}}
+          {{ `${ prod.product.title } 數量：${ prod.quantity } ${ prod.product.unit }` }}
         </li>
       </ul>
     </span>
-    <span class="td">{{order.payment}}</span>
-    <span class="td">{{order.amount | Dollar | Currency}}</span>
+    <span class="td">{{ order.payment }}</span>
+    <span class="td">{{ order.amount | Dollar | Currency }}</span>
     <span class="td">
       <toggle :prodId="order.id.substr(0, 5)" @input="edit"
       :checked="order.paid"/>
     </span>
-    <Dialog ref="dialog" @dialog="confirm">變更付款狀態為 {{paid(!order.paid)}}?</Dialog>
+    <Dialog ref="dialog" @dialog="confirm">變更付款狀態為 {{ paid(!order.paid) }}?</Dialog>
   </div>
 </template>
 

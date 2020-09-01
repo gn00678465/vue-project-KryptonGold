@@ -1,10 +1,10 @@
 <template>
-  <nav class="nav-light nav-fixed" :class="classes" :style="{}">
+  <nav class="nav-light nav-fixed" :class="classes">
     <div class="container navbar">
       <router-link to="/" class="navbar__brand"><slot>Logo</slot></router-link>
       <button type="button" class="navbar__mobile-cart" @click="goToCart">
         <icon class="nav-icon" iconName="cart" />
-        <span class="badge">{{cartLength}}</span>
+        <span class="badge">{{ cartLength }}</span>
       </button>
       <button type="button" class="navbar__toggle" @click="showMenu">
         <icon class="nav-icon" iconName="menu" />
@@ -15,28 +15,18 @@
         </div>
         <ul class="nav__menu">
           <router-link to="/" tag="li" class="nav__item" exact-active-class="active">
-            <icon class="nav-icon" iconName="home" />
             <span class="nav__link">首頁</span>
           </router-link>
           <router-link to="/products" tag="li" class="nav__item" exact-active-class="active">
-            <icon class="nav-icon" iconName="boxes" />
             <span class="nav__link">所有產品</span>
           </router-link>
           <router-link to="tips" tag="li" class="nav__item" exact-active-class="active">
-            <icon class="nav-icon" iconName="info" />
             <span class="nav__link">豆知識</span>
           </router-link>
-          <!-- <router-link to="contactus" tag="li" class="nav__item" exact-active-class="active">
-            <icon class="nav-icon" iconName="contact_mail" />
-            <span class="nav__link">聯繫我們</span>
-          </router-link> -->
         </ul>
-        <!-- <div class="nav__content">
-          <dropdown :icons="['cart']" :top="top"/>
-        </div> -->
         <router-link to="/carts" tag="li" class="nav__cart">
           <icon class="nav-icon" iconName="cart" />
-          <span class="badge">{{cartLength}}</span>
+          <span class="badge">{{ cartLength }}</span>
         </router-link>
       </div>
     </div>
@@ -44,7 +34,7 @@
 </template>
 
 <script>
-import FrontCartAPI from 'assets/Frontend_mixins/Cart'; // mixins: [FrontCartAPI]
+import FrontCartAPI from 'assets/Frontend_mixins/Cart';
 
 export default {
   name: 'NavBar',
@@ -87,7 +77,6 @@ export default {
     onResize() {
       if (window.innerWidth < 767) {
         const { height } = this.$el.querySelector('.navbar').getBoundingClientRect();
-        // const height = this.$el.querySelector('.nav__content').clientHeight;
         this.top = height;
       } else if (window.innerWidth >= 768) {
         const { height } = this.$el.querySelector('.navbar').getBoundingClientRect();
@@ -108,7 +97,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-$title-size: 1.5rem;
+$title-size: 1.7rem;
 $light-hover: #eee;
 $light-text: #3c4858;
 $logo-font: 'Kaushan Script';
@@ -183,6 +172,7 @@ $logo-font: 'Kaushan Script';
     padding-bottom: .3125rem;
     margin-right: 1rem;
     font-size: $title-size;
+    font-weight: 600;
     line-height: inherit;
     white-space: nowrap;
     font-family: $logo-font;
@@ -225,7 +215,6 @@ $logo-font: 'Kaushan Script';
     transition: all 0.5s;
     transform: translateX(-100%);
     z-index: 500;
-    // flex
     display: flex;
     flex-direction: column;
     &.show {
@@ -244,8 +233,6 @@ $logo-font: 'Kaushan Script';
       @include toggle;
     }
     &__menu {
-      // flex-grow: 1;
-      // flex-basis: 100%;
       align-items: center;
       width: 100%;
       display: block;
@@ -253,10 +240,6 @@ $logo-font: 'Kaushan Script';
     }
     &__item {
       padding: .5rem 1rem;
-      // display: inline-block;
-      // width: 100%;
-      // height: auto;
-      // align-items: center;
       display: flex;
       width: 100%;
       margin-top: .5rem;
@@ -265,7 +248,6 @@ $logo-font: 'Kaushan Script';
       cursor: pointer;
     }
     &__link {
-      margin-left: 1rem;
       font-size: 1.2rem;
       font-weight: 700;
     }
@@ -321,9 +303,6 @@ $logo-font: 'Kaushan Script';
           padding-right: 0.5rem;
           width: auto;
           margin-right: 0.5rem;
-        }
-        &__link {
-          margin-left: 0.5rem;
         }
         &__content {
           display: flex;

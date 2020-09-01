@@ -15,7 +15,7 @@
             <div class="container-fluid">
               <div class="row">
                 <div class="col">
-                  <div v-scrollbar class="container-fluid" style="height: 650px">
+                  <div v-scrollbar class="container-fluid">
                     <div class="row">
                       <div class="col-4" v-for="item in storageList" :key="item.id">
                         <ImgCard :path="item.path" :id="item.id"/>
@@ -30,7 +30,7 @@
                     :is-full-page="false">
                     <uploading slot="default"/>
                   </loading>
-                  <file style="height: 100%" ref="file" @uploadSubmit="upload"/>
+                  <file class="upload__field" ref="file" @uploadSubmit="upload"/>
                 </div>
               </div>
             </div>
@@ -100,6 +100,10 @@ export default {
 @import './style/Dashboard.scss';
 
 $basis: (15% 40% 12% 12% 15% 15%);
+
+.upload__field {
+  height: 100%;
+}
 
 .table {
   @for $i from 1 through length($basis) {

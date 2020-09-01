@@ -29,10 +29,6 @@ const routes = [
         path: 'carts',
         component: () => import('../views/Home/Carts.vue'),
       },
-      {
-        path: 'contactus',
-        component: () => import('../views/Home/ContactUs.vue'),
-      },
     ],
   },
   {
@@ -40,7 +36,7 @@ const routes = [
     component: () => import('../views/DashBoard/Login.vue'),
   },
   { // 後台
-    path: '/:path',
+    path: '/admin',
     component: () => import('../views/Dashboard.vue'),
     children: [
       {

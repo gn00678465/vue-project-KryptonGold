@@ -3,10 +3,10 @@
     <loading :active.sync="isLoading" color="#218DFE"
       :can-cancel="true" loader="dots"
       :is-full-page="false"></loading>
-    <span class="td">{{coupon.title}}</span>
-    <span class="td">{{coupon.code}}</span>
-    <span class="td">{{coupon.percent | Percent}}</span>
-    <span class="td">{{coupon.deadline.datetime}}</span>
+    <span class="td">{{ coupon.title }}</span>
+    <span class="td">{{ coupon.code }}</span>
+    <span class="td">{{ coupon.percent | Percent }}</span>
+    <span class="td">{{ coupon.deadline.datetime }}</span>
     <span class="td">
       <toggle :prodId="coupon.id.substr(0, 5)" :disabled="true"
       :checked="coupon.enabled"/>
@@ -20,7 +20,6 @@
 </template>
 
 <script>
-// import Modal from 'components/_CouponModal.vue';
 import CouponAPI from 'assets/Backend_mixins/Coupons';
 
 export default {

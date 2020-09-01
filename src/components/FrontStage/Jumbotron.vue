@@ -2,9 +2,9 @@
   <div class="jumbotron">
     <img class="slide" src="https://hexschool-api.s3.us-west-2.amazonaws.com/custom/SDoPfqZGNHS4Ucvuzph02opaqnOfcXi9CQrpCwzrM6S189RZcAk1jLKttOOuXmvH0xtz5GudbOFcsq7Py3qq18fxY7N2R8hrBIkhSxY15if6ydxHTDzk3nqo5iVpLSU5.jpg"/>
     <transition enter-active-class="animate__animated animate__fadeInDown">
-      <div class="container-fluid" v-if="show">
+      <div class="content" v-if="show">
         <p class="h1">酒逢知己千杯少</p>
-        <p class="h2">是兄弟就一起喝</p>
+        <h2 class="subtitle">是兄弟就一起喝</h2>
         <hr>
         <button type="button" class="btn btn-light" @click.prevent="goProduct">產品列表</button>
       </div>
@@ -43,7 +43,8 @@ export default {
 
 .jumbotron {
   position: relative;
-  .container-fluid {
+  .content {
+    width: 100%;
     position: absolute;
     bottom: 5%;;
     text-align: center;
@@ -53,7 +54,7 @@ export default {
     font-weight: 900;
     color: white;
   }
-  .h2 {
+  .subtitle {
     font-size: 20px;
     margin-top: 0.25rem;
     color: white;
@@ -73,7 +74,7 @@ export default {
     .h1 {
       font-size: 50px;
     }
-    .h2 {
+    .subtitle {
     font-size: 30px;
     }
     hr {
@@ -88,13 +89,13 @@ export default {
 
 @media (min-width: 992px) {
   .slide {
-    height: 100vh;
+    height: 800px;
   }
   .jumbotron {
     .h1 {
       font-size: 75px;
     }
-    .h2 {
+    .subtitle {
     font-size: 50px;
     }
     hr {

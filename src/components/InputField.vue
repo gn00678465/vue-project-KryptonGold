@@ -11,7 +11,7 @@
     :name="label" :value="value" @input="$emit('input', $event.target.value)" :class="classes" />
     <!-- textarea -->
     <textarea class="form-control" v-else :name="label" :rows="rows" :class="classes"
-    style="height: auto" :placeholder="Attr.placeholder" :value="value"
+    :placeholder="Attr.placeholder" :value="value"
     @input="$emit('input', $event.target.value)"></textarea>
     <!-- 錯誤訊息 -->
     <span class="error">{{ errors[0] }}</span>

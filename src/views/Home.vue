@@ -9,7 +9,7 @@
 <script>
 import Navbar from 'components/FrontStage/NavBar.vue';
 import Footer from 'components/FrontStage/Footer.vue';
-import NavBg from 'assets/Frontend_mixins/Nav'; // mixins: [NavBg]
+import NavBg from 'assets/Frontend_mixins/Nav';
 
 export default {
   name: 'Home',

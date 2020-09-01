@@ -5,7 +5,6 @@
       <li>
         <span class="label">小計：</span>
         <AnimatedIngeter class="value" :value="OriginTotalPrice" >元</AnimatedIngeter>
-        <!-- <span class="value">{{OriginTotalPrice|Currency|Dollar}} 元</span> -->
       </li>
       <li>
         <span class="label">運費：</span>
@@ -13,20 +12,19 @@
       </li>
       <li>
         <span class="label">折扣：</span>
-        <span class="value">{{DisCount|Currency|Dollar}} 元</span>
+        <span class="value">{{ DisCount|Currency|Dollar }} 元</span>
       </li>
       <li class="total">
         <!-- TODO: tween.js version 16.6 now is 18 -->
         <span class="label">總金額：</span>
         <AnimatedIngeter class="value" :value="FinalPrice" >元</AnimatedIngeter>
-        <!-- <span class="value">{{FinalPrice|Currency|Dollar}} 元</span> -->
       </li>
     </ul>
   </div>
 </template>
 
 <script>
-import { store } from 'assets/store';
+import { store } from 'assets/Store';
 
 export default {
   name: 'CartSummary',

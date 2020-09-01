@@ -2,7 +2,7 @@
   <div class="products vld-parent">
     <loading :active.sync="isLoading"
       :is-full-page="true">
-      <LoadEffect2 slot="default"/>
+      <LoadEffect slot="default"/>
       </loading>
     <div class="banner">
       <img class="slide" src="https://hexschool-api.s3.us-west-2.amazonaws.com/custom/PLKhk6JeCtmopqGlcl7jphiYmfpXreT4aMUWjwNzF8prekNolukphssTKiRrLt2FGbCAhu5MJZ6plErksVT8ETngzFIOJEWk2hoI3m7dFAyxQWw1nWh43aidPsRcOt91.jpg"/>
@@ -12,7 +12,7 @@
       <section>
         <BrushTitle>
           <span v-if="filter === 'all'">所有品項</span>
-          <span v-else>{{filter}}</span>
+          <span v-else>{{ filter }}</span>
         </BrushTitle>
         <div class="row">
           <div class="col-xl-3 col-md-4 col-sm-6"

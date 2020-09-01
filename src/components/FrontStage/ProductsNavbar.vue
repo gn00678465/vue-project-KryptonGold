@@ -12,7 +12,7 @@
             v-for="(link, i) in list" :key="i"
             :data-category="link" :class="{active: category === link}"
             @click.prevent="selectHandler($event)">
-            {{link}}
+            {{ link }}
           </li>
         </ul>
     </div>

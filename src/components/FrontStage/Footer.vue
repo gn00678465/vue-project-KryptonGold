@@ -3,10 +3,10 @@
     <div class="container">
       <div class="row">
         <div class="col-md-6 col-sm-6 col-xs-12">
-          <div class="copyright">
+          <p class="copyright">
             © 2020 MADAO All Rights Reserved.
             圖片為練習使用，無商業用途。
-          </div>
+          </p>
         </div>
         <div class="col-md-6 col-sm-6 col-xs-12">
           <ul class="social-icons">
@@ -32,7 +32,7 @@
             </li>
           </ul>
         </div>
-        <div class="alert">喝酒過量，有礙健康！喝酒勿開車！</div>
+        <p class="alert">喝酒過量，有礙健康！喝酒勿開車！</p>
       </div>
     </div>
   </footer>
