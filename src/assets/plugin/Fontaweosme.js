@@ -22,6 +22,7 @@ import {
   faSpinner,
   faPlus,
   faMinus,
+  faChevronUp, // chevron-up
 } from '@fortawesome/free-solid-svg-icons';
 import {
   faFacebookF,
@@ -53,4 +54,5 @@ library.add(
   faSpinner,
   faPlus,
   faMinus,
+  faChevronUp,
 );

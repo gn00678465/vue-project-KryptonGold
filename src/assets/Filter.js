@@ -15,3 +15,6 @@ Vue.filter('Currency', (num) => {
   parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
   return parts.join('.');
 });
+
+// 加入 0
+Vue.filter('addZero', (val) => (val < 10 ? `0${val}` : val));

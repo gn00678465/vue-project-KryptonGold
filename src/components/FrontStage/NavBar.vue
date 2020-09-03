@@ -1,5 +1,5 @@
 <template>
-  <nav class="nav-light nav-fixed" :class="classes">
+  <nav class="nav-light nav-fixed" :class="navClass">
     <div class="container navbar">
       <router-link to="/" class="navbar__brand"><slot>Logo</slot></router-link>
       <button type="button" class="navbar__mobile-cart" @click="goToCart">
@@ -24,10 +24,10 @@
             <span class="nav__link">豆知識</span>
           </router-link>
         </ul>
-        <router-link to="/carts" tag="li" class="nav__cart">
+        <li class="nav__cart" @click.prevent="goToCart">
           <icon class="nav-icon" iconName="cart" />
-          <span class="badge">{{ cartLength }}</span>
-        </router-link>
+          <span class="badge" v-if="cartLength">{{ cartLength }}</span>
+        </li>
       </div>
     </div>
   </nav>
@@ -35,6 +35,7 @@
 
 <script>
 import FrontCartAPI from 'assets/Frontend_mixins/Cart';
+import { store } from 'assets/Store';
 
 export default {
   name: 'NavBar',
@@ -47,9 +48,6 @@ export default {
       navHeight: 0,
       dropdown: {},
       cartLength: 0,
-      classes: {
-        'nav-bg': false,
-      },
     };
   },
   created() {
@@ -71,7 +69,7 @@ export default {
       }
     },
     goToCart() {
-      if (this.$route.path === '/carts') return;
+      if (this.$route.path === '/carts' || this.cartLength === 0) return;
       this.$router.push('/carts');
     },
     onResize() {
@@ -92,7 +90,11 @@ export default {
         });
     },
   },
-  computed: {},
+  computed: {
+    navClass() {
+      return (store.ScrollTop > 1) ? 'nav-bg' : '';
+    },
+  },
 };
 </script>
 

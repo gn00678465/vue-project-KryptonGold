@@ -15,6 +15,7 @@
     "@morioh/v-smooth-scrollbar": "^1.0.3",
     "animate.css": "^4.1.0",
     "axios": "^0.19.2",
+    "bootstrap": "^4.5.2",
     "core-js": "^3.6.5",
     "normalize.css": "^8.0.1",
     "tween.js": "^16.6.0",

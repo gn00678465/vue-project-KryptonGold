@@ -2,48 +2,10 @@
   <validation-observer tag="form" class="container" v-slot="{ invalid }">
     <div class="row">
       <div class="col-sm-12 col-lg-8">
-        <ValidationObserver class="cart__detail" tag="form" ref="form">
-          <h3 class="detail-title">填寫收件人資訊</h3>
-          <hr>
-          <div class="col-sm-12 col-md-6">
-            <InputField label="收件人姓名" :attrs="inputSet"
-              v-model="inputTemp.name"/>
-          </div>
-          <div class="col-sm-12 col-md-6">
-            <InputField label="收件人信箱" :attrs="inputSet"
-              v-model="inputTemp.email"/>
-          </div>
-          <div class="col-sm-12 col-md-6">
-            <InputField label="收件人電話" :attrs="inputSet"
-              v-model="inputTemp.tel"/>
-          </div>
-          <div class="col-sm-12 col-md-6">
-            <InputField label="收件人地址" :attrs="inputSet"
-              v-model="inputTemp.address"/>
-          </div>
-          <div class="col-sm-12 col-md-6">
-            <!-- select -->
-            <validation-provider tag="div" rules="required"
-            class="form-group" v-slot="{ errors, classes }">
-              <label for="payment">付款方式</label>
-              <select
-                name="付款方式"
-                id="payment"
-                class="form-control"
-                :class="classes"
-                v-model="inputTemp.payment"
-              >
-                <option value="" selected disabled>請選擇付款方式</option>
-                <option v-for="pay in payments" :key="pay" :value="pay">{{ pay }}</option>
-              </select>
-              <span class="error">{{ errors[0] }}</span>
-            </validation-provider>
-          </div>
-          <div class="col-12">
-            <InputField label="留言" :attrs="inputSet"
-              v-model="inputTemp.message"/>
-          </div>
-        </ValidationObserver>
+        <div class="cart__detail"></div>
+        <h3 class="detail-title">填寫收件人資訊</h3>
+        <hr>
+        <div class="col-sm-12 col-md-6"></div>
       </div>
       <div class="col-sm-12 col-lg-4">
         <Summary/>
@@ -63,12 +25,12 @@
 
 <script>
 import FrontCartAPI from 'assets/Frontend_mixins/Cart';
-import Summary from './_CartSummary.vue';
+// import Summary from './CartSummary.vue';
 
 export default {
   name: 'CartDetail',
   mixins: [FrontCartAPI],
-  components: { Summary },
+  // components: { Summary },
   data() {
     return {
       payments: ['WebATM', 'ATM', 'Barcode', 'Credit', 'ApplePay', 'GooglePay'],
@@ -120,7 +82,6 @@ export default {
 
 <style lang="scss" scoped>
 @import './style/_cart.scss';
-@import '../style/input.scss';
 
 .cart {
   &__detail {

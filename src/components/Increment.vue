@@ -2,10 +2,10 @@
   <div class="increment" :class="[classis, rwdClassis]">
     <button type="button" :disabled="isAnimating || isZero"
       @click.prevent='subtract'><slot name="minus">-</slot></button>
-    <span v-if="!isTypeing" :class="{before: isBefore, after: isAfter}"
-      :data-before="countBefore" :data-after="countAfter" @click.prevent="onChange">
-      {{ countCurrent }}
-    </span>
+    <p class="count" v-if="!isTypeing" :class="{before: isBefore, after: isAfter}"
+      :data-before="countBefore|addZero" :data-after="countAfter|addZero" @click.prevent="onChange">
+      {{ countCurrent|addZero }}
+    </p>
     <input v-else type="number" :value="count"
       @keypress="keypress" @keyup.enter="enterHandler" @keyup.esc="escHandler">
     <button type="button" :disabled="isAnimating"
@@ -65,7 +65,9 @@ export default {
       this.isTypeing = true;
     },
     keypress(e) {
-      if (e.key === '+' || e.key === 'e' || e.key === '-') e.preventDefault();
+      if (e.key === '+' || e.key === 'e' || e.key === '-') {
+        e.preventDefault();
+      }
     },
     enterHandler(e) {
       this.count = e.target.value.trim() * 1;
@@ -86,13 +88,13 @@ export default {
       return this.countBefore === 0;
     },
     countBefore() {
-      return this.count - 1 < 10 ? `0${this.count - 1}` : this.count - 1;
+      return this.count - 1;
     },
     countAfter() {
-      return this.count + 1 < 10 ? `0${this.count + 1}` : this.count + 1;
+      return this.count + 1;
     },
     countCurrent() {
-      return this.count < 10 ? `0${this.count}` : this.count;
+      return this.count;
     },
   },
   watch: {
@@ -133,7 +135,7 @@ $size: (
     left: 0;
     width: 100%;
   }
-  span {
+  .count {
     display: block;
     text-align: center;
     cursor: pointer;
@@ -176,7 +178,7 @@ $size: (
     &::after {
       background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,.9) 100%);
     }
-    span {
+    .count {
       color: #fff;
     }
     button {
@@ -192,7 +194,7 @@ $size: (
     &::after {
       background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(238,238,238,.9) 100%);
     }
-    span {
+    .count {
       color: #666;
       &::before {
         color: #999;
@@ -214,14 +216,13 @@ $size: (
   }
   &-simple {
     border-radius: 2px !important;
-    box-shadow: 0 0 6px -4px rgba(0,0,0,0.7);
     &::before {
       background: linear-gradient(180deg, rgba(255, 255, 255, 0.9) 0%, rgba(0, 0, 0, 0) 100%);
     }
     &::after {
       background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(255,255,255,.9) 100%);
     }
-    span {
+    .count {
       color: #ec467c;
       &::before {
         color: #F4F4F5;
@@ -253,7 +254,7 @@ $size: (
     &::after {
       height: 0.3 * $val;
     }
-    span {
+    .count {
       flex: 1 1 5 * $val;
       line-height: 1 * $val;
       font-size: 1 * $val;

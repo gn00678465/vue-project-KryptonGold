@@ -11,13 +11,13 @@
     <div class="container" @scroll="scrollHandler">
       <section>
         <BrushTitle>
-          <span v-if="filter === 'all'">所有品項</span>
-          <span v-else>{{ filter }}</span>
+          <p v-if="filter === 'all'">所有品項</p>
+          <p v-else>{{ filter }}</p>
         </BrushTitle>
         <div class="row">
           <div class="col-xl-3 col-md-4 col-sm-6"
             v-for="prod in paginationProducts[page - 1]" :key="prod.id">
-            <ItemCard :data="prod" />
+            <ProdCard :data="prod" />
             </div>
         </div>
       </section>
@@ -33,7 +33,7 @@
 <script>
 import BrushTitle from 'components/BrushTitle.vue';
 import Nav from 'components/FrontStage/ProductsNavbar.vue';
-import FrontProductAPI from 'assets/Frontend_mixins/Product'; // mixins: [FrontProductAPI]
+import FrontProductAPI from 'assets/Frontend_mixins/Product';
 
 export default {
   name: 'Products',

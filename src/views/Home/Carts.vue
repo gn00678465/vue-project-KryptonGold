@@ -10,16 +10,16 @@
 </template>
 
 <script>
-import Progressbar from 'components/FrontStage/_CartProgressbar.vue';
+import Progressbar from 'components/FrontStage/Cart/CartProgressbar.vue';
 
 export default {
   name: 'Carts',
   components: {
     Progressbar,
-    list: () => import('components/FrontStage/_CartList.vue'),
-    detail: () => import('components/FrontStage/_CartDetail.vue'),
-    order: () => import('components/FrontStage/_CartOrder.vue'),
-    final: () => import('components/FrontStage/_CartFin.vue'),
+    list: () => import('components/FrontStage/Cart/CartList.vue'),
+    detail: () => import('components/FrontStage/Cart/CartDetail.vue'),
+    order: () => import('components/FrontStage/Cart/CartOrder.vue'),
+    final: () => import('components/FrontStage/Cart/CartFin.vue'),
   },
   data() {
     return {

@@ -44,8 +44,8 @@
 import BackBtn from 'components/FrontStage/BackBtn.vue';
 import FrontCartAPI from 'assets/Frontend_mixins/Cart';
 import { store } from 'assets/Store';
-import CartItem from './_CartListItem.vue';
-import Summary from './_CartSummary.vue';
+import CartItem from './CartListItem.vue';
+import Summary from './CartSummary.vue';
 
 export default {
   name: 'CartList',

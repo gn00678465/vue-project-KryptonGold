@@ -1,0 +1,96 @@
+// reset
+h1,
+h2,
+h3,
+h4,
+h5 {
+  line-height: 1;
+  margin: 0 0 0.7em;
+}
+
+.ItemCard {
+  background: #fff;
+  flex: 2 0 250px;
+  transition: box-shadow 0.3s, transform 0.3s;
+  overflow: hidden;
+  margin-bottom: 1rem;
+  border-radius: 5px;
+  &:hover {
+    cursor: pointer;
+    box-shadow: rgba(45,45,45,0.03) 0 2px 2px,
+    rgba(49,49,49,0.03) 0 4px 4px,
+    rgba(42,42,42,0.03) 0 8px 8px,
+    rgba(32,32,32,0.03) 0 16px 16px,
+    rgba(49,49,49,0.03) 0 32px 32px,
+    rgba(35,35,35,0.03) 0 64px 64px;
+    transform: translate(0, -4px);
+  }
+  &__img {
+    width: 100%;
+    display: flex;
+    img {
+      width: 100%;
+      height: 100%;
+      transform: translateY(-40px);
+    }
+  }
+  &__content {
+    margin-top: -30px;
+    padding: 0.5rem 1rem;
+  }
+  &__title, &__tag, &__description {
+    margin-bottom: 1rem;
+  }
+  &__title {
+    font-size: 1.3rem;
+  }
+  &__tag {
+    display: inline-block;
+    width: 100%;
+    text-align: right;
+    color: v(theme-card-subtitle);
+  }
+  &__description {
+    line-height: 1.2;
+    letter-spacing: 1px;
+    font-size: 0.85rem;
+    height: 4rem;
+  }
+  &__footer {
+    display: flex;
+    align-items: center;
+    flex-flow: row wrap;
+  }
+  &__price {
+    display: inline-block;
+    font-size: 1.7rem;
+    font-weight: 600;
+    color: v(theme-card-price);
+  }
+  &__unit {
+    display: inline-block;
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: v(theme-card-subtitle);
+  }
+  .add__cart {
+    display: inline-block;
+    margin-left: 5px;
+  }
+}
+
+@media (min-width: 992px) {
+  .ItemCard {
+    &__price {
+      font-size: 1.9rem;
+      font-weight: 600;
+    }
+    &__unit {
+      font-size: 1.3rem;
+      font-weight: 500;
+    }
+    &__description {
+      font-size: 1rem;
+    }
+  }
+}

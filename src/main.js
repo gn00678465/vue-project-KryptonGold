@@ -3,8 +3,7 @@ import Pagination from 'components/Pagination.vue';
 import ToggleSwitch from 'components/BackendStage/ToggleSwitch.vue';
 import BtnGroup from 'components/BackendStage/BtnGroup.vue';
 import InputField from 'components/InputField.vue';
-import ItemCard from 'components/FrontStage/ItemCard.vue';
-import InputSelect from 'components/InputSelect.vue';
+import ProdCard from 'components/FrontStage/ProdCard.vue';
 import Vue from 'vue';
 // normalize
 import 'normalize.css';
@@ -37,10 +36,9 @@ Vue.component('pagination', Pagination);
 Vue.component('toggle', ToggleSwitch);
 Vue.component('BtnGroup', BtnGroup);
 Vue.component('InputField', InputField);
-Vue.component('InputSelect', InputSelect);
 Vue.component('Dialog', () => import('components/BackendStage/Dialog.vue'));
 Vue.component('LoadEffect', () => import('components/Loading.vue'));
-Vue.component('ItemCard', ItemCard);
+Vue.component('ProdCard', ProdCard);
 Vue.component('AnimatedIngeter', () => import('components/AnimatedIngeter.vue'));
 
 Vue.config.productionTip = false;

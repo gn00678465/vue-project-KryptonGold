@@ -3,6 +3,7 @@ import Vue from 'vue';
 export const store = Vue.observable({
   cartList: [],
   orderID: '',
+  ScrollTop: 0,
 });
 
 export const mutation = {
@@ -11,5 +12,8 @@ export const mutation = {
   },
   getOrderID(data) {
     store.orderID = data;
+  },
+  setScrollTop(val) {
+    store.ScrollTop = val;
   },
 };

@@ -27,7 +27,7 @@ const routes = [
       },
       {
         path: 'carts',
-        component: () => import('../views/Home/Carts.vue'),
+        component: () => import('../views/Home/Checkout.vue'),
       },
     ],
   },
