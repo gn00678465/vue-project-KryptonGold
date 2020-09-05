@@ -37,7 +37,7 @@
                 <font-awesome-icon icon="minus" />
               </template>
             </Increment>
-            <button type="button" class="btn btn-cart"
+            <button type="button" class="btn btn-cart" :disabled="addCarting"
               @click.prevent="addCart">
               <font-awesome-icon v-if="addCarting" icon="spinner" pulse />
               加入購物車

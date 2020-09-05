@@ -2,7 +2,7 @@
   <div class="checkout">
     <Progressbar :steps="steps" :current.sync="current"/>
     <transition>
-      <component :is="componentId"></component>
+      <component :is="displayComponent" @nextStep="nextHandler"></component>
     </transition>
   </div>
 </template>
@@ -26,10 +26,18 @@ export default {
         '訂單完成',
       ],
       current: 1,
-      componentId: 'CheckoutPage',
+      componentsId: ['CheckoutPage', 'OrderPage', 'FinPage'],
     };
   },
+  methods: {
+    nextHandler() {
+      this.current += 1;
+    },
+  },
   computed: {
+    displayComponent() {
+      return this.componentsId[this.current - 1];
+    },
   },
 };
 </script>

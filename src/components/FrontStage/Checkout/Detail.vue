@@ -24,8 +24,8 @@
         <validation-provider class="form-group"
             tag="div" rules="required|email" v-slot="{ errors, classes }">
           <label for="email">信箱<small class="required">*</small></label>
-          <input type="email" :class="classes" name="付款人信箱" class="form-control"
-          id="email" placeholder="HexSchool@example.com" v-model="form.email">
+          <input type="email" :class="classes" name="付款人信箱" class="form-control" id="email"
+          placeholder="HexSchool@example.com" inputmode="email" v-model="form.email">
           <span class="invalid-feedback">{{ errors[0] }}</span>
         </validation-provider>
         <validation-provider class="form-group"

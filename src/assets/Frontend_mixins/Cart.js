@@ -90,7 +90,7 @@ export default {
         .then((res) => {
           if (res.status === 200) {
             this.isSpin = false;
-            mutation.getOrderID(res.data.data.id);
+            mutation.setOrderID(res.data.data.id);
             this.$bus.$emit('get-cart');
           }
         })

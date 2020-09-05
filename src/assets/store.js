@@ -10,7 +10,7 @@ export const mutation = {
   setCartsArray(data) {
     store.cartList = [...data];
   },
-  getOrderID(data) {
+  setOrderID(data) {
     store.orderID = data;
   },
   setScrollTop(val) {

@@ -7,7 +7,7 @@
     </h4>
       <transition name="fade">
         <div class="items" v-show="!isShow">
-          <Item v-for="data in CartDatas" :key="data.product.id" :data="data"/>
+          <Item v-for="(data) in CartDatas" :key="data.product.id" :data="data"/>
         </div>
       </transition>
   </div>
@@ -25,12 +25,35 @@ export default {
   data() {
     return {
       isShow: false,
+      index: null,
     };
   },
-  methods: {},
+  methods: {
+    updatedHandler(index, value) {
+      if (value && this.index !== index) {
+        this.index = index;
+      }
+      if (!value && this.index === index) {
+        this.index = null;
+      }
+    },
+  },
   computed: {
     CartDatas() {
       return store.cartList;
+    },
+    StatusArr() {
+      return this.CartDatas.reduce((prev, curr, index) => {
+        const el = prev;
+        if (this.index === null) {
+          el[index] = false;
+        }
+        if (this.index !== null) {
+          el[index] = false;
+          el[this.index] = true;
+        }
+        return el;
+      }, []);
     },
   },
 };

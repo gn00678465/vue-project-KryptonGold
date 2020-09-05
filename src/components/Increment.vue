@@ -70,7 +70,11 @@ export default {
       }
     },
     enterHandler(e) {
-      this.count = e.target.value.trim() * 1;
+      if (e.target.value <= 0) {
+        this.count = 1;
+      } else {
+        this.count = e.target.value.trim() * 1;
+      }
       this.isTypeing = false;
     },
     escHandler() {
@@ -187,7 +191,6 @@ $size: (
   }
   &-light {
     background: #eee;
-    // box-shadow: -8px -8px 10px -8px rgba(255,255,255,1), 8px 8px 10px -8px rgba(0,0,0,.3);
     &::before {
       background: linear-gradient(180deg, rgba(238, 238, 238, .9) 0%, rgba(0,0,0,0) 100%);
     }
