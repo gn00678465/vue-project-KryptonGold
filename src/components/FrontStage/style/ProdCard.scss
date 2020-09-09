@@ -43,12 +43,13 @@ h5 {
   }
   &__title {
     font-size: 1.3rem;
+    color: v(secondary);
   }
   &__tag {
     display: inline-block;
     width: 100%;
     text-align: right;
-    color: v(theme-card-subtitle);
+    color: v(info);
   }
   &__description {
     line-height: 1.2;
@@ -63,15 +64,14 @@ h5 {
   }
   &__price {
     display: inline-block;
-    font-size: 1.7rem;
-    font-weight: 600;
-    color: v(theme-card-price);
+    font-size: 1rem;
+    color: v(primary);
   }
   &__unit {
     display: inline-block;
-    font-size: 1.2rem;
+    font-size: 1rem;
     font-weight: 500;
-    color: v(theme-card-subtitle);
+    color: v(light);
   }
   .add__cart {
     display: inline-block;

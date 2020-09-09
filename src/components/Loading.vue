@@ -34,7 +34,7 @@ export default {
     width: 25px;
     height: 25px;
     border-radius: 100%;
-    background-color: v(theme-primary);
+    background-color: v(primary);
 }
 
 .bubble-2 {

@@ -31,8 +31,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-$green: #06A503;
-$page-animDuration: .2s;
 .root {
   position: relative;
   height: 50px;
@@ -53,7 +51,8 @@ $page-animDuration: .2s;
       text-align: center;
       width: 100%;
       text-transform: uppercase;
-      font-size: 9px;
+      line-height: 1.5;
+      // font-size: 9px;
       position: relative;
       &::before {
         content: attr(data-count);
@@ -62,7 +61,7 @@ $page-animDuration: .2s;
         line-height: 20px;
         display: block;
         font-size: 10px;
-        color: #333;
+        color: v(secondary);
         text-align: center;
         background: white;
         border-radius: 3px;
@@ -83,11 +82,11 @@ $page-animDuration: .2s;
       }
       &.active::before,
       &.active::after {
-        background: #27AE60;
+        background: v(success);
         color: white;
       }
       &.now {
-        font-weight: 600;
+        font-weight: bold;
       }
     }
   }

@@ -1,36 +1,35 @@
 <template>
-  <div class="container tips">
-    <BrushTitle>
-      <template>啤酒的分類</template>
-    </BrushTitle>
-    <div class="row">
-      <div class="col-sm-12 col-md-6 col-lg-4" v-for="tip in tips" :key="tip.en">
-        <card :data="tip"/>
+  <div class="mt-4">
+    <div v-swiper:mySwiper="swiperOption" class="swiper-container">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide" :key="tip.en" v-for="tip in slider"
+          :style="{backgroundImage: `url(${tip.img})`}">
+          <div class="swiper-slide-content">
+            <h4 class="timeline-title">{{ tip.en }}<br/>{{ tip.zh }}</h4>
+            <p class="timeline-text">{{ tip.description }}</p>
+          </div>
+        </div>
       </div>
+      <div class="swiper-pagination"></div>
     </div>
   </div>
 </template>
 
 <script>
-import BrushTitle from 'components/BrushTitle.vue';
-import tips from 'assets/Tips.json';
-import card from 'components/FrontStage/TipCard.vue';
+import { tips } from 'assets/Tips';
+import setting from './Tips/option';
 
 export default {
-  name: 'Tips',
-  components: { card, BrushTitle },
   data() {
     return {
-      tips,
+      slider: tips(),
+      swiperOption: setting,
     };
   },
   mounted() {
   },
-  methods: {
-  },
-  computed: {},
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss" src="./style/Tips.scss">
 </style>

@@ -12,8 +12,8 @@
       <footer class="ItemCard__footer">
         <p class="ItemCard__price">{{ data.price|Currency|Dollar }}</p>
         <p class="ItemCard__unit">/ {{ data.unit }}</p>
-        <button type="button" class="btn btn-cart w-100 mt-2" @click.prevent.stop="addCart"
-          :disabled="addCarting">
+        <button type="button" class="pure-button pure-button-primary w-100 mt-2"
+          @click.prevent.stop="addCart" :disabled="addCarting">
           <font-awesome-icon v-if="addCarting" icon="spinner" pulse />
           <font-awesome-icon v-else icon="cart-plus" />
           <p class="add__cart">加入購物車</p>

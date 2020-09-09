@@ -1,9 +1,19 @@
 <template>
-  <div class="card" :class="{isReverse: reverse}">
+  <div v-if="set" class="card" :class="{isReverse: set.reverse}">
     <div class="card-img">
-      <img :src="url" alt="">
+      <img :src="set.imgUrl" alt="">
     </div>
-    <slot></slot>
+      <div class="card-content" :style="styles">
+      <h2 class="title">
+        <slot name="title"></slot>
+      </h2>
+      <p class="content">
+        <slot name="content"></slot>
+      </p>
+      <div class="button">
+        <slot name="button"></slot>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -11,24 +21,22 @@
 export default {
   name: 'IndexCard',
   props: {
-    reverse: {
-      type: Boolean,
-      default: false,
-    },
-    url: {
-      type: String,
-      required: true,
-    },
-    bgColor: {
-      type: String,
+    set: {
+      type: Object,
     },
   },
   data() {
     return {
     };
   },
-  methods: {},
-  computed: {},
+  computed: {
+    styles() {
+      return {
+        backgroundColor: this.set.bgColor,
+        color: this.set.color,
+      };
+    },
+  },
 };
 </script>
 
@@ -47,7 +55,7 @@ img {
   margin-top: 1rem;
   margin-bottom: 1rem;
   .card-img, .card-content {
-    flex: 0 0 100%;
+    flex: 0 0 50%;
     max-width: 500px;
     max-height: 500px;
   }
@@ -63,16 +71,16 @@ img {
     align-items: center;
     justify-content: center;
     flex-flow: column nowrap;
-    *:first-child {
+    .title {
       display: block;
       text-align: center;
-      font-size: 2.2rem;
+      font-size: 2rem;
       font-weight: 700;
     }
-    *:nth-child(2) {
+    .content {
       text-align: center;
-      font-size: 1.4rem;
-      font-weight: 600;
+      font-size: 1.2rem;
+      line-height: 1.5;
       margin: 1rem 0;
     }
   }

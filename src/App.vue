@@ -28,18 +28,15 @@ table { border-collapse: collapse; border-spacing: 0; }
 
 // colors
 :root {
-  --theme-info: #379BDE;
-  --theme-info-hover: #{darken(#379BDE, 10%)};
-  --theme-primary: #f44336;
-  --thtme-btn-cart: #e67e22;
-  --theme-btn-cart-hover: #{darken(#e67e22, 10%)};
-  --theme-btn-clear: #EA0002;
-  --theme-btn-clear-hover: #{darken(#EA0002, 10%)};
-  --theme-card-title: #4c4c4c;
-  --theme-card-subtitle: #a6a6a6;
-  --theme-card-price: #ff3f40;
-  --theme-order-success: #06A503;
-  --theme-order-success-hover: #{darken(#06A503, 10%)};
+  --primary: #f44336;
+  --secondary: #4c4c4c;
+  --success: #06A503;
+  --info: #379BDE;
+  --warning: #C38A00;
+  --danger: #f44336;
+  --light: #eee;
+  --white: #FFF;
+  --black: #000;
 }
 
 // body
@@ -52,6 +49,12 @@ html, body {
 
 [v-cloak] {
   display: none;
+}
+
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+    margin-bottom: .5rem;
+    font-weight: 500;
+    line-height: 1.2;
 }
 
 #app {

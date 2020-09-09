@@ -19,8 +19,8 @@
         <div class="product__content" ref="content">
           <p class="title">{{ product.title }}( 1 {{ product.unit }})</p>
           <p class="subtext">
-            {{ product.options.type }} |
-            {{ product.options.ml|ml }} |
+            {{ product.options.type }} /
+            {{ product.options.ml|ml }} /
             {{ product.options.percent|percent }}
           </p>
           <div class="product__price">
@@ -37,7 +37,7 @@
                 <font-awesome-icon icon="minus" />
               </template>
             </Increment>
-            <button type="button" class="btn btn-cart" :disabled="addCarting"
+            <button type="button" class="pure-button pure-button-primary" :disabled="addCarting"
               @click.prevent="addCart">
               <font-awesome-icon v-if="addCarting" icon="spinner" pulse />
               加入購物車
@@ -47,38 +47,44 @@
           <div class="description">
             <p class="description__title">介紹：</p>
             <p class="description__content">{{ product.description }}</p>
-            <p class="description__title">資訊：</p>
-            <ul class="information">
-              <li class="item">
-                <font-awesome-icon :icon="['fas', 'beer']" />
-                <p class="item__title">種類：</p>
-                <p class="item__content">{{ product.options.type }}</p>
-              </li>
-              <li class="item">
-                <font-awesome-icon :icon="['fas', 'flag']" />
-                <p class="item__title">品牌：</p>
-                <p class="item__content">{{ product.options.brand }}</p>
-              </li>
-              <li class="item">
-                <font-awesome-icon :icon="['fas', 'globe']" />
-                <p class="item__title">國家：</p>
-                <p class="item__content">{{ product.options.country }}</p>
-              </li>
-              <li class="item">
-                <font-awesome-icon :icon="['fas', 'prescription-bottle']" />
-                <p class="item__title">容量：</p>
-                <p class="item__content">{{ product.options.ml|ml }}</p>
-              </li>
-              <li class="item">
-                <font-awesome-icon :icon="['fas', 'percent']" />
-                <p class="item__title">濃度：</p>
-                <p class="item__content">{{ product.options.percent|percent }}</p>
-              </li>
-            </ul>
           </div>
         </div>
       </div>
     </div>
+    <section class="mt-5" v-if="product">
+      <h4 class="h4">詳細資訊</h4>
+      <ul class="information">
+        <li class="item">
+          <font-awesome-icon :icon="['fas', 'beer']" />
+          <p class="item__title">種類：</p>
+          <p class="item__content">{{ product.options.type }}</p>
+        </li>
+        <li class="item">
+          <font-awesome-icon :icon="['fas', 'flag']" />
+          <p class="item__title">品牌：</p>
+          <p class="item__content">{{ product.options.brand }}</p>
+        </li>
+        <li class="item">
+          <font-awesome-icon :icon="['fas', 'globe']" />
+          <p class="item__title">國家：</p>
+          <p class="item__content">{{ product.options.country }}</p>
+        </li>
+        <li class="item">
+          <font-awesome-icon :icon="['fas', 'prescription-bottle']" />
+          <p class="item__title">容量：</p>
+          <p class="item__content">{{ product.options.ml|ml }}</p>
+        </li>
+        <li class="item">
+          <font-awesome-icon :icon="['fas', 'percent']" />
+          <p class="item__title">濃度：</p>
+          <p class="item__content">{{ product.options.percent|percent }}</p>
+        </li>
+      </ul>
+    </section>
+    <section class="mb-3">
+      <h4 class="h4" v-if="product">其他人也看了</h4>
+      <Carsouel :id="id"/>
+    </section>
   </div>
 </template>
 
@@ -93,6 +99,7 @@ export default {
   name: 'Product',
   mixins: [FrontProductAPI, FrontCartAPI, Resize],
   components: { Increment, BackBtn },
+  props: ['id'],
   data() {
     return {
       isLoading: false,
@@ -102,8 +109,7 @@ export default {
     };
   },
   created() {
-    const { id } = this.$route.params;
-    this.GetProductDetial(id);
+    this.GetProductDetial(this.id);
   },
   methods: {
     goBack() {

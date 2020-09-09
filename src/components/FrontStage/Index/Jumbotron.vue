@@ -6,7 +6,8 @@
         <p class="h1">酒逢知己千杯少</p>
         <h2 class="subtitle">是兄弟就一起喝</h2>
         <hr>
-        <button type="button" class="btn btn-light" @click.prevent="goProduct">產品列表</button>
+        <button type="button" class="pure-button pure-button-outline-light"
+          @click.prevent="goProduct">產品列表</button>
       </div>
     </transition>
   </div>
@@ -81,9 +82,6 @@ export default {
       margin: 20px auto;
       border: 3px solid #fff;
     }
-    .btn {
-      font-size: 1.2rem;
-    }
   }
 }
 
@@ -101,9 +99,6 @@ export default {
     hr {
       margin: 30px auto;
       border: 3.5px solid #fff;
-    }
-    .btn {
-      font-size: 1.5rem;
     }
   }
 }

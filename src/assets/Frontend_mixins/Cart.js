@@ -85,17 +85,15 @@ export default {
         });
     },
     CreateOrder(detial) {
-      this.isSpin = true;
       return this.$http.post(`${process.env.VUE_APP_PATH}api/${process.env.VUE_APP_UUID}/ec/orders`, detial)
         .then((res) => {
           if (res.status === 200) {
-            this.isSpin = false;
             mutation.setOrderID(res.data.data.id);
             this.$bus.$emit('get-cart');
           }
         })
         .catch((err) => {
-          this.isSpin = false;
+          this.isLoading = false;
           this.$toast.error(err.response.data.message);
         });
     },

@@ -14,12 +14,14 @@ const routes = [
         component: () => import('../views/Home/Index.vue'),
       },
       {
+        name: 'products',
         path: 'products',
         component: () => import('../views/Home/Products.vue'),
       },
       {
         path: 'product/:id',
         component: () => import('../views/Home/Product.vue'),
+        props: true,
       },
       {
         path: 'tips',

@@ -123,6 +123,10 @@ img {
   }
   &__trash {
     cursor: pointer;
+    color: v(danger);
+  }
+  &__trash:active {
+    transform: scale(1.1);
   }
 }
 </style>

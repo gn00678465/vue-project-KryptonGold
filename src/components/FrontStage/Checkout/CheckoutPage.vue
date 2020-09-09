@@ -1,17 +1,29 @@
 <template>
   <validation-observer tag="form" class="container mt-3" v-slot="{ invalid }"
     @submit.prevent="submitHandler">
+    <loading :active.sync="isLoading"
+      :can-cancel="true"
+      :is-full-page="true">
+      <LoadEffect slot="default"/>
+    </loading>
     <div class="row">
-      <div class="col-sm-12 col-md-6 col-lg-7 col-xl-8 detail">
+      <div class="col-sm-12 col-md-6 col-lg-7 detail">
         <!-- detail -->
         <Detail ref="detial"/>
         <div class="row mb-3">
           <div class="col">
-            <button type="button" class="pure-button w-100 checkout__btn-mobile">繼續購物</button>
+            <button type="button" class="pure-button pure-button-outline-secondary
+            w-100 checkout__btn-mobile">
+            <font-awesome-icon icon="chevron-left" v-if="invalid" class="mr-2"
+              :class="[AnimateClass, AnimateLeft]" />
+            繼續購物</button>
           </div>
           <div class="col">
-            <button type="submit" class="pure-button w-100 checkout__btn-mobile"
-              :disabled="invalid">結帳去</button>
+            <button type="submit" class="pure-button pure-button-success w-100 checkout__btn-mobile"
+              :disabled="invalid">結帳去
+              <font-awesome-icon icon="chevron-right" v-if="!invalid" class="ml-2"
+                :class="[AnimateClass, AnimateRight]" />
+              </button>
           </div>
         </div>
       </div>
@@ -24,11 +36,19 @@
                 <template #button>
                   <div class="row mt-3">
                     <div class="col">
-                      <button type="button" class="pure-button w-100 checkout__btn">繼續購物</button>
+                      <button type="button" class="pure-button pure-button-outline-secondary
+                        w-100 checkout__btn">
+                        <font-awesome-icon icon="chevron-left" v-if="invalid" class="mr-2"
+                        :class="[AnimateClass, AnimateLeft]" />
+                        繼續購物</button>
                     </div>
                     <div class="col">
-                      <button type="submit" class="pure-button w-100 checkout__btn"
-                        :disabled="invalid">結帳去</button>
+                      <button type="submit" class="pure-button pure-button-success
+                      w-100 checkout__btn" :disabled="invalid">
+                      結帳去
+                      <font-awesome-icon icon="chevron-right" v-if="!invalid" class="ml-2"
+                      :class="[AnimateClass, AnimateRight]" />
+                      </button>
                     </div>
                   </div>
                 </template>
@@ -55,7 +75,16 @@ export default {
     Summary,
   },
   data() {
-    return {};
+    return {
+      isLoading: false,
+      AnimateClass: [
+        'animate__animated',
+        'animate__fast',
+        'animate__infinite',
+      ],
+      AnimateLeft: 'animate__slideOutLeft',
+      AnimateRight: 'animate__slideOutRight',
+    };
   },
   mounted() {
   },
@@ -63,8 +92,10 @@ export default {
     submitHandler() {
       const { ...data } = this.$refs.detial.form;
       const vm = this;
+      this.isLoading = true;
       this.CreateOrder(data)
         .then(() => {
+          vm.isLoading = false;
           vm.$emit('nextStep');
         });
     },
@@ -84,6 +115,11 @@ export default {
 
 .checkout__btn {
   display: none;
+  &-mobile {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 }
 
 @media (min-width: 768px) {
@@ -94,7 +130,9 @@ export default {
     order: initial;
   }
   .checkout__btn {
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     &-mobile {
       display: none;
     }

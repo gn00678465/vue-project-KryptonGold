@@ -40,7 +40,6 @@ import { store } from 'assets/Store';
 export default {
   name: 'NavBar',
   mixins: [FrontCartAPI],
-  components: {},
   data() {
     return {
       isShow: false,
@@ -56,12 +55,6 @@ export default {
       this.getCartLength();
     });
   },
-  mounted() {
-    window.addEventListener('resize', this.onResize());
-  },
-  destroyed() {
-    window.addEventListener('resize', this.onResize());
-  },
   methods: {
     showMenu() {
       if (window.innerWidth < 768) {
@@ -71,16 +64,6 @@ export default {
     goToCart() {
       if (this.$route.path === '/carts' || this.cartLength === 0) return;
       this.$router.push('/carts');
-    },
-    onResize() {
-      if (window.innerWidth < 767) {
-        const { height } = this.$el.querySelector('.navbar').getBoundingClientRect();
-        this.top = height;
-      } else if (window.innerWidth >= 768) {
-        const { height } = this.$el.querySelector('.navbar').getBoundingClientRect();
-        this.top = height;
-      }
-      this.navHeight = this.$el.querySelector('.navbar').getBoundingClientRect().height;
     },
     getCartLength() {
       const vm = this;
@@ -101,7 +84,6 @@ export default {
 <style lang="scss" scoped>
 $title-size: 1.7rem;
 $light-hover: #eee;
-$light-text: #3c4858;
 $logo-font: 'Kaushan Script';
 
 @mixin toggle() {
@@ -121,19 +103,19 @@ $logo-font: 'Kaushan Script';
   text-align: center;
   white-space: nowrap;
   vertical-align: baseline;
-  background: v(theme-primary);
+  background: v(primary);
   border-radius: 10rem;
   color: #fff;
 };
 
 .nav-light {
-  color: $light-text;
+  color: v(secondary);
   .nav__item, .nav__cart {
     &:hover {
       background: $light-hover;
     }
     &.active {
-      background: v(theme-primary);
+      background: v(primary);
       color: #fff;
     }
   }
@@ -178,7 +160,7 @@ $logo-font: 'Kaushan Script';
     line-height: inherit;
     white-space: nowrap;
     font-family: $logo-font;
-    color: $light-text;
+    color: v(secondary);
   }
   &__mobile-cart {
     @include toggle;

@@ -48,7 +48,8 @@
               </ul>
           </div>
           <div class="order__col">
-            <button class="pure-button w-100" type="button" @click.prevent="payOrder">
+            <button class="pure-button pure-button-success w-100"
+              type="button" @click.prevent="payOrder">
               <font-awesome-icon v-if="isSpin"  icon="spinner" pulse /> 確認付款</button>
           </div>
       </div>
