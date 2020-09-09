@@ -55,7 +55,7 @@ img {
   margin-top: 1rem;
   margin-bottom: 1rem;
   .card-img, .card-content {
-    flex: 0 0 50%;
+    flex: 0 0 100%;
     max-width: 500px;
     max-height: 500px;
   }

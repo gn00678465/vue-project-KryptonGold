@@ -1,7 +1,7 @@
 <template>
   <div class="container-fluid mt-3">
     <div class="row">
-      <div class="col">
+      <div class="col-sm-12 col-md-4">
         <div class="sort">
           <div class="content">
             <button type="button" class="pure-button pure-button-outline-light" data-sort="所有品項"
@@ -9,7 +9,7 @@
           </div>
         </div>
       </div>
-      <div class="col">
+      <div class="col-sm-12 col-md-4">
         <div class="sort">
           <div class="content">
             <button type="button" class="pure-button pure-button-outline-light" data-sort="白啤酒"
@@ -17,7 +17,7 @@
           </div>
         </div>
       </div>
-      <div class="col">
+      <div class="col-sm-12 col-md-4">
         <div class="sort">
           <div class="content">
             <button type="button" class="pure-button pure-button-outline-light" data-sort="水果酒"
@@ -75,15 +75,26 @@ export default {
   z-index: 2;
 }
 
-[class="col"] {
+[class*="col-"] {
   &:nth-child(1) > .sort {
     background-image: url('https://images.unsplash.com/photo-1546388612-9e938bb6c057?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
   }
   &:nth-child(2) > .sort {
     background-image: url('https://images.unsplash.com/photo-1596442149814-584dc6e92d01?ixlib=rb-1.2.1&auto=format&fit=crop&w=1267&q=80');
+    margin-top: 15px;
+    margin-bottom: 15px;
   }
   &:nth-child(3) > .sort {
     background-image: url('https://images.unsplash.com/photo-1595318644790-dc51bdc72248?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=80');
+  }
+}
+
+@media (min-width: 768px) {
+  [class*="col-"] {
+    &:nth-child(2) > .sort {
+      margin-top: 0;
+      margin-bottom: 0;
+    }
   }
 }
 </style>
