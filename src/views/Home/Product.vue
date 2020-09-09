@@ -125,6 +125,11 @@ export default {
       return 'md';
     },
   },
+  watch: {
+    id() {
+      this.GetProductDetial(this.id);
+    },
+  },
 };
 </script>
 

@@ -80,7 +80,7 @@ export default {
       this.swiper.autoplay.start();
     },
     handleClickSlide(id) {
-      this.$router.push({ path: `/product/${id}` });
+      this.$router.replace({ path: `/product/${id}` });
     },
   },
   computed: {
