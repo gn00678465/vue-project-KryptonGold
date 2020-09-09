@@ -1,7 +1,7 @@
 <template>
   <swiper ref="carsouelSwiper" :options="swiperOption"
     @mouseenter.native="enterHandler" @mouseleave.native="leaveHandler">
-    <swiper-slide v-for="prod in filterData" :key="prod.id">
+    <swiper-slide v-for="prod in filterData" :key="prod.id" :data-id="prod.id">
       <card :data="prod"/>
     </swiper-slide>
     <div class="swiper-pagination" slot="pagination"></div>
@@ -12,6 +12,7 @@
 import FrontProductAPI from 'assets/Frontend_mixins/Product';
 import card from './CarouselCard.vue';
 
+let vm = null;
 export default {
   name: 'ProductCarsouel',
   mixins: [FrontProductAPI],
@@ -58,11 +59,18 @@ export default {
             spaceBetween: 10,
           },
         },
+        on: {
+          tap() {
+            const { id } = this.clickedSlide.dataset;
+            vm.handleClickSlide(id);
+          },
+        },
       },
     };
   },
   created() {
     this.GetProductList();
+    vm = this;
   },
   methods: {
     enterHandler() {
@@ -70,6 +78,9 @@ export default {
     },
     leaveHandler() {
       this.swiper.autoplay.start();
+    },
+    handleClickSlide(id) {
+      this.$router.push({ path: `/product/${id}` });
     },
   },
   computed: {
