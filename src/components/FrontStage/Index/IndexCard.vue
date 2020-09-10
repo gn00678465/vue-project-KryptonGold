@@ -1,9 +1,9 @@
 <template>
-  <div v-if="set" class="card" :class="{isReverse: set.reverse}">
+  <div v-if="set" class="card" :class="{isReverse: set.reverse}" :style="styles">
     <div class="card-img">
       <img :src="set.imgUrl" alt="">
     </div>
-      <div class="card-content" :style="styles">
+      <div class="card-content">
       <h2 class="title">
         <slot name="title"></slot>
       </h2>
@@ -32,8 +32,9 @@ export default {
   computed: {
     styles() {
       return {
-        backgroundColor: this.set.bgColor,
-        color: this.set.color,
+        '--bg-color': this.set.bgColor,
+        '--rwd-color': this.set.RWDColor ? this.set.RWDColor : this.set.bgColor,
+        '--color': this.set.color,
       };
     },
   },
@@ -71,6 +72,8 @@ img {
     align-items: center;
     justify-content: center;
     flex-flow: column nowrap;
+    background-color: var(--rwd-color);
+    color: var(--color);
     .title {
       display: block;
       text-align: center;
@@ -99,6 +102,7 @@ img {
       transform: initial;
       width: auto;
       height: auto;
+      background-color: var(--bg-color);
     }
   }
 }

@@ -1,31 +1,17 @@
 <template>
-  <div class="container-fluid mt-3">
-    <div class="row">
-      <div class="col-sm-12 col-md-4">
-        <div class="sort">
-          <div class="content">
-            <button type="button" class="pure-button pure-button-outline-light" data-sort="所有品項"
-              @click.prevent="goProducts($event)">查看所有啤酒</button>
-          </div>
+  <div class="container-fluid my-3 sortSwiper">
+    <swiper ref="sortSwiper" :options="swiperOptions">
+    <swiper-slide v-for="slide in slides" :key="slide.data">
+      <div class="sort" :style="{'backgroundImage': `url(${slide.imgUrl})`}">
+        <div class="content">
+          <button type="button" class="pure-button pure-button-outline-light"
+          :data-sort="slide.data" @click.prevent="goProducts($event)">{{ slide.data }}</button>
         </div>
       </div>
-      <div class="col-sm-12 col-md-4">
-        <div class="sort">
-          <div class="content">
-            <button type="button" class="pure-button pure-button-outline-light" data-sort="白啤酒"
-              @click.prevent="goProducts($event)">查看所有白啤酒</button>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-12 col-md-4">
-        <div class="sort">
-          <div class="content">
-            <button type="button" class="pure-button pure-button-outline-light" data-sort="水果酒"
-              @click.prevent="goProducts($event)">查看所有水果酒</button>
-          </div>
-        </div>
-      </div>
-    </div>
+    </swiper-slide>
+  </swiper>
+  <div class="swiper-button-prev"></div>
+  <div class="swiper-button-next"></div>
   </div>
 </template>
 
@@ -37,12 +23,49 @@ export default {
   },
   data() {
     return {
+      slides: [
+        {
+          data: '所有品項',
+          imgUrl: 'https://images.unsplash.com/photo-1546388612-9e938bb6c057?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80',
+        },
+        {
+          data: '白啤酒',
+          imgUrl: 'https://images.unsplash.com/photo-1596442149814-584dc6e92d01?ixlib=rb-1.2.1&auto=format&fit=crop&w=1267&q=80',
+        },
+        {
+          data: '水果酒',
+          imgUrl: 'https://images.unsplash.com/photo-1595318644790-dc51bdc72248?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=80',
+        },
+      ],
+      swiperOptions: {
+        spaceBetween: 15,
+        navigation: {
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev',
+        },
+        breakpoints: {
+          320: {
+            slidesPerView: 1,
+          },
+          768: {
+            slidesPerView: 2,
+          },
+          992: {
+            slidesPerView: 3,
+          },
+        },
+      },
     };
   },
   methods: {
     goProducts(e) {
       const { sort } = e.currentTarget.dataset;
       this.$router.push({ name: 'products', params: { filter: sort } });
+    },
+  },
+  computed: {
+    swiper() {
+      return this.$refs.mySwiper.$swiper;
     },
   },
 };
@@ -75,26 +98,24 @@ export default {
   z-index: 2;
 }
 
-[class*="col-"] {
-  &:nth-child(1) > .sort {
-    background-image: url('https://images.unsplash.com/photo-1546388612-9e938bb6c057?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+.sortSwiper {
+  --swiper-theme-color: #fff;
+  --swiper-navigation-size: 25px;
+  position: relative;
+  .swiper-button-prev {
+    outline: none;
+    left: 30px;
   }
-  &:nth-child(2) > .sort {
-    background-image: url('https://images.unsplash.com/photo-1596442149814-584dc6e92d01?ixlib=rb-1.2.1&auto=format&fit=crop&w=1267&q=80');
-    margin-top: 15px;
-    margin-bottom: 15px;
-  }
-  &:nth-child(3) > .sort {
-    background-image: url('https://images.unsplash.com/photo-1595318644790-dc51bdc72248?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=80');
+  .swiper-button-next {
+    outline: none;
+    right: 30px;
   }
 }
 
-@media (min-width: 768px) {
-  [class*="col-"] {
-    &:nth-child(2) > .sort {
-      margin-top: 0;
-      margin-bottom: 0;
-    }
+@media (min-width: 992px) {
+  .swiper-button-prev,
+  .swiper-button-next {
+    display: none;
   }
 }
 </style>

@@ -1,16 +1,18 @@
 <template>
-  <div class="mt-4">
-    <div v-swiper:mySwiper="swiperOption" class="swiper-container">
+  <div class="my-4 timeline">
+    <div v-swiper:tipsSwiper="swiperOption" class="swiper-container">
       <div class="swiper-wrapper">
         <div class="swiper-slide" :key="tip.en" v-for="tip in slider"
           :style="{backgroundImage: `url(${tip.img})`}">
           <div class="swiper-slide-content">
-            <h4 class="timeline-title">{{ tip.en }}<br/>{{ tip.zh }}</h4>
-            <p class="timeline-text">{{ tip.description }}</p>
+            <h4 class="content-title">{{ tip.en }}<br/>{{ tip.zh }}</h4>
+            <p class="content-text">{{ tip.description }}</p>
           </div>
         </div>
       </div>
       <div class="swiper-pagination"></div>
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next"></div>
     </div>
   </div>
 </template>
@@ -26,7 +28,13 @@ export default {
       swiperOption: setting,
     };
   },
-  mounted() {
+  methods: {
+    goNext() {
+      this.tipsSwiper.slideNext();
+    },
+    goPrev() {
+      this.tipsSwiper.slidePrev();
+    },
   },
 };
 </script>

@@ -3,7 +3,7 @@
     <div class="content-overlay"></div>
     <img class="content-image" :src="path">
     <div class="content-details fadeIn-bottom">
-      <button type="button" class="btn btn-info">複製連結</button>
+      <button type="button" class="btn btn-info" @click.prevent="copyHandler">複製連結</button>
       <button type="button" class="btn btn-error" @click.prevent="delHandler">刪除圖片</button>
     </div>
     <Dialog ref="dialog" @dialog="confirm">刪除此檔案?</Dialog>
@@ -28,6 +28,10 @@ export default {
   methods: {
     delHandler() {
       this.$refs.dialog.isVisible = true;
+    },
+    copyHandler() {
+      if (!navigator.clipboard) return;
+      navigator.clipboard.writeText(this.path);
     },
     confirm() {
       this.destroyStorage(this.$attrs.id)

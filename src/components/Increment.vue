@@ -100,6 +100,13 @@ export default {
     countCurrent() {
       return this.count;
     },
+    styleSize() {
+      return {
+        '--sm': '24px',
+        '--md': '32px',
+        '--lg': '56px',
+      };
+    },
   },
   watch: {
     count: {
@@ -118,6 +125,12 @@ $size: (
   'md': 32px,
   'lg': 56px
 );
+
+.increment {
+  --sm: 24px;
+  --md: 32px;
+  --lg: 56px;
+}
 
 .increment {
   display: flex;
@@ -293,15 +306,15 @@ $size: (
   }
 }
 
-@media (max-width: 374px) {
-  .increment-rwd-xs {
-    padding: 0;
-    &::before {
-      content: unset;
-    }
-    &::after {
-      content: initial;
-    }
-  }
-}
+// @media (max-width: 374px) {
+//   .increment-rwd-xs {
+//     padding: 0;
+//     &::before {
+//       content: unset;
+//     }
+//     &::after {
+//       content: initial;
+//     }
+//   }
+// }
 </style>

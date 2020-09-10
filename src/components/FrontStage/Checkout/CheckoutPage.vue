@@ -13,7 +13,7 @@
         <div class="row mb-3">
           <div class="col">
             <button type="button" class="pure-button pure-button-outline-secondary
-            w-100 checkout__btn-mobile">
+            w-100 checkout__btn-mobile" @click.prevent="goProducts">
             <font-awesome-icon icon="chevron-left" v-if="invalid" class="mr-2"
               :class="[AnimateClass, AnimateLeft]" />
             繼續購物</button>
@@ -37,7 +37,7 @@
                   <div class="row mt-3">
                     <div class="col">
                       <button type="button" class="pure-button pure-button-outline-secondary
-                        w-100 checkout__btn">
+                        w-100 checkout__btn" @click.prevent="goProducts">
                         <font-awesome-icon icon="chevron-left" v-if="invalid" class="mr-2"
                         :class="[AnimateClass, AnimateLeft]" />
                         繼續購物</button>
@@ -98,6 +98,9 @@ export default {
           vm.isLoading = false;
           vm.$emit('nextStep');
         });
+    },
+    goProducts() {
+      this.$router.push({ name: 'products' });
     },
   },
   computed: {},

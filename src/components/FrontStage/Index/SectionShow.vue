@@ -36,19 +36,22 @@ export default {
     return {
       CardSet: [
         {
-          bgColor: '#ffffff80',
+          bgColor: '#ffffff',
+          RWDColor: '#ffffff80',
           color: '#000',
           reverse: false,
           imgUrl: 'https://images.unsplash.com/photo-1509404969887-525aab7cc41a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=80',
         },
         {
-          bgColor: '#36711080',
+          bgColor: '#367110',
+          RWDColor: '#36711080',
           color: '#FFF',
           reverse: true,
           imgUrl: 'https://hexschool-api.s3.us-west-2.amazonaws.com/custom/FXhg97dGU43fqkIVtBPkG9Uv0lK4ngr7uCIKiEqSnqG1QerQaBNyQ1cuaQEaQ03Fe60aX0TZLd32Hc082LF91FIQxT56zwkff1D2Fp856k46RFDwmnQoMs11cTIZQLrw.jpg',
         },
         {
-          bgColor: '#e1db2e80',
+          bgColor: '#e1db2e',
+          RWDColor: '#e1db2e80',
           color: '#000',
           reverse: false,
           imgUrl: 'https://hexschool-api.s3.us-west-2.amazonaws.com/custom/WJLR7vOE2JrQbalp1DURQyOlfg4CkJtRxRoKxvF42S9gef6wrE6LR8Fv4vEGfjDxoWedf5hs6LNWbXcwnokDmb0XmmXF7fAkI9RnzUANGF8FsiIiu4XRlwgn3uVvl5cm.jpg',

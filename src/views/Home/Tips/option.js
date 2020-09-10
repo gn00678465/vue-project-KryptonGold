@@ -1,7 +1,6 @@
 import { title } from 'assets/Tips';
 
 export default {
-  direction: 'vertical',
   initialSlide: 0,
   loop: false,
   speed: 1600,
@@ -11,7 +10,14 @@ export default {
     renderBullet(index, className) {
       return `<span class="${className}">${title()[index]}</span>`;
     },
-    breakpoints: {
+  },
+  breakpoints: {
+    768: {
+      direction: 'vertical',
     },
+  },
+  navigation: {
+    nextEl: '.swiper-button-next',
+    prevEl: '.swiper-button-prev',
   },
 };
