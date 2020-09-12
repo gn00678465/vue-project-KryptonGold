@@ -83,6 +83,8 @@ export default {
 
 .h4 {
   font-weight: bold;
+  display: inline-block;
+  @include mark(#{v(hightlight)}, 40%);
 }
 
 small.required {

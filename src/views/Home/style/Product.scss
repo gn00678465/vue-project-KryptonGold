@@ -4,6 +4,9 @@ img {
 
 .h4 {
   font-size: 1.5rem;
+  font-weight: 700;
+  display: inline-block;
+  @include mark(#{v(hightlight)}, 40%);
 }
 
 .product {
@@ -40,14 +43,14 @@ img {
     .title, .subtext, .price, .active {
       display: block;
       width: 100%;
-      margin-bottom: 0.5rem;
     }
     .title {
       text-align: center;
-      margin-bottom: 0.5rem;
       color: v(secondary);
-      font-size: 1.7rem;
+      font-size: 1.5rem;
+      line-height: 1.5;
       font-weight: 900;
+      margin-bottom: 0.5rem;
     }
     .subtext {
       font-size: 1rem;
@@ -76,17 +79,20 @@ img {
     z-index: 5;
   }
   &__price {
-    color: v(primary);
     .origin {
       display: inline-block;
-      font-size: 1.3rem;
+      font-size: 1rem;
       text-decoration: line-through;
       margin-right: 0.5rem;
+      color: v(secondary);
     }
     .discount {
       display: inline-block;
       padding-left: 0.15rem;
-      font-size: 2rem;
+      font-size: 1.5rem;
+      line-height: 1.5;
+      font-weight: 900;
+      color: v(primary);
     }
   }
 }
@@ -139,18 +145,18 @@ img {
     }
     &__info {
       .title {
-        font-size: 2rem;
+        font-size: 1.75rem;
       }
       .subtext {
-        font-size: 1.3rem;
+        font-size: 1.25rem;
       }
     }
     &__price {
       .origin {
-        font-size: 1.5rem;
+        font-size: 1.15rem;
       }
       .discount {
-        font-size: 2.3rem;
+        font-size: 1.75rem;
       }
     }
   }
@@ -204,7 +210,7 @@ img {
     &__info {
       min-height: 100% !important;
       .title {
-        font-size: 2.3rem;
+        font-size: 2rem;
         text-align: left;
         margin-bottom: 1rem;
       }
@@ -214,11 +220,6 @@ img {
       .active {
         margin-top: auto;
         order: 3;
-        .btn {
-          margin-right: 2rem;
-          padding: 0.5rem 0.75rem;
-          font-size: 1.3rem;
-        }
       }
     }
     &__content {
@@ -233,10 +234,10 @@ img {
     }
     &__price {
       .origin {
-        font-size: 1.8rem;
+        font-size: 1.5rem;
       }
       .discount {
-        font-size: 2.5rem;
+        font-size: 2rem;
       }
     }
   }

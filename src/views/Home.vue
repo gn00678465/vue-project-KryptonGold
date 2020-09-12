@@ -9,18 +9,14 @@
 <script>
 import Navbar from 'components/FrontStage/NavBar.vue';
 import Footer from 'components/FrontStage/Footer.vue';
-import Scroll from 'assets/Frontend_mixins/Scroll';
+import WindowEvent from 'assets/Frontend_mixins/WindowEvent';
 
 export default {
   name: 'Home',
-  mixins: [Scroll],
+  mixins: [WindowEvent],
   components: {
     Navbar,
     Footer,
-  },
-  mounted() {
-  },
-  created() {
   },
 };
 </script>
@@ -28,6 +24,7 @@ export default {
 @import './Home/style/font.css';
 
 .home {
+  --paddingTop: 62px;
   background: #F7F7F7;
   min-height: 100%;
   display: flex;flex-direction: column;
@@ -35,26 +32,13 @@ export default {
 }
 
 .stky-body {
-  padding-top: 50px;
   flex: 1 0 auto;
-}
-.products, .index {
-  padding-top: 0;
-}
-
-.btn {
-  @include btn;
+  padding-top: 50px;
 }
 
 @media (min-width: 768px) {
   .stky-body {
-    padding-top: 115px;
-  }
-}
-
-@media (min-width: 992px) {
-  .stky-body {
-    padding-top: 75px;
+    padding-top: 64px;
   }
 }
 </style>

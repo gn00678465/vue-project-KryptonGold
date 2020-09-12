@@ -32,7 +32,6 @@
 </template>
 
 <script>
-import { store } from 'assets/Store';
 
 export default {
   name: 'Summary',
@@ -43,7 +42,7 @@ export default {
   methods: {},
   computed: {
     CartList() {
-      return store.cartList;
+      return this.$store.cartList;
     },
     OriginTotalPrice() {
       return this.CartList.map((cart) => cart.quantity * cart.product.price)

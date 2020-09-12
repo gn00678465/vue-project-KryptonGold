@@ -11,8 +11,7 @@
       <div class="row">
         <div class="col-12 my-2 order">
           <BrushTitle>
-            <p v-if="filter === 'all'">所有品項</p>
-            <p v-else>{{ filter }}</p>
+            <p>{{ filter }}</p>
           </BrushTitle>
         </div>
         <div class="col-lg-3 order">
@@ -53,20 +52,10 @@ export default {
       page: 1,
       amount: 9,
       products: [],
-      filter: '所有品項',
     };
   },
   created() {
     this.GetProductList();
-    this.filterHandler();
-  },
-  methods: {
-    filterHandler() {
-      const { filter } = this.$route.params;
-      if (filter !== undefined) {
-        this.filter = filter;
-      }
-    },
   },
   computed: {
     paginationProducts() {
@@ -86,6 +75,9 @@ export default {
         if (list.indexOf(val) === -1) list.push(val);
       });
       return list;
+    },
+    filter() {
+      return this.$store.filter;
     },
     filterProduct() {
       if (this.filter !== '所有品項') {

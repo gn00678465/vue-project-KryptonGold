@@ -2,31 +2,31 @@
   <footer class="footer">
     <div class="container">
       <div class="row">
-        <div class="col-md-6 col-sm-6 col-xs-12">
+        <div class="col-md-8 col-xs-12">
           <p class="copyright">
             © 2020 MADAO All Rights Reserved.
             圖片為練習使用，無商業用途。
           </p>
         </div>
-        <div class="col-md-6 col-sm-6 col-xs-12">
-          <ul class="social-icons">
+        <div class="col">
+          <ul class="social__icons">
             <li>
-              <a class="facebook" href="#">
+              <a class="social__icon facebook" href="#">
                 <font-awesome-icon :icon="['fab', 'facebook-f']" />
               </a>
             </li>
             <li>
-              <a class="twitter" href="#">
+              <a class="social__icon twitter" href="#">
                 <font-awesome-icon :icon="['fab', 'twitter']" />
               </a>
             </li>
             <li>
-              <a class="github" href="#">
+              <a class="social__icon github" href="#">
                 <font-awesome-icon :icon="['fab', 'github']" />
               </a>
             </li>
             <li>
-              <router-link class="cog" to="/admin">
+              <router-link class="social__icon cog" to="/admin">
                 <font-awesome-icon :icon="['fas', 'cog']" />
               </router-link>
             </li>
@@ -42,11 +42,6 @@
 export default {
   name: 'Footer',
   components: {},
-  data() {
-    return {};
-  },
-  methods: {},
-  computed: {},
 };
 </script>
 
@@ -56,11 +51,11 @@ $social-colors: (
   facebook: #3b5998,
   twitter: #00aced,
   github: #2b3137,
-  cog: #007bb6,
+  cog: v(primary),
 );
 
 @each $key, $val in $social-colors {
-  .social-icons {
+  .social__icons {
     .#{$key}:hover {
       background: $val;
       cursor: pointer;
@@ -72,30 +67,32 @@ $social-colors: (
   text-align: center;
   flex-shrink: 0;
   width: 100%;
-  background-color:#26272b;
+  background-color:v(dark);
   padding:10px 0;
   font-size:15px;
   line-height:24px;
-  color:#737373;
+  color:v(light);
   z-index: 20;
   .copyright {
     word-break: keep-all;
   }
 }
 
-.social-icons {
-  margin-top: 10px;
-  display: flex;
-  justify-content: center;
-  a {
+.social {
+  &__icons {
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+  }
+  &__icon {
     width: 40px;
     height: 40px;
     line-height: 40px;
     margin-left: 6px;
     margin-right: 0;
     border-radius: 100%;
-    background-color: #33353d;
-    color: #818a91;
+    background-color: v(secondary);
+    color: v(light);
     font-size: 16px;
     display: inline-block;
     text-align: center;
@@ -111,9 +108,9 @@ $social-colors: (
   width: 100%;
   text-align: center;
   letter-spacing: 0.5rem;
-  font-size: 2.3rem;
+  font-size: 2rem;
+  line-height: 1.5;
   color: #fff;
-  line-height: 1.3;
 }
 
 @media (min-width: 768px) {
@@ -130,7 +127,8 @@ $social-colors: (
     text-align: left;
     line-height: 40px;
   }
-  .social-icons {
+  .social__icons {
+    margin-top: 0;
     justify-content: flex-end;
   }
 }

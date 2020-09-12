@@ -1,6 +1,6 @@
 <template>
-  <ul class="menu mb-sm-2">
-    <LI v-for="(menu, i) in menus" :key="i" :menu="menu" v-on="$listeners"/>
+  <ul class="menu mb-sm-2" ref="menu">
+    <LI v-for="(menu, i) in menus" :key="i" :menu="menu" />
   </ul>
 </template>
 
@@ -16,6 +16,12 @@ export default {
     list: {
       type: Array,
     },
+  },
+  mounted() {
+    // console.log(this.$root);
+    // this.$nextTick(() => {
+    //   console.log(this.$refs.menu.getBoundingClientRect());
+    // });
   },
   data() {
     return {
@@ -52,7 +58,6 @@ export default {
   position: relative;
   display: block;
   padding: $y * .25rem $x * .25rem;
-  background-color: #fff;
 }
 .menu {
   display: flex;
@@ -61,14 +66,13 @@ export default {
   margin-bottom: 0;
   border-radius: .25rem;
   width: 100%;
+  background: v(info);
   > .item {
     position: relative;
-    border: 1px solid rgba(0,0,0,.125);
   }
   .link {
     @include item;
     display: flex;
-    color: v(secondary);
   }
   .icon {
     cursor: pointer;
@@ -81,28 +85,35 @@ export default {
   width: 100%;
   transition: max-height 0.3s;
   overflow: hidden;
+  background-color: v(secondary);
+  border-bottom-left-radius: .25rem;
+  border-bottom-right-radius: .25rem;
   .link {
     @include item(3, 6);
-    border-top: 1px solid #eee;
-    background: rgba(0,0,0,.02);
   }
 }
 
-.subMenu .link {
-  &::before {
-    content: '';
-    position: absolute;
-    width: 6px;
-    opacity: 0;
-    height: 80%;
-    background: v(primary);
-    left: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    transition: 0.3s;
+.link {
+  color: #fff;
+}
+.link:not([data-category="menu"]) {
+  &:hover {
+    background-color: rgba(white, .1);
   }
-  &:hover::before {
-    opacity: 1;
+  .select {
+    display: inline-block;
+    @include mark(#{v(hightlight)}, 40%);
+  }
+}
+
+@keyframes marking {
+  0% {
+    background-image: linear-gradient(#{v(hightlight)});
+    background-position: 0 100%;
+    background-size: 0% 40%;
+  }
+  100% {
+    @include mark(#{v(hightlight)}, 40%);
   }
 }
 
@@ -112,6 +123,17 @@ export default {
   }
   .subMenu {
     max-height: 99em;
+  }
+}
+
+@media (min-width: 992px) {
+  .icon {
+    display: none;
+  }
+  .item {
+    .subMenu {
+      max-height: 99em;
+    }
   }
 }
 </style>

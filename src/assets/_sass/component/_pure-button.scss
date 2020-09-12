@@ -10,6 +10,7 @@
   -webkit-user-drag: none;
   user-select: none;
   box-sizing: border-box;
+  transition: all .2s ease-in;
 }
 
 /* Firefox: Get rid of the inner focus border */

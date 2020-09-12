@@ -18,6 +18,8 @@ import ScrollBar from '@morioh/v-smooth-scrollbar';
 // Swipter
 import VueAwesomeSwiper from 'vue-awesome-swiper';
 import 'swiper/css/swiper.css';
+// Vue.observable
+import { store, mutation } from 'assets/Store';
 // Vue APP
 import App from './App.vue';
 import router from './router';
@@ -52,6 +54,8 @@ Vue.config.productionTip = false;
 
 // event bus
 Vue.prototype.$bus = new Vue();
+Vue.prototype.$store = store;
+Vue.prototype.$mutation = mutation;
 
 new Vue({
   router,

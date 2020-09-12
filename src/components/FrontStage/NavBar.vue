@@ -1,10 +1,10 @@
 <template>
   <nav class="nav-light nav-fixed" :class="navClass">
-    <div class="container navbar">
+    <div class="container navbar" ref="nav">
       <router-link to="/" class="navbar__brand"><slot>Logo</slot></router-link>
       <button type="button" class="navbar__mobile-cart" @click="goToCart">
         <icon class="nav-icon" iconName="cart" />
-        <span class="badge">{{ cartLength }}</span>
+        <span class="badge" v-if="cartLength">{{ cartLength }}</span>
       </button>
       <button type="button" class="navbar__toggle" @click="showMenu">
         <icon class="nav-icon" iconName="menu" />
@@ -35,7 +35,6 @@
 
 <script>
 import FrontCartAPI from 'assets/Frontend_mixins/Cart';
-import { store } from 'assets/Store';
 
 export default {
   name: 'NavBar',
@@ -43,9 +42,6 @@ export default {
   data() {
     return {
       isShow: false,
-      top: 0,
-      navHeight: 0,
-      dropdown: {},
       cartLength: 0,
     };
   },
@@ -57,7 +53,7 @@ export default {
   },
   methods: {
     showMenu() {
-      if (window.innerWidth < 768) {
+      if (this.$store.clientWidth < 768) {
         this.isShow = !this.isShow;
       }
     },
@@ -75,7 +71,7 @@ export default {
   },
   computed: {
     navClass() {
-      return (store.ScrollTop > 1) ? 'nav-bg' : '';
+      return (this.$store.ScrollTop > 1) ? 'nav-bg' : '';
     },
   },
 };
@@ -148,7 +144,7 @@ $logo-font: 'Kaushan Script';
   justify-content: space-between;
   align-items: center;
   padding: .15rem 1rem;
-  transition: all 0.5s;
+  transition: all 0.3s;
   &__brand {
     flex: 1 0 0;
     display: inline-block;
@@ -243,10 +239,6 @@ $logo-font: 'Kaushan Script';
       justify-content: flex-end;
       order: 1;
       display: none;
-      .nav-icon {
-        width: 1.4rem;
-        height: 1.4rem;
-      }
     }
     &__cart {
       display: none;
@@ -254,82 +246,72 @@ $logo-font: 'Kaushan Script';
   }
 }
 
-// Small devices (landscape phones, 576px and up)
-@media (min-width: 576px) {}
-
 // Medium devices (tablets, 768px and up)
 @media (min-width: 768px) {
   .navbar {
+    padding: 0.25rem 0;
     &__brand {
       flex: 0 0 0;
     }
-    &__toggle, .nav__logo, &__mobile-cart {
+    &__toggle, .nav__logo,
+    &__mobile-cart {
       display: none;
     }
     &__collapse {
       position: initial;
       background: transparent;
-      flex-basis: 100%;
+      flex-basis: auto;
       display: flex;
       flex-direction: row;
       padding: 0;
       transform: initial;
-      .nav {
-        &__menu {
-          display: flex;
-          order: 1;
-          flex-grow: 1;
-          flex-basis: 100%;
-        }
-        &__item {
-          align-items: center;
-          padding-left: 0.5rem;
-          padding-right: 0.5rem;
-          width: auto;
-          margin-right: 0.5rem;
-        }
-        &__content {
-          display: flex;
-          flex: 1 0 0;
-          order: 2;
-        }
-        &__cart {
-          @include toggle;
-          display: inline-block;
-          padding: 0.5rem 1rem;
-          margin-top: 0.5rem;
-          margin-bottom: 0.5rem;
-          order: 2;
-          position: relative;
-          &.active {
-            .badge {
-              display: none;
-            }
+    }
+    .nav {
+      &__menu {
+        display: flex;
+        order: 1;
+        flex-grow: 1;
+        flex-basis: 100%;
+      }
+      &__item {
+        align-items: center;
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+        width: auto;
+        margin-right: 0.5rem;
+      }
+      &__content {
+        display: flex;
+        flex: 1 0 0;
+        order: 2;
+      }
+      &__cart {
+        @include toggle;
+        display: inline-block;
+        padding: 0.5rem 0;
+        order: 2;
+        position: relative;
+        &.active {
+          .badge {
+            display: none;
           }
-          &:not(.active) {
-            .badge {
-              position: absolute;
-              top: 5px;
-              left: 30px;
-              @include badge;
-            }
+        }
+        &:not(.active) {
+          .badge {
+            position: absolute;
+            top: 5px;
+            left: 15px;
+            @include badge;
           }
         }
       }
     }
   }
-}
-
-// Large devices (desktops, 992px and up)
-@media (min-width: 992px) {
-  .navbar {
-    &__collapse {
-      flex-basis: auto;
+  .nav-bg {
+    .navbar {
+      padding: 0;
     }
   }
 }
-
-// Extra large devices (large desktops, 1200px and up)
-@media (min-width: 1200px) {}
 
 </style>

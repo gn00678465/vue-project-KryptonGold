@@ -81,10 +81,9 @@
         </li>
       </ul>
     </section>
-    <section class="mb-3">
-      <h4 class="h4" v-if="product">其他人也看了</h4>
-      <Carsouel :id="id"/>
-    </section>
+    <Carsouel :id="id" class="mb-3" v-if="product">
+      <template #h4>其他人也看了</template>
+    </Carsouel>
   </div>
 </template>
 
@@ -93,11 +92,10 @@ import Increment from 'components/Increment.vue';
 import BackBtn from 'components/FrontStage/BackBtn.vue';
 import FrontProductAPI from 'assets/Frontend_mixins/Product';
 import FrontCartAPI from 'assets/Frontend_mixins/Cart';
-import Resize from 'assets/Frontend_mixins/Resize';
 
 export default {
   name: 'Product',
-  mixins: [FrontProductAPI, FrontCartAPI, Resize],
+  mixins: [FrontProductAPI, FrontCartAPI],
   components: { Increment, BackBtn },
   props: ['id'],
   data() {

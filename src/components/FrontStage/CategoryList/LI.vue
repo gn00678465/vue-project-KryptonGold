@@ -1,8 +1,10 @@
 <template>
   <li class="item" :class="{show: hasChildren && isShow}">
     <!-- Object -->
-    <a class="link" href="#" :data-category="dataset"
-      @click.prevent="selectHandler">{{ menu.label || menu }}
+    <a class="link" href="#" @click.prevent="selectHandler" :data-category="dataset">
+      <p :class="{select: classes}">
+        {{ menu.label || menu }}
+      </p>
       <font-awesome-icon v-if="hasChildren" class="icon" icon="chevron-up"/>
     </a>
     <ul class="subMenu" v-if="hasChildren">
@@ -27,11 +29,11 @@ export default {
   },
   methods: {
     selectHandler(e) {
-      const { category } = e.target.dataset;
+      const { category } = e.currentTarget.dataset;
       if (this.hasChildren) {
         this.showMenu();
       } else {
-        this.$emit('update:filter', category);
+        this.$mutation.setFilter(category);
       }
     },
     showMenu() {
@@ -44,6 +46,9 @@ export default {
     },
     dataset() {
       return this.hasChildren ? 'menu' : this.menu.label || this.menu;
+    },
+    classes() {
+      return this.dataset === this.$store.filter;
     },
   },
 };

@@ -1,7 +1,7 @@
 <template>
   <div class="container-fluid my-3 sortSwiper">
     <swiper ref="sortSwiper" :options="swiperOptions">
-    <swiper-slide v-for="slide in slides" :key="slide.data">
+    <swiper-slide v-for="slide in slides" :key="slide.data" :class="noSwiping">
       <div class="sort" :style="{'backgroundImage': `url(${slide.imgUrl})`}">
         <div class="content">
           <button type="button" class="pure-button pure-button-outline-light"
@@ -54,18 +54,24 @@ export default {
             slidesPerView: 3,
           },
         },
+        noSwiping: true,
+        noSwipingClass: 'stop-swiping',
       },
     };
   },
   methods: {
     goProducts(e) {
       const { sort } = e.currentTarget.dataset;
-      this.$router.push({ name: 'products', params: { filter: sort } });
+      this.$mutation.setFilter(sort);
+      this.$router.push({ name: 'products' });
     },
   },
   computed: {
-    swiper() {
-      return this.$refs.mySwiper.$swiper;
+    // swiper() {
+    //   return this.$refs.sortSwiper.$swiper;
+    // },
+    noSwiping() {
+      return this.$store.clientWidth > 992 ? 'stop-swiping' : '';
     },
   },
 };

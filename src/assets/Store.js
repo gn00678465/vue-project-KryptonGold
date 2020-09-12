@@ -4,6 +4,8 @@ export const store = Vue.observable({
   cartList: [],
   orderID: '',
   ScrollTop: 0,
+  clientWidth: 0,
+  filter: '所有品項',
 });
 
 export const mutation = {
@@ -15,5 +17,11 @@ export const mutation = {
   },
   setScrollTop(val) {
     store.ScrollTop = val;
+  },
+  setClientWidth(val) {
+    store.clientWidth = val;
+  },
+  setFilter(val) {
+    store.filter = val;
   },
 };

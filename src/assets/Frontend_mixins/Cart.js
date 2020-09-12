@@ -1,5 +1,3 @@
-import { mutation } from 'assets/Store';
-
 export default {
   methods: {
     GetCartList(page = 1, paged = 10) {
@@ -8,7 +6,7 @@ export default {
         .then((res) => {
           if (res.status === 200) {
             this.isLoading = false;
-            mutation.setCartsArray(res.data.data);
+            this.$mutation.setCartsArray(res.data.data);
           }
           return res.data;
         })
@@ -77,7 +75,7 @@ export default {
       return this.$http.get(`${process.env.VUE_APP_PATH}api/${process.env.VUE_APP_UUID}/ec/orders`)
         .then((res) => {
           if (res.status === 200) {
-            mutation.getOrderID(res.data.data[0].id);
+            this.$mutation.getOrderID(res.data.data[0].id);
           }
         })
         .catch((err) => {
@@ -88,7 +86,7 @@ export default {
       return this.$http.post(`${process.env.VUE_APP_PATH}api/${process.env.VUE_APP_UUID}/ec/orders`, detial)
         .then((res) => {
           if (res.status === 200) {
-            mutation.setOrderID(res.data.data.id);
+            this.$mutation.setOrderID(res.data.data.id);
             this.$bus.$emit('get-cart');
           }
         })

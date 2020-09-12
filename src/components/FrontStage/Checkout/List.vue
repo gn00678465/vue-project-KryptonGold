@@ -1,7 +1,7 @@
 <template>
   <div>
     <h4 class="h4">
-      購物車清單
+      <p class="mask">購物車清單</p>
       <font-awesome-icon icon="chevron-up" class="mobile-arrow" @click.prevent="isShow = !isShow"
         :class="{rotate: isShow}" />
     </h4>
@@ -15,7 +15,6 @@
 
 <script>
 import Item from 'components/FrontStage/Checkout/Item.vue';
-import { store } from 'assets/Store';
 
 export default {
   name: 'List',
@@ -40,7 +39,7 @@ export default {
   },
   computed: {
     CartDatas() {
-      return store.cartList;
+      return this.$store.cartList;
     },
     StatusArr() {
       return this.CartDatas.reduce((prev, curr, index) => {
@@ -65,6 +64,11 @@ export default {
 .h4 {
   cursor: pointer;
   font-weight: bold;
+}
+
+.mask {
+  display: inline-block;
+  @include mark(#{v(hightlight)}, 40%);
 }
 
 .items {

@@ -1,7 +1,7 @@
-.timeline {
+.tips {
   --swiper-theme-color: v(warning);
   --swiper-navigation-color: #C38A00;
-  --swiper-navigation-size: 25px;  
+  --swiper-navigation-size: 25px;
   .swiper-wrapper {
     height: 600px;
     width: 100%;
@@ -142,7 +142,7 @@
 }
 
 @media screen and (min-width: 768px) {
-  .timeline {
+  .tips {
     .swiper-slide {
       &::after {
         right: -30%;

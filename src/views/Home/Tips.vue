@@ -1,5 +1,5 @@
 <template>
-  <div class="my-4 timeline">
+  <div class="my-4 tips">
     <div v-swiper:tipsSwiper="swiperOption" class="swiper-container">
       <div class="swiper-wrapper">
         <div class="swiper-slide" :key="tip.en" v-for="tip in slider"

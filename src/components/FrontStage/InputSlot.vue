@@ -10,7 +10,6 @@
 </template>
 
 <script>
-
 export default {
   name: 'InputSlot',
   props: {
@@ -22,5 +21,4 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
 </style>

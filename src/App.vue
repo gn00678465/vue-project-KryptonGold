@@ -35,6 +35,8 @@ table { border-collapse: collapse; border-spacing: 0; }
   --warning: #C38A00;
   --danger: #f44336;
   --light: #eee;
+  --dark: #26272b;
+  --hightlight: #69f0ae;
   --white: #FFF;
   --black: #000;
 }

@@ -1,11 +1,16 @@
 <template>
-  <swiper ref="carsouelSwiper" :options="swiperOption"
-    @mouseenter.native="enterHandler" @mouseleave.native="leaveHandler">
-    <swiper-slide v-for="prod in filterData" :key="prod.id" :data-id="prod.id">
-      <card :data="prod"/>
-    </swiper-slide>
-    <div class="swiper-pagination" slot="pagination"></div>
-  </swiper>
+  <section>
+    <h4 class="h4">
+      <slot name="h4">Title</slot>
+    </h4>
+    <swiper ref="carsouelSwiper" :options="swiperOption"
+      @mouseenter.native="enterHandler" @mouseleave.native="leaveHandler">
+      <swiper-slide v-for="prod in filterData" :key="prod.id" :data-id="prod.id">
+        <card :data="prod"/>
+      </swiper-slide>
+      <div class="swiper-pagination" slot="pagination"></div>
+    </swiper>
+  </section>
 </template>
 
 <script>
@@ -98,5 +103,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+.h4 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  display: inline-block;
+  @include mark(#{v(hightlight)}, 40%);
+}
 </style>

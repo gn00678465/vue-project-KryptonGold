@@ -3,10 +3,9 @@
     <Jumbotron />
     <SectionSort />
     <SectionShow />
-    <section class="container mb-2">
-      <h4 class="h4">人氣推薦</h4>
-      <Carsouel/>
-    </section>
+    <Carsouel class="container mb-2">
+      <template #h4>人氣推薦</template>
+    </Carsouel>
   </div>
 </template>
 
@@ -33,10 +32,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.h4 {
-  font-size: 1.5rem;
-}
-
 @media (min-width: 768px) {
   .index {
     padding-top: 0px;

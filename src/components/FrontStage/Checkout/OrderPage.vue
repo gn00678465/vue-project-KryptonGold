@@ -58,7 +58,6 @@
 </template>
 
 <script>
-import { store } from 'assets/Store';
 import FrontCartAPI from 'assets/Frontend_mixins/Cart';
 
 export default {
@@ -92,7 +91,7 @@ export default {
   },
   computed: {
     orderID() {
-      return store.orderID;
+      return this.$store.orderID;
     },
   },
 };
@@ -204,6 +203,11 @@ p, h4 {
       border-top-right-radius: 5px;
       border-bottom-right-radius: 5px;
     }
+  }
+  .h4 {
+    display: inline-block;
+    width: auto;
+    @include mark(#{v(hightlight)}, 40%);
   }
 }
 </style>

@@ -16,3 +16,10 @@
   white-space: nowrap;
   word-wrap: normal;
 }
+
+@mixin mark($color, $size: 38%) {
+  background-image: linear-gradient($color, $color);
+  background-repeat: no-repeat;
+  background-size: 100% $size;
+  background-position: 0 100%;
+}
