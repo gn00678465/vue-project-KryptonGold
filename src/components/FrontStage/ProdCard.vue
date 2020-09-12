@@ -5,9 +5,10 @@
     </div>
     <div class="ItemCard__content">
       <h4 class="ItemCard__title">{{ data.title }}</h4>
-      <p class="ItemCard__tag">
-        {{ data.options.type }} | {{ data.options.ml|ml }} | {{ data.options.percent|percent }}
-      </p>
+      <div class="ItemCard__tag">
+        <Tag bgColor="info"><template #tag>{{ data.options.type }}</template></Tag>
+        <Tag bgColor="info"><template #tag>{{ data.options.ml|ml }}</template></Tag>
+      </div>
       <p class="ItemCard__description">{{ ellipsisContent }}</p>
       <footer class="ItemCard__footer">
         <p class="ItemCard__price">{{ data.price|Currency|Dollar }}</p>
@@ -24,17 +25,20 @@
 </template>
 
 <script>
+import Tag from 'components/Tag.vue';
 import FrontCartAPI from 'assets/Frontend_mixins/Cart';
 
 export default {
   name: 'ItemCard',
   mixins: [FrontCartAPI],
+  components: {
+    Tag,
+  },
   props: {
     data: {
       type: Object,
     },
   },
-  components: {},
   data() {
     return {
       lens: 50,
@@ -53,6 +57,9 @@ export default {
     ellipsisContent() {
       const str = this.data.content;
       return str.length > this.lens ? `${str.substr(0, (this.lens - 1))} …` : str;
+    },
+    tagData() {
+      return [this.data.options.type, `${this.data.options.ml}ml`];
     },
   },
 };

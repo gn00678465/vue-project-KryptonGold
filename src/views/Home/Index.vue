@@ -32,15 +32,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@media (min-width: 768px) {
-  .index {
-    padding-top: 0px;
-  }
-}
 
-@media (min-width: 992px) {
-  .index {
-    padding-top: 0px;
-  }
-}
 </style>

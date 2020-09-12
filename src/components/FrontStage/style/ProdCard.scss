@@ -45,10 +45,12 @@ h5 {
     font-size: 1.3rem;
     color: v(secondary);
     font-weight: 900;
-    display: inline-block;
+    display: block;
+    text-align: center;
   }
   &__tag {
-    display: inline-block;
+    display: flex;
+    align-items: center;
     width: 100%;
     text-align: right;
     color: v(info);

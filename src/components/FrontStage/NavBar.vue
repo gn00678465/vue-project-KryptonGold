@@ -20,7 +20,7 @@
           <router-link to="/products" tag="li" class="nav__item" exact-active-class="active">
             <span class="nav__link">所有產品</span>
           </router-link>
-          <router-link to="tips" tag="li" class="nav__item" exact-active-class="active">
+          <router-link to="/tips" tag="li" class="nav__item" exact-active-class="active">
             <span class="nav__link">豆知識</span>
           </router-link>
         </ul>

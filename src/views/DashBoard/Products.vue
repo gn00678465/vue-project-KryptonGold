@@ -42,7 +42,7 @@
 </template>
 
 <script>
-import item from 'components/_ProductItem.vue';
+import item from 'components/BackendStage/_ProductItem.vue';
 import ProductsAPI from 'assets/Backend_mixins/Products';
 
 export default {
