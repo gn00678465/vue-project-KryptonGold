@@ -1,5 +1,5 @@
 <template>
-  <ul class="menu mb-sm-2" ref="menu">
+  <ul class="menu mb-sm-2" ref="UL">
     <LI v-for="(menu, i) in menus" :key="i" :menu="menu" />
   </ul>
 </template>
@@ -16,12 +16,6 @@ export default {
     list: {
       type: Array,
     },
-  },
-  mounted() {
-    // console.log(this.$root);
-    // this.$nextTick(() => {
-    //   console.log(this.$refs.menu.getBoundingClientRect());
-    // });
   },
   data() {
     return {
