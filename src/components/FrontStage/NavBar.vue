@@ -1,5 +1,5 @@
 <template>
-  <nav class="nav-light nav-fixed" :class="navClass" :style="escapeStyle">
+  <nav class="nav-light nav-fixed" :class="navClass" :style="escaped">
     <div class="container navbar" ref="nav">
       <router-link to="/" class="navbar__brand"><slot>Logo</slot></router-link>
       <button type="button" class="navbar__mobile-cart" @click="goToCart">
@@ -43,6 +43,9 @@ export default {
     return {
       isShow: false,
       cartLength: 0,
+      escapeStyle: {
+        'backdrop-filter': 'none',
+      },
     };
   },
   created() {
@@ -73,11 +76,8 @@ export default {
     navClass() {
       return (this.$store.ScrollTop > 1) ? 'nav-bg' : '';
     },
-    escapeStyle() {
-      if (this.$store.clientWidth <= 768 && this.isShow && this.$store.ScrollTop > 1) {
-        return 'backdrop-filter: none';
-      }
-      return '';
+    escaped() {
+      return (this.$store.clientWidth <= 768 && this.isShow === true && this.$store.ScrollTop > 1) ? this.escapeStyle : '';
     },
   },
 };

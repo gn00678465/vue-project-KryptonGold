@@ -52,19 +52,10 @@ export default {
       page: 1,
       amount: 9,
       products: [],
-      NavData: {},
-      NavHeight: 50,
     };
   },
   created() {
     this.GetProductList();
-  },
-  mounted() {
-    this.$nextTick(() => {
-      const { top, left, width } = this.$refs.nav.$refs.UL.getBoundingClientRect();
-      console.log(top, left, width);
-      this.NavData = { top, left, width };
-    });
   },
   computed: {
     paginationProducts() {
