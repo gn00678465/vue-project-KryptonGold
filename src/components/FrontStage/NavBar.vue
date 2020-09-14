@@ -77,7 +77,7 @@ export default {
       return (this.$store.ScrollTop > 1) ? 'nav-bg' : '';
     },
     escaped() {
-      return (this.$store.clientWidth <= 768 && this.isShow === true && this.$store.ScrollTop > 1) ? this.escapeStyle : '';
+      return (this.$store.clientWidth <= 768 && this.isShow && this.$store.ScrollTop > 1) ? this.escapeStyle : '';
     },
   },
 };

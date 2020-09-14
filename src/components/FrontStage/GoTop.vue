@@ -58,7 +58,7 @@ export default {
 }
 
 .bounce {
-  animation: bounce infinite 1.5s;
+  animation: bounce infinite 2s;
   transform-origin: center bottom;
 }
 

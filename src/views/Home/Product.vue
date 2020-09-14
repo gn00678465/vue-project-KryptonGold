@@ -51,7 +51,7 @@
         </div>
       </div>
     </div>
-    <section class="mt-5" v-if="product">
+    <section class="" v-if="product">
       <h4 class="h4">詳細資訊</h4>
       <ul class="information">
         <li class="item">
@@ -118,7 +118,7 @@ export default {
     },
     goTop() {
       if (this.$store.ScrollTop > 100) {
-        window.scrollTo({
+        this.$root.$el.scrollTo({
           top: 0,
           behavior: 'smooth',
         });
