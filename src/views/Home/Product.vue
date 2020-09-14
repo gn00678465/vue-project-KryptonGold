@@ -116,6 +116,14 @@ export default {
     addCart() {
       this.CreateCart(this.product.id, this.quantity);
     },
+    goTop() {
+      if (this.$store.ScrollTop > 100) {
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth',
+        });
+      }
+    },
   },
   computed: {
     setSize() {
@@ -125,6 +133,7 @@ export default {
   },
   watch: {
     id() {
+      this.goTop();
       this.GetProductDetial(this.id);
     },
   },

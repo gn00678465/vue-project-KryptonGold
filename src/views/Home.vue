@@ -1,14 +1,16 @@
 <template>
-  <div class="home">
+  <div class="home" ref="home">
     <Navbar ref="navbar">Confidant</Navbar>
     <router-view class="stky-body"></router-view>
     <Footer/>
+    <GoTop />
   </div>
 </template>
 
 <script>
 import Navbar from 'components/FrontStage/NavBar.vue';
 import Footer from 'components/FrontStage/Footer.vue';
+import GoTop from 'components/FrontStage/GoTop.vue';
 import WindowEvent from 'assets/Frontend_mixins/WindowEvent';
 
 export default {
@@ -17,6 +19,7 @@ export default {
   components: {
     Navbar,
     Footer,
+    GoTop,
   },
 };
 </script>
@@ -24,10 +27,10 @@ export default {
 @import './Home/style/font.css';
 
 .home {
-  --paddingTop: 62px;
   background: #F7F7F7;
   min-height: 100%;
-  display: flex;flex-direction: column;
+  display: flex;
+  flex-direction: column;
   font-family: 'Microsoft JhengHei', 'Noto Sans TC', sans-serif;
 }
 
