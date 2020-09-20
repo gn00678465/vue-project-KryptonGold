@@ -61,6 +61,8 @@ export default {
   border-radius: .25rem;
   width: 100%;
   background: v(info);
+  position: sticky;
+  top: 55px;
   > .item {
     position: relative;
   }

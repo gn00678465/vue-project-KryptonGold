@@ -176,6 +176,7 @@ export default {
     &:nth-child(2) {
       margin-top: 0;
       order: 2;
+      overflow: visible;
     }
     &:nth-child(3) {
       order: 3;
