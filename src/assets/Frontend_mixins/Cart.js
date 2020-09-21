@@ -123,5 +123,12 @@ export default {
           this.$toast.error(err.response.data.message);
         });
     },
+    SearchCoupon(code) {
+      return this.$http.post(`${process.env.VUE_APP_PATH}api/${process.env.VUE_APP_UUID}/ec/coupon/search`, { code })
+        .then((res) => res.data)
+        .catch((err) => {
+          this.$toast.error(err.response.data.message);
+        });
+    },
   },
 };

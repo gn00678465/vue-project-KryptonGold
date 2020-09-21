@@ -3,9 +3,13 @@
     <ul class="list-group">
       <li class="list-group-item summary__item border-bottom">
         <div class="input-group">
-          <input type="text" class="form-control" placeholder="輸入優惠卷">
+          <input type="text" class="form-control" placeholder="輸入優惠卷" v-model.trim="coupon">
           <div class="input-group-append">
-            <span class="input-group-text">套用</span>
+            <button type="button" class="input-group-text" @click.prevent="applycoupon"
+              :disabled="isSearch">
+              <font-awesome-icon v-if="isSearch" icon="spinner" pulse />
+              <span v-else>套用</span>
+            </button>
           </div>
         </div>
       </li>
@@ -19,7 +23,7 @@
       </li>
       <li class="list-group-item summary__item">
         <p class="label">折扣：</p>
-        <p class="value">{{ 0|Dollar }} 元</p>
+        <AnimatedIngeter class="value" :value="DisCount" >元</AnimatedIngeter>
       </li>
       <li class="list-group-item total summary__item">
         <!-- TODO: tween.js version 16.6 now is 18 -->
@@ -32,24 +36,48 @@
 </template>
 
 <script>
+import FrontCartAPI from 'assets/Frontend_mixins/Cart';
 
 export default {
   name: 'Summary',
-  components: {},
+  mixins: [FrontCartAPI],
   data() {
-    return {};
+    return {
+      coupon: '',
+      percent: 100,
+      isSearch: false,
+    };
   },
-  methods: {},
+  methods: {
+    applycoupon() {
+      if (this.coupon === '') {
+        this.$toast.error('請輸入優惠碼!');
+        return;
+      }
+      this.isSearch = true;
+      this.SearchCoupon(this.coupon)
+        .then((res) => {
+          this.percent = res.data.percent;
+          this.$emit('coupon', res.data.code);
+          this.isSearch = false;
+          this.$toast.success('已套用優惠碼');
+        });
+      this.coupon = '';
+    },
+  },
   computed: {
     CartList() {
       return this.$store.cartList;
     },
     OriginTotalPrice() {
       return this.CartList.map((cart) => cart.quantity * cart.product.price)
-        .reduce((prev, curr) => prev + curr, 0);
+        .reduce((prev, curr) => prev + curr, 0) * (this.percent / 100);
     },
     Shipping() {
       return this.OriginTotalPrice > 1000 ? 0 : 200;
+    },
+    DisCount() {
+      return this.OriginTotalPrice * ((100 - this.percent) / 100);
     },
     TotalPrice() {
       return this.OriginTotalPrice + this.Shipping;

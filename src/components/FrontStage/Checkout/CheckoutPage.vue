@@ -32,7 +32,7 @@
             <div class="col-12 list">
               <!-- list -->
               <List/>
-              <Summary>
+              <Summary @coupon="addCoupon">
                 <template #button>
                   <div class="row mt-3">
                     <div class="col">
@@ -84,13 +84,13 @@ export default {
       ],
       AnimateLeft: 'animate__slideOutLeft',
       AnimateRight: 'animate__slideOutRight',
+      coupon: '',
     };
-  },
-  mounted() {
   },
   methods: {
     submitHandler() {
-      const { ...data } = this.$refs.detial.form;
+      const data = { ...this.$refs.detial.form };
+      data.coupon = this.coupon || '';
       const vm = this;
       this.isLoading = true;
       this.CreateOrder(data)
@@ -101,6 +101,9 @@ export default {
     },
     goProducts() {
       this.$router.push({ name: 'products' });
+    },
+    addCoupon(code) {
+      this.coupon = code;
     },
   },
   computed: {},

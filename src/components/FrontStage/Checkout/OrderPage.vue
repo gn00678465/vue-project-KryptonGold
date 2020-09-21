@@ -49,8 +49,10 @@
           </div>
           <div class="order__col">
             <button class="pure-button pure-button-success w-100"
-              type="button" @click.prevent="payOrder">
-              <font-awesome-icon v-if="isSpin"  icon="spinner" pulse /> 確認付款</button>
+              type="button" @click.prevent="payOrder" :disabled="isSpin">
+              <span v-if="isSpin"><font-awesome-icon  icon="spinner" pulse />正在付款</span>
+              <span v-else>確認付款</span>
+            </button>
           </div>
       </div>
     </div>
