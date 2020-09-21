@@ -12,7 +12,7 @@
         </a>
       </header>
       <SideBar ref="sidbar" :home="home" :childs="childs" />
-      <router-view class="expander__left expander__top"></router-view>
+      <router-view class="expander__left expander__top expander__height"></router-view>
     </div>
   </div>
 </template>
@@ -81,7 +81,7 @@ export default {
   justify-content: space-between;
   align-items: center;
   &.expander-left {
-    margin-left: 240px
+    margin-left: 280px;
   }
   .title {
     margin: 0;
@@ -108,10 +108,13 @@ export default {
 
 .expander {
   &__left {
-    padding-left: 240px !important;
+    padding-left: 280px !important;
   }
   &__top {
     padding-top: 70px;
+  }
+  &__height {
+    min-height: 99vh;
   }
 }
 </style>

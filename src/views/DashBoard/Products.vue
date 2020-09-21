@@ -10,7 +10,8 @@
         <div class="dashboard">
           <header class="header">
             <div class="title">產品管理列表</div>
-            <BtnGroup class="newBtn" :btns="btn" @btn-emit="BtnClick"/>
+            <button type="button" class="ml-4 pure-button pure-button-info"
+              @click.prevent="newHandler">新增產品</button>
           </header>
           <main class="body">
               <div class="table">
@@ -25,9 +26,9 @@
                     </span>
                   </div>
                 </div>
-                <div v-scrollbar class="table-body">
+                <div class="table-body">
                   <item v-for="prod in products" :key="prod.id" :prod="prod"
-                  @btn-emit="BtnClick"/>
+                  @edit="editHandler"/>
                 </div>
               </div>
             <pagination :total_pages="total" :page.sync="page" />
@@ -35,9 +36,9 @@
         </div>
       </div>
     </div>
-    <Modal ref="modal" size="xl" @dataEmit="newProd">
-      <span slot="header">新增產品</span>
-    </Modal>
+    <NewModal :show.sync="showModal" mod="XL" :title="modalTitle" @check="clickHandler">
+      <ProductsOption ref="modalData"/>
+    </NewModal>
   </div>
 </template>
 
@@ -46,13 +47,11 @@ import item from 'components/BackendStage/_ProductItem.vue';
 import ProductsAPI from 'assets/Backend_mixins/Products';
 
 export default {
-  mataInfo: {
-    title: '-產品管理',
-  },
   name: 'Products',
   components: {
     item,
-    Modal: () => import('components/BackendStage/_ProductModal.vue'),
+    NewModal: () => import('components/BackendStage/Modal.vue'),
+    ProductsOption: () => import('components/BackendStage/ProductsModalItem.vue'),
   },
   mixins: [ProductsAPI],
   created() {
@@ -64,25 +63,39 @@ export default {
       page: 1,
       total: 1,
       products: [],
-      btn: [{
-        class: 'primary',
-        outline: false,
-        content: '新增產品',
-        icon: '',
-        action: 'new',
-        size: 'xl',
-      }],
+      showModal: false,
+      modalTitle: '新增產品',
     };
   },
   methods: {
-    BtnClick(action, data) {
-      this[`${action}Handler`](data);
-    },
     newHandler() {
-      this.$refs.modal.ModalShow = true;
+      this.modalTitle = '新增產品';
+      this.showModal = true;
     },
-    newProd(data) {
+    newProd() {
+      const data = { ...this.$refs.modalData.inputTemp };
       this.createProduct(data);
+    },
+    editHandler(id) {
+      const vm = this;
+      this.modalTitle = '編輯產品';
+      this.showProduct(id)
+        .then((data) => {
+          vm.showModal = true;
+          vm.$refs.modalData.inputTemp = { ...data };
+        });
+    },
+    updateProd() {
+      const data = this.$refs.modalData.inputTemp;
+      this.editProduct(data);
+    },
+    clickHandler() {
+      if (this.modalTitle === '新增產品') {
+        this.newProd();
+      }
+      if (this.modalTitle === '編輯產品') {
+        this.updateProd();
+      }
     },
   },
   watch: {
@@ -107,4 +120,5 @@ $basis: (15% 40% 12% 12% 15% 15%);
     }
   }
 }
+
 </style>

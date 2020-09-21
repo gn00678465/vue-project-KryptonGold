@@ -12,23 +12,27 @@
       :checked="prod.enabled"/>
     </span>
     <span class="td">
-      <BtnGroup :btns="btns" @btn-emit="btnClick" :border="true" btnSize="md"/>
+      <button type="button" class="pure-button pure-button-info mr-1 button-small"
+      @click.prevent="editHandler">
+        <font-awesome-icon icon="marker"></font-awesome-icon>
+      </button>
+      <button type="button" class="pure-button pure-button-danger button-small"
+      @click.prevent="delHandler">
+        <font-awesome-icon icon="trash-alt"></font-awesome-icon>
+      </button>
     </span>
     <Dialog ref="dialog" @dialog="confirm">刪除此產品?</Dialog>
-    <Modal ref="modal" size="xl" @dataEmit="updateProd">
-      <span slot="header">編輯產品</span>
-    </Modal>
   </div>
 </template>
 
 <script>
 import ProductsAPI from 'assets/Backend_mixins/Products';
-import Modal from 'components/BackendStage/_ProductModal.vue';
 
 export default {
   name: 'ProductItem',
   mixins: [ProductsAPI],
-  components: { Modal },
+  components: {
+  },
   props: {
     prod: {
       type: Object,
@@ -38,38 +42,12 @@ export default {
   data() {
     return {
       isLoading: false,
-      btns: [
-        {
-          class: 'info',
-          outline: true,
-          content: '',
-          icon: 'marker',
-          action: 'edit',
-        },
-        {
-          class: 'error',
-          outline: true,
-          content: '',
-          icon: 'trash-alt',
-          action: 'del',
-        },
-      ],
+      showModal: false,
     };
   },
   methods: {
-    btnClick(action) {
-      this[`${action}Handler`]();
-    },
     editHandler() {
-      const vm = this;
-      this.showProduct(this.prod.id)
-        .then((data) => {
-          vm.$refs.modal.ModalShow = true;
-          vm.$refs.modal.inputTemp = data;
-        });
-    },
-    updateProd(data) {
-      this.editProduct(data);
+      this.$emit('edit', this.prod.id);
     },
     // 刪除商品
     delHandler() {
@@ -94,5 +72,9 @@ export default {
   text-align: center;
   padding: 10px 0;
   color: #555;
+}
+
+.button-small {
+  font-size: 85%;
 }
 </style>
