@@ -1,5 +1,5 @@
 <template>
-  <div v-if="set" class="card" :class="{isReverse: set.reverse}" :style="styles">
+  <div v-if="set" class="card" :class="{isReverse: reverse}" :style="styles">
     <div class="card-img">
       <img :src="set.imgUrl" alt="">
     </div>
@@ -23,6 +23,10 @@ export default {
   props: {
     set: {
       type: Object,
+    },
+    reverse: {
+      type: Boolean,
+      default: false,
     },
   },
   data() {
