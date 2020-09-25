@@ -57,12 +57,9 @@ img {
   flex-direction: row;
   justify-content: center;
   height: 100%;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
   .card-img, .card-content {
     flex: 0 0 100%;
-    max-width: 500px;
-    max-height: 500px;
+    display: block;
   }
   .card-content {
     position: absolute;
@@ -99,14 +96,18 @@ img {
 @media (min-width: 992px) {
   .card {
     .card-img, .card-content {
-      margin: 0 1px;
+      flex: 0 0 50%;
+      display: block;
     }
     .card-content {
+      flex: 0 0 50%;
       position: initial;
       transform: initial;
-      width: auto;
       height: auto;
       background-color: var(--bg-color);
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
   }
 }

@@ -1,5 +1,5 @@
 <template>
-  <div class="ItemCard" @click.prevent="goToDetial">
+  <div class="ItemCard" @click.prevent="goToDetial" :class="{disabled: addCarting}">
     <div class="ItemCard__img">
       <img v-if="data" :src="data.imageUrl[0]" alt="" class="ItemCard__img">
     </div>
@@ -47,6 +47,7 @@ export default {
   },
   methods: {
     goToDetial() {
+      if (this.addCarting) return;
       this.$router.push(`product/${this.data.id}`);
     },
     addCart() {

@@ -11,7 +11,9 @@
       </div>
       <div class="col-sm-12 col-md-6 col-lg-5 order__content">
           <div class="order__col">
-            <h4 class="h4">訂單資訊</h4>
+            <div>
+              <h4 class="h4 text-bold d-inline-block">訂單資訊</h4>
+            </div>
             <ul class="order__list">
               <li class="order__item mb-2">
                 <p class="id border-bottom">訂單編號：</p>
@@ -27,7 +29,9 @@
             </ul>
           </div>
           <div class="order__col">
-            <h4 class="h4">訂購人資料</h4>
+            <div>
+              <h4 class="h4 text-bold d-inline-block">訂購人資料</h4>
+            </div>
               <ul class="order__list">
                 <li class="order__item">
                   <p class="label">姓名：</p>
@@ -107,14 +111,8 @@ img {
   object-position: 100% 10%;
 }
 
-p, h4 {
+p, .h4 {
   margin-top: 0;
-}
-.h4 {
-  font-size: 1.5rem;
-  margin-bottom: .5rem;
-  font-weight: 700;
-  line-height: 1.2;
 }
 
 .order {
@@ -140,7 +138,7 @@ p, h4 {
   &__col {
     display: flex;
     flex-direction: column;
-    padding: 5px 15px;
+    padding: 24px;
   }
   &__list {
     flex: 1 0 auto;
@@ -207,7 +205,6 @@ p, h4 {
     }
   }
   .h4 {
-    display: inline-block;
     width: auto;
     @include mark(#{v(hightlight)}, 40%);
   }

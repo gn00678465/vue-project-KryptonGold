@@ -1,5 +1,5 @@
 <template>
-  <div class="container-fluid my-3 sortSwiper">
+  <div class="container my-3 sortSwiper">
     <swiper ref="sortSwiper" :options="swiperOptions">
     <swiper-slide v-for="slide in slides" :key="slide.data" :class="noSwiping">
       <div class="sort" :style="{'backgroundImage': `url(${slide.imgUrl})`}">
@@ -28,21 +28,21 @@ export default {
         {
           data: '愛爾啤酒',
           content: '慢慢啜飲愛爾啤酒的厚實濃郁',
-          imgUrl: 'https://images.unsplash.com/photo-1546388612-9e938bb6c057?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80',
+          imgUrl: 'https://hexschool-api.s3.us-west-2.amazonaws.com/custom/wTlAHfRVwaA0H9xXlkUYATpgxkiW8IKYen8zEyORgkLKP8SBgRXTmopUSwe4f5V6RuMVYJVO4ZZB71E66EhA195M9UAXEIbIHJy3ctG6fr3abMT7yhSAOqhRroQnDjuA.jpg',
         },
         {
           data: '拉格啤酒',
           content: '爽快吞下拉格啤酒的清新',
-          imgUrl: 'https://images.unsplash.com/photo-1596442149814-584dc6e92d01?ixlib=rb-1.2.1&auto=format&fit=crop&w=1267&q=80',
+          imgUrl: 'https://hexschool-api.s3.us-west-2.amazonaws.com/custom/A0BRdPce3puOuSLVw0UAfhiwZZfpxLqJBqxApJKfK7tn9S6mJaX2cNAYtgoKvGHrV7tEmt18RfR2ZrmnSlqlKEDEnh3hwFdzVHhC4QPQoQSZhDNN2jtV6dvacqYU48gj.jpg',
         },
         {
           data: '白啤酒',
           content: '喜愛白啤酒的你',
-          imgUrl: 'https://images.unsplash.com/photo-1595318644790-dc51bdc72248?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=80',
+          imgUrl: 'https://hexschool-api.s3.us-west-2.amazonaws.com/custom/jijz6O4Y4bXRZAG1DVHQvb1zlAZxIGs1J1E2Te3w8ZKNkVGDNPontNSeOqINTnt8L62wR0OmJTtdkrZc6rQzIJZuH5NpHfZiZEXX0bZSvk6viorllr4R04oqFdxqgEXg.jpg',
         },
       ],
       swiperOptions: {
-        spaceBetween: 15,
+        spaceBetween: 5,
         navigation: {
           nextEl: '.swiper-button-next',
           prevEl: '.swiper-button-prev',

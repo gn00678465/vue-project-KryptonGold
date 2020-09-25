@@ -100,13 +100,6 @@ export default {
     countCurrent() {
       return this.count;
     },
-    styleSize() {
-      return {
-        '--sm': '24px',
-        '--md': '32px',
-        '--lg': '56px',
-      };
-    },
   },
   watch: {
     count: {
@@ -122,7 +115,7 @@ export default {
 <style lang="scss" scoped>
 $size: (
   'sm': 24px,
-  'md': 32px,
+  'md': 25px,
   'lg': 56px
 );
 

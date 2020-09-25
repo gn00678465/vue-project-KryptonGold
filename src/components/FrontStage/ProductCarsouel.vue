@@ -1,6 +1,6 @@
 <template>
   <section>
-    <h4 class="h4">
+    <h4 class="h4 text-bold d-inline-block" :class="{brush: brush}">
       <slot name="h4">Title</slot>
     </h4>
     <swiper ref="carsouelSwiper" :options="swiperOption"
@@ -27,6 +27,10 @@ export default {
   props: {
     id: {
       type: String,
+    },
+    brush: {
+      type: Boolean,
+      default: false,
     },
   },
   data() {
@@ -103,10 +107,4 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.h4 {
-  font-size: 1.5rem;
-  font-weight: 700;
-  display: inline-block;
-  @include mark(#{v(hightlight)}, 40%);
-}
 </style>

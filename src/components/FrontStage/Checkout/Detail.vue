@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h4 class="h4">輸入訂購人資料</h4>
+    <h4 class="h4 brush">輸入訂購人資料</h4>
     <div class="row">
       <div class="col">
         <InputSlot rules="required|is_not:0">
@@ -84,7 +84,6 @@ export default {
 .h4 {
   font-weight: bold;
   display: inline-block;
-  @include mark(#{v(hightlight)}, 40%);
 }
 
 small.required {

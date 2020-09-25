@@ -9,10 +9,10 @@
       <BackBtn @click-emit="goBack">繼續購物</BackBtn>
     </div>
     <div class="product" v-if="product">
-      <div class="product__photo">
-        <img :src="product.imageUrl[1]">
+      <div class="product__photo" :style="{backgroundImage: `url(${product.imageUrl[1]})`}">
+        <!-- <img :src="product.imageUrl[1]"> -->
         <div class="photo__main">
-          <img :src="product.imageUrl[0]" alt="">
+          <img :src="product.imageUrl[0]" alt="" class="product__image">
         </div>
       </div>
       <div class="product__info">
@@ -46,13 +46,15 @@
           <hr>
           <div class="description">
             <p class="description__title">介紹：</p>
-            <p class="description__content">{{ product.description }}</p>
+            <p class="description__content" ref="desc">{{ calcText(product.description) }}</p>
+            <a href="#" v-if="showMoreBtn" class="showNore"  @click="showmoreDesc()">
+              {{ !isDescStatus ? '展開' : '收起' }}</a>
           </div>
         </div>
       </div>
     </div>
     <section class="" v-if="product">
-      <h4 class="h4">詳細資訊</h4>
+      <h4 class="h4 text-bold brush d-inline-block">詳細資訊</h4>
       <ul class="information">
         <li class="item">
           <font-awesome-icon :icon="['fas', 'beer']" />
@@ -81,7 +83,7 @@
         </li>
       </ul>
     </section>
-    <Carsouel :id="id" class="mb-3" v-if="product">
+    <Carsouel :id="id" class="mb-3" v-if="product" :brush="true">
       <template #h4>其他人也看了</template>
     </Carsouel>
   </div>
@@ -104,6 +106,8 @@ export default {
       addCarting: false,
       product: '',
       quantity: 1,
+      len: 50,
+      isDescStatus: false,
     };
   },
   created() {
@@ -124,11 +128,20 @@ export default {
         });
       }
     },
+    calcText(str) {
+      return !this.isDescStatus ? `${str.substr(0, (50 - 1))} …` : str;
+    },
+    showmoreDesc() {
+      this.isDescStatus = !this.isDescStatus;
+    },
   },
   computed: {
     setSize() {
       if (this.screenWidth <= 768) return 'sm';
       return 'md';
+    },
+    showMoreBtn() {
+      return this.product.description.length > this.len;
     },
   },
   watch: {

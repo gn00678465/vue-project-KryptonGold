@@ -17,9 +17,11 @@ $_colors: (primary, secondary, info, success, danger, light);
     &:active,
     &:hover {
       background: v($color);
-      @if $color == secondary {
+      @if $color == primary {
         color: #fff;
-      } @else if $color == light {
+      } @else if $color == secondary {
+        color: #fff;
+      }@else if $color == light {
         color: #000;
       } @else {
         color: v($color);

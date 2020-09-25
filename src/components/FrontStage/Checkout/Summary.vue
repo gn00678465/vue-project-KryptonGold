@@ -1,5 +1,5 @@
 <template>
-  <div class="summary">
+  <div class="summary mb-lg-3">
     <ul class="list-group">
       <li class="list-group-item summary__item border-bottom">
         <div class="input-group">
@@ -88,10 +88,6 @@ export default {
 
 <style lang="scss" scoped>
 @import 'bootstrap';
-
-.h4 {
-  font-weight: bold;
-}
 
 .summary {
   &__item {

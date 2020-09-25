@@ -60,6 +60,7 @@ h5 {
     letter-spacing: 1px;
     font-size: 0.85rem;
     height: 4rem;
+    user-select: none;
   }
   &__footer {
     display: flex;
@@ -68,26 +69,29 @@ h5 {
   }
   &__price {
     display: inline-block;
-    font-size: 1rem;
+    font-size: 1.9rem;
+    font-weight: 700;
     color: v(primary);
   }
   &__unit {
     display: inline-block;
     font-size: 1rem;
     font-weight: 500;
-    color: v(light);
+    color: v(secondary);
   }
   .add__cart {
     display: inline-block;
     margin-left: 5px;
+  }
+  &:hover.disabled {
+    cursor: auto;
   }
 }
 
 @media (min-width: 992px) {
   .ItemCard {
     &__price {
-      font-size: 1.9rem;
-      font-weight: 600;
+      font-weight: 700;
     }
     &__unit {
       font-size: 1.3rem;

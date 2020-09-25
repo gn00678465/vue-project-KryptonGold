@@ -1,7 +1,7 @@
 <template>
   <div>
     <h4 class="h4">
-      <p class="mask">購物車清單</p>
+      <p class="mask text-bold">購物車清單</p>
       <font-awesome-icon icon="chevron-up" class="mobile-arrow" @click.prevent="isShow = !isShow"
         :class="{rotate: isShow}" />
     </h4>
@@ -63,7 +63,6 @@ export default {
 
 .h4 {
   cursor: pointer;
-  font-weight: bold;
 }
 
 .mask {

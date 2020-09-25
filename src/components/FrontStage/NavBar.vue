@@ -6,10 +6,10 @@
         <icon class="nav-icon" iconName="cart" />
         <span class="badge" v-if="cartLength">{{ cartLength }}</span>
       </button>
-      <button type="button" class="navbar__toggle" @click="showMenu">
+      <button type="button" class="navbar__toggle" @click.stop="showMenu">
         <icon class="nav-icon" iconName="menu" />
       </button>
-      <div class="navbar__collapse" :class="{show: isShow}" @click="showMenu">
+      <div class="navbar__collapse" :class="{show: isShow}" @click.stop="showMenu">
         <div class="nav__logo">
           <slot>Logo</slot>
         </div>
@@ -24,7 +24,7 @@
             <span class="nav__link">豆知識</span>
           </router-link>
         </ul>
-        <li class="nav__cart" @click.prevent="goToCart">
+        <li class="nav__cart" @click.prevent="goToCart" :class="{disabled: cartDisable}">
           <icon class="nav-icon" iconName="cart" />
           <span class="badge" v-if="cartLength">{{ cartLength }}</span>
         </li>
@@ -79,13 +79,15 @@ export default {
     escaped() {
       return (this.$store.clientWidth <= 768 && this.isShow && this.$store.ScrollTop > 1) ? this.escapeStyle : '';
     },
+    cartDisable() {
+      return this.cartLength === 0 || this.$route.path === '/carts';
+    },
   },
 };
 </script>
 
 <style lang="scss" scoped>
 $title-size: 1.7rem;
-$light-hover: #eee;
 $logo-font: 'Kaushan Script';
 
 @mixin toggle() {
@@ -105,7 +107,7 @@ $logo-font: 'Kaushan Script';
   text-align: center;
   white-space: nowrap;
   vertical-align: baseline;
-  background: v(primary);
+  background: v(danger);
   border-radius: 10rem;
   color: #fff;
 };
@@ -113,8 +115,9 @@ $logo-font: 'Kaushan Script';
 .nav-light {
   color: v(secondary);
   .nav__item, .nav__cart {
-    &:hover {
-      background: $light-hover;
+    &:not(.disabled):hover {
+      background: rgba(#b65219, .5);
+      color: #fff;
     }
     &.active {
       background: v(primary);
@@ -181,6 +184,9 @@ $logo-font: 'Kaushan Script';
         left: 15px;
         @include badge;
       }
+    }
+    &.disabled {
+      cursor: auto;
     }
   }
   &__toggle {
@@ -297,19 +303,22 @@ $logo-font: 'Kaushan Script';
         padding: 0.5rem 0;
         order: 2;
         position: relative;
-        &.active {
-          .badge {
-            display: none;
-          }
+      }
+      &__cart.active {
+        .badge {
+          display: none;
         }
-        &:not(.active) {
-          .badge {
-            position: absolute;
-            top: 5px;
-            left: 15px;
-            @include badge;
-          }
+      }
+      &__cart:not(.active) {
+        .badge {
+          position: absolute;
+          top: 5px;
+          left: 15px;
+          @include badge;
         }
+      }
+      &__cart.disabled {
+        cursor: auto;
       }
     }
   }

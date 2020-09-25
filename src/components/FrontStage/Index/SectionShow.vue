@@ -10,7 +10,10 @@
     </Card>
     <Card :set="CardSet[1]" :reverse="true">
       <template #title>中秋月圓喝酒趣!!</template>
-      <template #content>歡慶中秋節，所有商品 95 折優惠!</template>
+      <template #content>
+        歡慶中秋節，所有商品 95 折優惠!<br>
+        即日起至 10/31 止!
+      </template>
       <template #button>
         <button type="button" class="pure-button pure-button-outline-light"
           @click.prevent="copyCode(CardSet[1].id)">複製優惠碼</button>
@@ -61,7 +64,7 @@ export default {
           btnClass: 'pure-button pure-button-outline-light',
           color: '#FFF',
           id: 'kvEtBaFq40fIlGGIvCscqOpqU7QRsEFQAKnSi76PeEWwfx4tFoVrxEVYqPvDbeE1',
-          imgUrl: 'https://hexschool-api.s3.us-west-2.amazonaws.com/custom/FXhg97dGU43fqkIVtBPkG9Uv0lK4ngr7uCIKiEqSnqG1QerQaBNyQ1cuaQEaQ03Fe60aX0TZLd32Hc082LF91FIQxT56zwkff1D2Fp856k46RFDwmnQoMs11cTIZQLrw.jpg',
+          imgUrl: 'https://hexschool-api.s3.us-west-2.amazonaws.com/custom/SngnW88JVzywvrMvejBW0RLaQulUOJzZFJqLqDIFG1gNz95GdnRs4W42Ijmvkg6b5qjhbps01ZxRaMn40XmeL0IzyKl3efnvM1w1fMilGQrbu0HHWZ37z6zEmUlPxqPL.jpg',
         },
         {
           bgColor: '#e1db2e',
@@ -74,8 +77,8 @@ export default {
       ],
       ProdContent: [
         {
-          title: '現在滿千免運!!',
-          content: '炎炎夏日就是要來杯沁涼啤酒才過癮!',
+          title: '有青才敢大聲！',
+          content: '上帝創造世界花了七天，台灣環島一週須要12天，賽德克票房四天破億，人會再一夜間長大，而這支啤酒必須在18天內喝完。',
         },
         {
           title: '是檸檬，我加了檸檬!!',

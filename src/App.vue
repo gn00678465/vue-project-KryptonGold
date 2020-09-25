@@ -28,7 +28,8 @@ table { border-collapse: collapse; border-spacing: 0; }
 
 // colors
 :root {
-  --primary: #f44336;
+  --primary: #BC8848;
+  // --primary: #b65219;
   --secondary: #4c4c4c;
   --success: #06A503;
   --info: #379BDE;
@@ -37,8 +38,6 @@ table { border-collapse: collapse; border-spacing: 0; }
   --light: #eee;
   --dark: #26272b;
   --hightlight: #69f0ae;
-  --white: #FFF;
-  --black: #000;
 }
 
 // body
@@ -54,9 +53,9 @@ html, body {
 }
 
 .h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
-    margin-bottom: .5rem;
-    font-weight: 500;
-    line-height: 1.2;
+  margin-bottom: .5rem;
+  font-weight: 500;
+  line-height: 1.2;
 }
 
 #app {

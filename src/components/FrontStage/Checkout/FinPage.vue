@@ -10,8 +10,6 @@
           </p>
           <button type="button" class="pure-button pure-button-primary w-100"
           @click.prevent="goProducts">
-            <font-awesome-icon icon="chevron-left" :class="AnimateClass"
-              class="mr-2" />
             返回購物
           </button>
         </div>
@@ -31,12 +29,6 @@ export default {
   data() {
     return {
       delay: 400,
-      AnimateClass: [
-        'animate__animated',
-        'animate__fast',
-        'animate__infinite',
-        'animate__slideOutLeft',
-      ],
     };
   },
   mounted() {
