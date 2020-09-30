@@ -1,7 +1,8 @@
 <template>
   <li class="item" :class="{show: hasChildren && isShow}">
     <!-- Object -->
-    <a class="link" href="#" @click.prevent="selectHandler" :data-category="dataset">
+    <a class="link" href="#" @click.prevent="selectHandler" :data-category="dataset"
+      >
       <p :class="{select: classes}">
         {{ menu.label || menu }}
       </p>

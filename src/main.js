@@ -18,6 +18,9 @@ import ScrollBar from '@morioh/v-smooth-scrollbar';
 // Swipter
 import VueAwesomeSwiper from 'vue-awesome-swiper';
 import 'swiper/css/swiper.css';
+// vue-loading-overlay
+import Loading from 'vue-loading-overlay';
+import 'vue-loading-overlay/dist/vue-loading.css';
 // Vue.observable
 import { store, mutation } from 'assets/Store';
 // Vue APP
@@ -27,7 +30,6 @@ import router from './router';
 // plugin
 import './assets/plugin/Fontaweosme';
 import './assets/plugin/VeeValidate';
-import './assets/plugin/VueLoadingOverlay';
 import './assets/plugin/VueToastification';
 import './assets/icons/index';
 // filter
@@ -39,6 +41,8 @@ Vue.use(VueAxios, axios);
 Vue.use(ScrollBar);
 // Swiper
 Vue.use(VueAwesomeSwiper);
+// vue-loading-overlay
+Vue.component('Loading', Loading);
 // global components
 Vue.component('pagination', Pagination);
 Vue.component('toggle', ToggleSwitch);

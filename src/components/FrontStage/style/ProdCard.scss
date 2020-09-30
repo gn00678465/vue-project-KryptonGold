@@ -15,16 +15,6 @@ h5 {
   overflow: hidden;
   margin-bottom: 1rem;
   border-radius: 5px;
-  &:hover {
-    cursor: pointer;
-    box-shadow: rgba(45,45,45,0.03) 0 2px 2px,
-    rgba(49,49,49,0.03) 0 4px 4px,
-    rgba(42,42,42,0.03) 0 8px 8px,
-    rgba(32,32,32,0.03) 0 16px 16px,
-    rgba(49,49,49,0.03) 0 32px 32px,
-    rgba(35,35,35,0.03) 0 64px 64px;
-    transform: translate(0, -4px);
-  }
   &__img {
     width: 100%;
     display: flex;
@@ -56,49 +46,45 @@ h5 {
     color: v(info);
   }
   &__description {
-    line-height: 1.2;
+    line-height: 1.5;
     letter-spacing: 1px;
-    font-size: 0.85rem;
+    font-size: 1.1rem;
     height: 4rem;
     user-select: none;
   }
   &__footer {
     display: flex;
     align-items: center;
-    flex-flow: row wrap;
+    flex-flow: row nowrap;
   }
   &__price {
     display: inline-block;
-    font-size: 1.9rem;
     font-weight: 700;
+    font-size: 1.3rem;
     color: v(primary);
   }
   &__unit {
     display: inline-block;
-    font-size: 1rem;
-    font-weight: 500;
+    font-weight: 700;
+    font-size: 1.3rem;
+    margin-right: auto;
     color: v(secondary);
   }
   .add__cart {
     display: inline-block;
     margin-left: 5px;
   }
+  &:hover {
+    cursor: pointer;
+    box-shadow: rgba(45,45,45,0.03) 0 2px 2px,
+    rgba(49,49,49,0.03) 0 4px 4px,
+    rgba(42,42,42,0.03) 0 8px 8px,
+    rgba(32,32,32,0.03) 0 16px 16px,
+    rgba(49,49,49,0.03) 0 32px 32px,
+    rgba(35,35,35,0.03) 0 64px 64px;
+    transform: translateY(-1px);
+  }
   &:hover.disabled {
     cursor: auto;
-  }
-}
-
-@media (min-width: 992px) {
-  .ItemCard {
-    &__price {
-      font-weight: 700;
-    }
-    &__unit {
-      font-size: 1.3rem;
-      font-weight: 500;
-    }
-    &__description {
-      font-size: 1rem;
-    }
   }
 }

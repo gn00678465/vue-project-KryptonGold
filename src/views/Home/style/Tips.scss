@@ -2,12 +2,11 @@
   --swiper-theme-color: v(warning);
   --swiper-navigation-color: #C38A00;
   --swiper-navigation-size: 25px;
+  padding-top: 46px;
   .swiper-wrapper {
-    height: 600px;
+    height: calc(100vh - 46px - 230px);
     width: 100%;
     position: relative;
-  }
-  .swiper-wrapper {
     transition: 2s cubic-bezier(.68,-0.4,.27,1.34) .2s;
   }
   .swiper-slide {
@@ -49,6 +48,7 @@
       opacity: 0;
       transform: translate3d(20px, 0, 0);
       transition: .2s ease .5s;
+      color: #fff;
     }
     &-text {
       line-height: 1.5;
@@ -56,6 +56,7 @@
       opacity: 0;
       transform: translate3d(20px, 0, 0);
       transition: .2s ease .6s;
+      color: #fff;
     }
   }
   
@@ -142,6 +143,10 @@
 
 @media screen and (min-width: 768px) {
   .tips {
+    padding-top: 62px;
+    .swiper-wrapper {
+      height: calc(100vh - 62px - 154px);
+    }
     .swiper-slide {
       &::after {
         right: -30%;
@@ -171,6 +176,14 @@
     .swiper-button-next,
     .swiper-button-prev {
       display: none;
+    }
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .tips {
+    .swiper-wrapper {
+      height: calc(100vh - 62px - 144px);
     }
   }
 }

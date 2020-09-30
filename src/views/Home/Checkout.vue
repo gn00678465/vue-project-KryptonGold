@@ -43,4 +43,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.checkout {
+  padding-top: 46px;
+}
+
+@media (min-width: 768px) {
+  .checkout {
+    padding-top: 62px;
+  }
+}
 </style>

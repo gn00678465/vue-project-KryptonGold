@@ -98,18 +98,22 @@ export default {
   }
   .select {
     display: inline-block;
-    @include mark(#{v(hightlight)}, 40%);
+    position: relative;
   }
-}
-
-@keyframes marking {
-  0% {
-    background-image: linear-gradient(#{v(hightlight)});
-    background-position: 0 100%;
-    background-size: 0% 40%;
+  .select::before,
+  .select::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    width: 50%;
+    height: 2px;
+    background: #fff;
   }
-  100% {
-    @include mark(#{v(hightlight)}, 40%);
+  .select::before {
+    right: 0;
+  }
+  .select::after {
+    left: 0;
   }
 }
 
@@ -126,10 +130,11 @@ export default {
   .icon {
     display: none;
   }
-  .item {
-    .subMenu {
-      max-height: 99em;
-    }
+  .subMenu {
+    max-height: 99em;
+  }
+  .link[data-category="menu"] {
+    display: none;
   }
 }
 </style>

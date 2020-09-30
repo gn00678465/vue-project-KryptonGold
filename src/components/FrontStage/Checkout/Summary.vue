@@ -26,7 +26,6 @@
         <AnimatedIngeter class="value" :value="DisCount" >元</AnimatedIngeter>
       </li>
       <li class="list-group-item total summary__item">
-        <!-- TODO: tween.js version 16.6 now is 18 -->
         <p class="label">總金額：</p>
         <AnimatedIngeter class="value" :value="TotalPrice" >元</AnimatedIngeter>
       </li>

@@ -36,21 +36,5 @@ export default {
 
 .stky-body {
   flex: 1 0 auto;
-  padding-top: 50px;
-}
-
-@media (min-width: 768px) {
-  .stky-body {
-    padding-top: 64px;
-  }
-  .index {
-    padding-top: 0px;
-  }
-}
-
-@media (min-width: 992px) {
-  .index {
-    padding-top: 0px;
-  }
 }
 </style>

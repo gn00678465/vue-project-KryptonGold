@@ -9,11 +9,14 @@
         <img :src="data.product.imageUrl[0]" alt="">
       </div>
       <div class="CartCard__content">
-        <p class="CartCard__title">
-          {{ data.product.title }}
-        </p>
+        <div class="CartCard__title">
+          <h5 class="h5">
+            {{ data.product.title }}
+          </h5>
+          <font-awesome-icon @click.prevent="DelProduct" class="CartCard__trash" icon="trash-alt" />
+        </div>
         <div class="CartCard__edit">
-          <Increment :count.sync="quantity" :value="data.quantity" size="sm" styled="simple" >
+          <Increment :count.sync="quantity" :value="data.quantity" :size="1.3" styled="simple" >
             <template #plus>
               <font-awesome-icon icon="plus" />
             </template>
@@ -22,11 +25,10 @@
             </template>
           </Increment>
           <p class="CartCard__price">
-            {{ data.product.price|Dollar|Currency }}
+            NT{{ data.product.price|Dollar|Currency }}
           </p>
         </div>
       </div>
-      <font-awesome-icon @click.prevent="DelProduct" class="CartCard__trash" icon="trash-alt" />
     </div>
   </div>
 </template>
@@ -78,7 +80,7 @@ img {
   flex-direction: column;
   position:relative;
   overflow: hidden;
-  padding: .75rem 1.5rem;
+  padding: .75rem 1rem;
   background: #fff;
   border-radius: .5rem;
   max-height: 90px;
@@ -102,24 +104,26 @@ img {
     transform: translate(-20px, -25px);
   }
   &__title {
+    margin-bottom: .5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .h5 {
+    margin: 0;
     font-size: 1.2rem;
     font-weight: 700;
-    margin-bottom: .5rem;
+    display: inline-block;
   }
   &__edit {
     display: flex;
     align-items: center;
+    justify-content: space-between;
   }
   &__price {
-    font-size: 1.2rem;
+    font-size: 1.5rem;
     font-weight: 700;
-    color: v(theme-card-price);
-    &::before {
-      content: '*';
-      color: #000;
-      font-size: 1rem;
-      font-weight: normal;
-    }
+    color: v(primary);
   }
   &__trash {
     cursor: pointer;

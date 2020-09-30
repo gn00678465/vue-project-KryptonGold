@@ -2,6 +2,10 @@ img {
   max-width: 100%;
 }
 
+.container {
+  padding-top: 46px;
+}
+
 .product {
   margin-top: 1rem;
   display: flex;
@@ -11,15 +15,15 @@ img {
     background: #fff;
     height: 100%;
     position: relative;
-    border-top-right-radius: 30px;
-    border-top-left-radius: 30px;
+    border-top-right-radius: 15px;
+    border-top-left-radius: 15px;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
   }
   &__image {
     filter: drop-shadow(1px 1px 3px #a6a6a6);
-    transform: translateY(-2rem);
+    transform: translateY(-3rem);
   }
   &__info {
     position: relative;
@@ -30,15 +34,16 @@ img {
     }
     .title {
       text-align: center;
-      color: v(secondary);
-      font-size: 1.5rem;
+      color: v(primary);
+      font-size: 2rem;
       line-height: 1.5;
       font-weight: 900;
       margin-bottom: 0.5rem;
     }
     .subtext {
-      font-size: 1rem;
-      color: v(info);
+      font-size: 1.3rem;
+      text-align: center;
+      color: v(secondary);
       font-weight: 500;
     }
     .active {
@@ -50,15 +55,14 @@ img {
     hr {
       width: 100%;
       border-top: 1px solid v(light);
-      margin: 1rem 0;
+      margin-bottom: 1rem;
     }
   }
   &__content {
-    border-radius: 30px 30px 15px 15px;
+    border-radius: 15px;
     padding: 1rem 1.5rem;
     width: 100%;
     transform: translateY(-2rem);
-    // box-shadow: 4px 4px 25px -2px rgba(0, 0, 0, 0.3);
     background: #FFF;
     z-index: 5;
   }
@@ -67,25 +71,20 @@ img {
       display: inline-block;
       font-size: 1rem;
       text-decoration: line-through;
-      margin-right: 0.5rem;
       color: v(secondary);
     }
     .discount {
       display: inline-block;
-      padding-left: 0.15rem;
       font-size: 1.5rem;
       line-height: 1.5;
       font-weight: 900;
+      margin-right: 0.5rem;
       color: v(primary);
     }
   }
 }
+
 .description {
-  & &__title {
-    font-size: 1.4rem;
-    display: block;
-    line-height: 1.5;
-  }
   & &__content {
     font-size: 1.1rem;
     letter-spacing: 1px;
@@ -93,24 +92,19 @@ img {
     word-break: break-all;
     line-height: 1.5;
   }
-  .showNore {
-    font-weight: 500;
-    color: v(info);
-  }
 }
 
 .information {
-  padding: 1rem;
+  padding: 1rem 1rem 0 1rem;
   background: #fff;
   position: relative;
   border-radius: 5px;
-  // box-shadow: 4px 4px 25px -2px rgba(0, 0, 0, 0.3);
   .item {
     display: inline-block;
     width: 100%;
     font-size: 1rem;
     text-align: left;
-    margin-bottom: 0.5rem;
+    margin-bottom: 1rem;
     color: #6b6b6b;
   }
   .item__title,
@@ -126,33 +120,26 @@ img {
   }
 }
 
+.pure-button {
+  font-size: 1.3rem;
+}
+.increment {
+  border-radius: 2px;
+}
+
 @media (min-width: 768px) {
+  .container {
+    padding-top: 62px;
+  }
   .product {
-    &__info {
-      .title {
-        font-size: 1.75rem;
-      }
-      .subtext {
-        font-size: 1.25rem;
-      }
+    &__photo {
+      height: auto;
     }
     &__price {
       .origin {
         font-size: 1.15rem;
       }
-      .discount {
-        font-size: 1.75rem;
-      }
     }
-  }
-  .description {
-    .description__title {
-      font-size: 1.5rem;
-    }
-  }
-  .pure-button {
-    margin-right: 1rem;
-    transform: scale(1.05);
   }
   .information {
     .item {
@@ -171,27 +158,23 @@ img {
     height: 100%;
     flex-flow: row nowrap;
     background: #fff;
-    padding: 2.5rem 0;
     border-radius: 6px;
-    box-shadow: 4px 4px 25px -2px rgba(0, 0, 0, 0.3);
     &__photo {
-      transform: translateX(-20px);
-      border-radius: 1rem;
+      border-radius: 6px 0 0 6px;
       background-color: transparent;
+      flex-basis: 80%;
     }
     &__info {
-      min-height: 100% !important;
       .title {
-        font-size: 2rem;
+        text-align: left;
+      }
+      .subtext {
         text-align: left;
         margin-bottom: 1rem;
       }
-      .subtext {
-        font-size: 1.5rem;
-      }
       .active {
-        margin-top: .8rem;
-        order: 3;
+        order: 4;
+        margin-top: .5rem;
       }
     }
     &__content {
@@ -202,10 +185,11 @@ img {
       background: transparent;
       transform: initial;
       height: 100%;
-      justify-content: space-between;
-      padding: 0 1.5rem;
+      justify-content: center;
+      padding: 1.5rem;
     }
     &__price {
+      order: 3;
       .origin {
         font-size: 1.5rem;
       }
@@ -216,16 +200,12 @@ img {
   }
   .description {
     order: 2;
-    margin-bottom: auto;
-    .description__title {
-      font-size: 1.8rem;
-    }
+    margin-bottom: 1rem;
   }
   .information {
-    margin-bottom: 0.8rem;
     .item {
       font-size: 1.3rem;
-      width: 50%;
+      width: calc(100% / 3);
     }
   }
 }

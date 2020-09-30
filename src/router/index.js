@@ -6,7 +6,7 @@ Vue.use(VueRouter);
 const routes = [
   { // 前台
     path: '/',
-    name: 'Home',
+    name: '',
     component: () => import('../views/Home.vue'),
     children: [
       {

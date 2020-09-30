@@ -2,7 +2,7 @@ export default {
   methods: {
     GetCartList(page = 1, paged = 10) {
       this.isLoading = true;
-      return this.$http.get(`${process.env.VUE_APP_PATH}api/${process.env.VUE_APP_UUID}/ec/shopping?page=${page}&paged=${paged}`)
+      return this.$http.get(`${process.env.VUE_APP_PATH}${process.env.VUE_APP_UUID}/ec/shopping?page=${page}&paged=${paged}`)
         .then((res) => {
           if (res.status === 200) {
             this.isLoading = false;
@@ -17,7 +17,7 @@ export default {
     },
     CreateCart(product, quantity = 1) {
       this.addCarting = true;
-      this.$http.post(`${process.env.VUE_APP_PATH}api/${process.env.VUE_APP_UUID}/ec/shopping`, { product, quantity })
+      this.$http.post(`${process.env.VUE_APP_PATH}${process.env.VUE_APP_UUID}/ec/shopping`, { product, quantity })
         .then((res) => {
           if (res.status === 200) {
             this.addCarting = false;
@@ -31,7 +31,7 @@ export default {
     },
     EditCart(product, quantity) {
       this.isLoading = true;
-      this.$http.patch(`${process.env.VUE_APP_PATH}api/${process.env.VUE_APP_UUID}/ec/shopping`, { product, quantity })
+      this.$http.patch(`${process.env.VUE_APP_PATH}${process.env.VUE_APP_UUID}/ec/shopping`, { product, quantity })
         .then((res) => {
           if (res.status === 200) {
             this.isLoading = false;
@@ -45,7 +45,7 @@ export default {
     },
     DestroyCart(id) {
       this.isLoading = true;
-      this.$http.delete(`${process.env.VUE_APP_PATH}api/${process.env.VUE_APP_UUID}/ec/shopping/${id}`)
+      this.$http.delete(`${process.env.VUE_APP_PATH}${process.env.VUE_APP_UUID}/ec/shopping/${id}`)
         .then((res) => {
           if (res.status === 200) {
             this.isLoading = false;
@@ -59,7 +59,7 @@ export default {
     },
     DestroyAllCart() {
       this.isLoading = true;
-      this.$http.delete(`${process.env.VUE_APP_PATH}api/${process.env.VUE_APP_UUID}/ec/shopping/all/product`)
+      this.$http.delete(`${process.env.VUE_APP_PATH}${process.env.VUE_APP_UUID}/ec/shopping/all/product`)
         .then((res) => {
           if (res.status === 200) {
             this.isLoading = false;
@@ -72,7 +72,7 @@ export default {
         });
     },
     GetOrderList() {
-      return this.$http.get(`${process.env.VUE_APP_PATH}api/${process.env.VUE_APP_UUID}/ec/orders`)
+      return this.$http.get(`${process.env.VUE_APP_PATH}${process.env.VUE_APP_UUID}/ec/orders`)
         .then((res) => {
           if (res.status === 200) {
             this.$mutation.getOrderID(res.data.data[0].id);
@@ -83,7 +83,7 @@ export default {
         });
     },
     CreateOrder(detial) {
-      return this.$http.post(`${process.env.VUE_APP_PATH}api/${process.env.VUE_APP_UUID}/ec/orders`, detial)
+      return this.$http.post(`${process.env.VUE_APP_PATH}${process.env.VUE_APP_UUID}/ec/orders`, detial)
         .then((res) => {
           if (res.status === 200) {
             this.$mutation.setOrderID(res.data.data.id);
@@ -97,7 +97,7 @@ export default {
     },
     ShowOrder(id) {
       this.isLoading = true;
-      return this.$http.get(`${process.env.VUE_APP_PATH}api/${process.env.VUE_APP_UUID}/ec/orders/${id}`)
+      return this.$http.get(`${process.env.VUE_APP_PATH}${process.env.VUE_APP_UUID}/ec/orders/${id}`)
         .then((res) => {
           if (res.status === 200) {
             this.isLoading = false;
@@ -111,7 +111,7 @@ export default {
     },
     SetOrderPaid(id) {
       this.isSpin = true;
-      return this.$http.post(`${process.env.VUE_APP_PATH}api/${process.env.VUE_APP_UUID}/ec/orders/${id}/paying`)
+      return this.$http.post(`${process.env.VUE_APP_PATH}${process.env.VUE_APP_UUID}/ec/orders/${id}/paying`)
         .then((res) => {
           if (res.status === 200) {
             this.isSpin = false;
@@ -124,10 +124,11 @@ export default {
         });
     },
     SearchCoupon(code) {
-      return this.$http.post(`${process.env.VUE_APP_PATH}api/${process.env.VUE_APP_UUID}/ec/coupon/search`, { code })
+      return this.$http.post(`${process.env.VUE_APP_PATH}${process.env.VUE_APP_UUID}/ec/coupon/search`, { code })
         .then((res) => res.data)
         .catch((err) => {
           this.$toast.error(err.response.data.message);
+          this.isSearch = false;
         });
     },
   },

@@ -4,7 +4,7 @@ export default {
     // use in Orders.vue
     getOrderList(page) {
       this.isLoading = true;
-      this.$http.get(`${process.env.VUE_APP_PATH}api/${process.env.VUE_APP_UUID}/admin/ec/orders?page=${page}&paged=10`)
+      this.$http.get(`${process.env.VUE_APP_PATH}${process.env.VUE_APP_UUID}/admin/ec/orders?page=${page}&paged=10`)
         .then((res) => {
           this.OrderList = res.data.data;
           this.total = res.data.meta.pagination.total_pages;
@@ -19,7 +19,7 @@ export default {
     // use in _OrderItem.vue
     SetOrderPaid(id) {
       this.isLoading = true;
-      return this.$http.patch(`${process.env.VUE_APP_PATH}api/${process.env.VUE_APP_UUID}/admin/ec/orders/${id}/paid`)
+      return this.$http.patch(`${process.env.VUE_APP_PATH}${process.env.VUE_APP_UUID}/admin/ec/orders/${id}/paid`)
         .then((res) => {
           if (res.status === 200) {
             this.isLoading = false;
@@ -34,7 +34,7 @@ export default {
     // use in _OrderItem.vue
     SetOrderUnpaid(id) {
       this.isLoading = true;
-      return this.$http.patch(`${process.env.VUE_APP_PATH}api/${process.env.VUE_APP_UUID}/admin/ec/orders/${id}/unpaid`)
+      return this.$http.patch(`${process.env.VUE_APP_PATH}${process.env.VUE_APP_UUID}/admin/ec/orders/${id}/unpaid`)
         .then((res) => {
           if (res.status === 200) {
             this.isLoading = false;

@@ -28,13 +28,13 @@ table { border-collapse: collapse; border-spacing: 0; }
 
 // colors
 :root {
-  --primary: #BC8848;
-  // --primary: #b65219;
+  // --primary: #BC8848;
+  --primary: #BD5413;
   --secondary: #4c4c4c;
-  --success: #06A503;
-  --info: #379BDE;
+  --success: #058A03;
+  --info: #017ACB;
   --warning: #C38A00;
-  --danger: #f44336;
+  --danger: #EB1000;
   --light: #eee;
   --dark: #26272b;
   --hightlight: #69f0ae;

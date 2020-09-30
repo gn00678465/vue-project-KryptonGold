@@ -57,6 +57,10 @@ img {
   flex-direction: row;
   justify-content: center;
   height: 100%;
+  margin-top: 0.5rem;
+  &:first-child {
+    margin-top: 0;
+  }
   .card-img, .card-content {
     flex: 0 0 100%;
     display: block;

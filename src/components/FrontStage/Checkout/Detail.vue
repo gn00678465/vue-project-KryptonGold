@@ -42,13 +42,11 @@
           id="address" placeholder="付款人地址" v-model="form.address">
           <span class="invalid-feedback">{{ errors[0] }}</span>
         </validation-provider>
-        <validation-provider class="form-group"
-            tag="div" rules="" v-slot="{ errors, classes }">
+        <div class="form-group">
           <label for="message">留言</label>
-          <textarea class="form-control" :class="classes" id="message" rows="3"
+          <textarea class="form-control" id="message" rows="3"
             v-model="form.message" placeholder="輸入你的留言"></textarea>
-          <span class="invalid-feedback">{{ errors[0] }}</span>
-        </validation-provider>
+        </div>
       </div>
     </div>
   </div>
@@ -87,7 +85,7 @@ export default {
 }
 
 small.required {
-  color: red;
+  color: v(danger);
   margin-left: 2px;
   font-weight: 900;
 }

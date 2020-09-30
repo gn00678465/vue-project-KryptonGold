@@ -23,11 +23,11 @@
           <router-link to="/tips" tag="li" class="nav__item" exact-active-class="active">
             <span class="nav__link">豆知識</span>
           </router-link>
+          <li class="nav__cart" @click.prevent="goToCart" :class="{disabled: cartDisable}">
+            <icon class="nav-icon" iconName="cart" />
+            <span class="badge" v-if="cartLength">{{ cartLength }}</span>
+          </li>
         </ul>
-        <li class="nav__cart" @click.prevent="goToCart" :class="{disabled: cartDisable}">
-          <icon class="nav-icon" iconName="cart" />
-          <span class="badge" v-if="cartLength">{{ cartLength }}</span>
-        </li>
       </div>
     </div>
   </nav>
@@ -61,7 +61,7 @@ export default {
       }
     },
     goToCart() {
-      if (this.$route.path === '/carts' || this.cartLength === 0) return;
+      if (this.$route.path === '/carts') return;
       this.$router.push('/carts');
     },
     getCartLength() {
@@ -80,7 +80,7 @@ export default {
       return (this.$store.clientWidth <= 768 && this.isShow && this.$store.ScrollTop > 1) ? this.escapeStyle : '';
     },
     cartDisable() {
-      return this.cartLength === 0 || this.$route.path === '/carts';
+      return this.$route.path === '/carts';
     },
   },
 };
@@ -136,8 +136,8 @@ $logo-font: 'Kaushan Script';
 
 .nav-bg {
   background: rgba(245,245,247,0.72);
-  box-shadow: 0 2px 16px 0 rgba(0,0,0,0.08);;
   backdrop-filter: saturate(180%) blur(20px);
+  box-shadow: 0 2px 16px 0 rgba(0,0,0,0.08);;
 }
 
 .nav-icon {
@@ -149,7 +149,6 @@ $logo-font: 'Kaushan Script';
   display: flex;
   position: relative;
   flex-wrap: wrap;
-  align-items: center;
   justify-content: space-between;
   align-items: center;
   padding: .15rem 1rem;
@@ -165,7 +164,7 @@ $logo-font: 'Kaushan Script';
     line-height: inherit;
     white-space: nowrap;
     font-family: $logo-font;
-    color: v(secondary);
+    color: v(dark);
   }
   &__mobile-cart {
     @include toggle;
@@ -299,10 +298,11 @@ $logo-font: 'Kaushan Script';
       }
       &__cart {
         @include toggle;
-        display: inline-block;
-        padding: 0.5rem 0;
+        display: flex;
+        align-items: center;
         order: 2;
         position: relative;
+        margin-left: auto;
       }
       &__cart.active {
         .badge {
@@ -312,7 +312,7 @@ $logo-font: 'Kaushan Script';
       &__cart:not(.active) {
         .badge {
           position: absolute;
-          top: 5px;
+          top: 0;
           left: 15px;
           @include badge;
         }

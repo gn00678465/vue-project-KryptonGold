@@ -4,7 +4,7 @@ export default {
     // use in Storage.vue
     getStorageList(page) {
       this.isLoading = true;
-      this.$http.get(`${process.env.VUE_APP_PATH}api/${process.env.VUE_APP_UUID}/admin/storage?page=${page}&paged=9`)
+      this.$http.get(`${process.env.VUE_APP_PATH}${process.env.VUE_APP_UUID}/admin/storage?page=${page}&paged=9`)
         .then((res) => {
           this.storageList = res.data.data;
           this.total = res.data.meta.pagination.total_pages;
@@ -19,7 +19,7 @@ export default {
     // use in _StorageModal.vue
     editStorage(file) {
       this.isUplading = true;
-      return this.$http.post(`${process.env.VUE_APP_PATH}api/${process.env.VUE_APP_UUID}/admin/storage`, file, {
+      return this.$http.post(`${process.env.VUE_APP_PATH}${process.env.VUE_APP_UUID}/admin/storage`, file, {
         headers: { 'Content-Type': 'multipart/form-data' },
       })
         .then((res) => {
@@ -37,7 +37,7 @@ export default {
     // 刪除指定檔案
     destroyStorage(id) {
       this.isLoading = true;
-      return this.$http.delete(`${process.env.VUE_APP_PATH}api/${process.env.VUE_APP_UUID}/admin/storage/${id}`)
+      return this.$http.delete(`${process.env.VUE_APP_PATH}${process.env.VUE_APP_UUID}/admin/storage/${id}`)
         .then((res) => {
           if (res.status === 200) {
             this.$toast.success('檔案刪除成功');

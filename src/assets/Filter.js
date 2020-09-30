@@ -1,7 +1,7 @@
 import Vue from 'vue';
 
 // 加入貨幣符號
-Vue.filter('Dollar', (val) => `$ ${val}`);
+Vue.filter('Dollar', (val) => `$${val}`);
 
 // 加入百分比符號
 Vue.filter('Percent', (val) => `${val} %`);
