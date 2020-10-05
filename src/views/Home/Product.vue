@@ -5,9 +5,7 @@
       :is-full-page="true">
       <LoadEffect slot="default"/>
       </loading>
-    <div>
-      <BackBtn @click-emit="goBack">繼續購物</BackBtn>
-    </div>
+    <BackBtn @click-emit="goBack">繼續購物</BackBtn>
     <div class="product" v-if="product">
       <div class="product__photo" :style="{backgroundImage: `url(${product.imageUrl[1]})`}">
         <!-- <img :src="product.imageUrl[1]"> -->
@@ -24,12 +22,14 @@
             {{ product.options.percent|percent }}
           </p>
           <div class="product__price">
+            <p class="discount">售價：NT{{ product.price|Dollar }}</p>
             <p class="origin"
-              v-if="product.origin_price !== product.price">{{ product.origin_price|Dollar }}元</p>
-            <p class="discount">{{ product.price|Dollar }}元</p>
+              v-if="product.origin_price !== product.price">
+              原價：NT{{ product.origin_price|Dollar }}
+            </p>
           </div>
           <div class="active">
-            <Increment :count.sync="quantity" :size="setSize" styled="dark" :key="setSize">
+            <Increment :count.sync="quantity" class="w-50 increment" :size="1.8" styled="simple">
               <template #plus>
                 <font-awesome-icon icon="plus" />
               </template>
@@ -37,18 +37,15 @@
                 <font-awesome-icon icon="minus" />
               </template>
             </Increment>
-            <button type="button" class="pure-button pure-button-primary" :disabled="addCarting"
-              @click.prevent="addCart">
+            <button type="button" class="pure-button pure-button-outline-primary w-50 ml-2"
+              :disabled="addCarting" @click.prevent="addCart">
               <font-awesome-icon v-if="addCarting" icon="spinner" pulse />
               加入購物車
             </button>
           </div>
           <hr>
           <div class="description">
-            <p class="description__title">介紹：</p>
-            <p class="description__content" ref="desc">{{ calcText(product.description) }}</p>
-            <a href="#" v-if="showMoreBtn" class="showNore"  @click="showmoreDesc()">
-              {{ !isDescStatus ? '展開' : '收起' }}</a>
+            <p class="description__content" ref="desc">{{ product.description }}</p>
           </div>
         </div>
       </div>
@@ -83,7 +80,7 @@
         </li>
       </ul>
     </section>
-    <Carsouel :id="id" class="mb-3" v-if="product" :brush="true">
+    <Carsouel :id="id" class="mb-5" v-if="product" :brush="true">
       <template #h4>其他人也看了</template>
     </Carsouel>
   </div>
@@ -136,10 +133,6 @@ export default {
     },
   },
   computed: {
-    setSize() {
-      if (this.screenWidth <= 768) return 'sm';
-      return 'md';
-    },
     showMoreBtn() {
       return this.product.description.length > this.len;
     },

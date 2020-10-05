@@ -13,7 +13,7 @@
       <footer class="ItemCard__footer">
         <p class="ItemCard__price">{{ data.price|Currency|Dollar }}</p>
         <p class="ItemCard__unit">/ {{ data.unit }}</p>
-        <button type="button" class="pure-button pure-button-primary w-100 mt-2"
+        <button type="button" class="pure-button pure-button-outline-primary"
           @click.prevent.stop="addCart" :disabled="addCarting">
           <font-awesome-icon v-if="addCarting" icon="spinner" pulse />
           <font-awesome-icon v-else icon="cart-plus" />
@@ -41,7 +41,7 @@ export default {
   },
   data() {
     return {
-      lens: 50,
+      lens: 30,
       addCarting: false,
     };
   },

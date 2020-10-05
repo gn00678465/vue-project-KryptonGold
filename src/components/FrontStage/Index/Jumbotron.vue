@@ -3,7 +3,7 @@
     <img class="slide" src="https://hexschool-api.s3.us-west-2.amazonaws.com/custom/SDoPfqZGNHS4Ucvuzph02opaqnOfcXi9CQrpCwzrM6S189RZcAk1jLKttOOuXmvH0xtz5GudbOFcsq7Py3qq18fxY7N2R8hrBIkhSxY15if6ydxHTDzk3nqo5iVpLSU5.jpg"/>
     <transition enter-active-class="animate__animated animate__fadeInDown">
       <div class="content" v-if="show">
-        <p class="h1">酒逢知己千杯少</p>
+        <h1 class="title">酒逢知己千杯少</h1>
         <h2 class="subtitle">是兄弟就一起喝</h2>
         <hr>
         <button type="button" class="pure-button pure-button-outline-light"
@@ -50,7 +50,7 @@ export default {
     bottom: 5%;;
     text-align: center;
   }
-  .h1 {
+  .title {
     font-size: 30px;
     font-weight: 900;
     color: white;
@@ -72,7 +72,7 @@ export default {
     height: 600px;
   }
   .jumbotron {
-    .h1 {
+    .title {
       font-size: 50px;
     }
     .subtitle {
@@ -90,7 +90,7 @@ export default {
     height: 800px;
   }
   .jumbotron {
-    .h1 {
+    .title {
       font-size: 75px;
     }
     .subtitle {

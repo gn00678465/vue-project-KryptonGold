@@ -11,9 +11,7 @@
       </div>
       <div class="col-sm-12 col-md-6 col-lg-5 order__content">
           <div class="order__col">
-            <div>
-              <h4 class="h4 text-bold d-inline-block">訂單資訊</h4>
-            </div>
+            <h4 class="h4 text-bold d-inline-block">訂單資訊</h4>
             <ul class="order__list">
               <li class="order__item mb-2">
                 <p class="id border-bottom">訂單編號：</p>
@@ -29,9 +27,7 @@
             </ul>
           </div>
           <div class="order__col">
-            <div>
-              <h4 class="h4 text-bold d-inline-block">訂購人資料</h4>
-            </div>
+            <h4 class="h4 text-bold d-inline-block">訂購人資料</h4>
               <ul class="order__list">
                 <li class="order__item">
                   <p class="label">姓名：</p>

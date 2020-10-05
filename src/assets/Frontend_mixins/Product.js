@@ -2,7 +2,7 @@ export default {
   methods: {
     GetProductList() {
       this.isLoading = true;
-      this.$http.get(`${process.env.VUE_APP_PATH}api/${process.env.VUE_APP_UUID}/ec/products?paged=100`)
+      this.$http.get(`${process.env.VUE_APP_PATH}${process.env.VUE_APP_UUID}/ec/products?paged=100`)
         .then((res) => {
           if (res.status === 200) {
             this.isLoading = false;
@@ -16,7 +16,7 @@ export default {
     },
     GetProductDetial(id) {
       this.isLoading = true;
-      this.$http.get(`${process.env.VUE_APP_PATH}api/${process.env.VUE_APP_UUID}/ec/product/${id}`)
+      this.$http.get(`${process.env.VUE_APP_PATH}${process.env.VUE_APP_UUID}/ec/product/${id}`)
         .then((res) => {
           if (res.status === 200) {
             this.isLoading = false;

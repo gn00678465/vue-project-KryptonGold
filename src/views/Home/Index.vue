@@ -3,7 +3,7 @@
     <Jumbotron />
     <SectionSort />
     <SectionShow />
-    <Carsouel class="container mb-2">
+    <Carsouel class="container mb-5">
       <template #h4>人氣推薦</template>
     </Carsouel>
   </div>

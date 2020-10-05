@@ -14,17 +14,13 @@
         </div>
         <div class="col-lg-9 mt-3 mt-md-0">
           <section>
-            <transition-group class="row" tag="div"
-            :css="false"
-            @before-enter="beforeEnter"
-            @enter="enter"
-            @leave="leave">
+            <div class="row">
               <div class="col-xl-4 col-md-6 col-12" :data-index="i"
                 v-for="(prod, i) in paginationProducts[page - 1]"
                 :key="`${prod.id.substring(0, 5)}_${i}`">
                 <ProdCard :data="prod" />
               </div>
-            </transition-group>
+            </div>
             <pagination
               v-if="paginationProducts.length > 1"
               :total_pages="paginationProducts.length"
@@ -40,7 +36,6 @@
 <script>
 import Nav from 'components/FrontStage/CategoryList/UL.vue';
 import FrontProductAPI from 'assets/Frontend_mixins/Product';
-import Velocity from 'velocity-animate';
 
 export default {
   name: 'Products',
@@ -59,31 +54,6 @@ export default {
     this.GetProductList();
   },
   methods: {
-    beforeEnter(el) {
-      const card = el;
-      card.style.opacity = 0;
-      card.style.height = 0;
-      card.style.width = 0;
-      card.style.transformOrigin = 'top left';
-    },
-    enter(el, done) {
-      const delay = el.dataset.index * this.velocityDelay;
-      window.setTimeout(() => {
-        Velocity(el, { scale: 0.4 }, { duration: 400 });
-        Velocity(
-          el,
-          { opacity: 1, scale: 1, height: '100%' },
-          { complete: done },
-        );
-      }, delay);
-    },
-    leave(el, done) {
-      const delay = el.dataset.index * (this.velocityDelay);
-      window.setTimeout(() => {
-        Velocity(el, { scale: 0 }, { duration: 300 });
-        Velocity(el, { opacity: 0 }, { complete: done });
-      }, delay);
-    },
     dataHandler() {
       const newData = [];
       this.filterProduct.forEach((prod, i) => {
@@ -140,12 +110,21 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.products {
+  padding-top: 46px;
+}
 .banner {
   .slide {
     display: block;
     height: 500px;
     object-fit: cover;
     width: 100%;
+  }
+}
+
+@media screen and (min-width: 768px){
+  .products {
+    padding-top: 62px;
   }
 }
 </style>

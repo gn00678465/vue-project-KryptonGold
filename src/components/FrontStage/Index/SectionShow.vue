@@ -64,7 +64,7 @@ export default {
           btnClass: 'pure-button pure-button-outline-light',
           color: '#FFF',
           id: 'kvEtBaFq40fIlGGIvCscqOpqU7QRsEFQAKnSi76PeEWwfx4tFoVrxEVYqPvDbeE1',
-          imgUrl: 'https://hexschool-api.s3.us-west-2.amazonaws.com/custom/SngnW88JVzywvrMvejBW0RLaQulUOJzZFJqLqDIFG1gNz95GdnRs4W42Ijmvkg6b5qjhbps01ZxRaMn40XmeL0IzyKl3efnvM1w1fMilGQrbu0HHWZ37z6zEmUlPxqPL.jpg',
+          imgUrl: 'https://hexschool-api.s3.us-west-2.amazonaws.com/custom/FwFGOfDCBq7sddrzmhOyaORkXF8SWSyFqggdeMVq5Scx5xsj2Gj4T08URSB5Gq4hYtuUUX3LWyRdwBnwna5FMZLHQk8IkwrZmoxgW9uUj5BtdCVpWINlz7eyRCCJPi1x.png',
         },
         {
           bgColor: '#e1db2e',

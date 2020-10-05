@@ -1,15 +1,40 @@
 <template>
-  <div class="increment" :class="[classis, rwdClassis]">
-    <button type="button" :disabled="isAnimating || isZero"
-      @click.prevent='subtract'><slot name="minus">-</slot></button>
-    <p class="count" v-if="!isTypeing" :class="{before: isBefore, after: isAfter}"
-      :data-before="countBefore|addZero" :data-after="countAfter|addZero" @click.prevent="onChange">
-      {{ countCurrent|addZero }}
+  <div class="increment" :class="[classis]" :style="incrementSize">
+    <button
+      class="increment__btn minus"
+      type="button"
+      :disabled="isAnimating || isZero"
+      @click.prevent="subtract"
+    >
+      <slot name="minus">-</slot>
+    </button>
+    <p
+      class="count"
+      v-if="!isTypeing"
+      :class="{ before: isBefore, after: isAfter }"
+      :data-before="addZero(countBefore)"
+      :data-after="addZero(countAfter)"
+      @click.prevent="onChange"
+    >
+      {{ addZero(countCurrent) }}
     </p>
-    <input v-else type="number" :value="count"
-      @keypress="keypress" @keyup.enter="enterHandler" @keyup.esc="escHandler">
-    <button type="button" :disabled="isAnimating"
-      @click.prevent='add'><slot name="plus">+</slot></button>
+    <input
+      class="increment__input"
+      v-else
+      type="number"
+      :value="count"
+      @keypress="keypress"
+      @keyup.enter="enterHandler"
+      @keyup.esc="escHandler"
+    />
+    <button
+      calss="increment__btn plus"
+      type="button"
+      :disabled="isAnimating"
+      @click.prevent="add"
+    >
+      <slot name="plus">+</slot>
+    </button>
   </div>
 </template>
 
@@ -22,16 +47,12 @@ export default {
       default: 1,
     },
     size: {
-      type: String,
-      default: 'sm',
+      type: Number,
+      default: 1,
     },
     styled: {
       type: String,
       default: 'light',
-    },
-    rwd: {
-      type: Boolean,
-      default: true,
     },
   },
   data() {
@@ -40,10 +61,7 @@ export default {
       isBefore: false,
       isAfter: false,
       isTypeing: false,
-      classis: [`increment-${this.size}`, `increment-${this.styled}`],
-      rwdClassis: {
-        'increment-rwd-xs': this.rwd,
-      },
+      classis: [`increment-${this.styled}`],
     };
   },
   methods: {
@@ -83,6 +101,9 @@ export default {
     emitHandler() {
       this.$emit('update:count', this.count);
     },
+    addZero(val) {
+      return val < 10 ? `0${val}` : val;
+    },
   },
   computed: {
     isAnimating() {
@@ -100,6 +121,11 @@ export default {
     countCurrent() {
       return this.count;
     },
+    incrementSize() {
+      return {
+        '--size': `${this.size * 16}px`,
+      };
+    },
   },
   watch: {
     count: {
@@ -113,18 +139,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-$size: (
-  'sm': 24px,
-  'md': 25px,
-  'lg': 56px
-);
-
-.increment {
-  --sm: 24px;
-  --md: 32px;
-  --lg: 56px;
-}
-
 .increment {
   display: flex;
   overflow: hidden;
@@ -132,7 +146,7 @@ $size: (
   box-sizing: content-box;
   &::before {
     position: absolute;
-    content: '';
+    content: "";
     width: 100%;
     left: 0;
     top: 0;
@@ -140,7 +154,7 @@ $size: (
   }
   &::after {
     position: absolute;
-    content: '';
+    content: "";
     bottom: 0;
     left: 0;
     width: 100%;
@@ -183,10 +197,18 @@ $size: (
   &-dark {
     background: #000000;
     &::before {
-      background: linear-gradient(180deg, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0) 100%);
+      background: linear-gradient(
+        180deg,
+        rgba(0, 0, 0, 0.9) 0%,
+        rgba(0, 0, 0, 0) 100%
+      );
     }
     &::after {
-      background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,.9) 100%);
+      background: linear-gradient(
+        180deg,
+        rgba(0, 0, 0, 0) 0%,
+        rgba(0, 0, 0, 0.9) 100%
+      );
     }
     .count {
       color: #fff;
@@ -198,10 +220,18 @@ $size: (
   &-light {
     background: #eee;
     &::before {
-      background: linear-gradient(180deg, rgba(238, 238, 238, .9) 0%, rgba(0,0,0,0) 100%);
+      background: linear-gradient(
+        180deg,
+        rgba(238, 238, 238, 0.9) 0%,
+        rgba(0, 0, 0, 0) 100%
+      );
     }
     &::after {
-      background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(238,238,238,.9) 100%);
+      background: linear-gradient(
+        180deg,
+        rgba(0, 0, 0, 0) 0%,
+        rgba(238, 238, 238, 0.9) 100%
+      );
     }
     .count {
       color: #666;
@@ -215,24 +245,38 @@ $size: (
     button {
       border-radius: 50%;
       color: #999;
-      background: linear-gradient(135deg, rgba(230, 230, 230, 1) 0%, rgba(246, 246, 246, 1) 100%);
-      box-shadow: -4px -4px 10px -8px rgba(255,255,255,1), 4px 4px 10px -8px rgba(0,0,0,.3);
+      background: linear-gradient(
+        135deg,
+        rgba(230, 230, 230, 1) 0%,
+        rgba(246, 246, 246, 1) 100%
+      );
+      box-shadow: -4px -4px 10px -8px rgba(255, 255, 255, 1),
+        4px 4px 10px -8px rgba(0, 0, 0, 0.3);
       &:not(:disabled):active {
-      box-shadow: inset -4px -4px 10px -8px rgba(255,255,255,1),
-      inset 4px 4px 10px -8px rgba(0,0,0,.3);
+        box-shadow: inset -4px -4px 10px -8px rgba(255, 255, 255, 1),
+          inset 4px 4px 10px -8px rgba(0, 0, 0, 0.3);
       }
     }
   }
   &-simple {
-    border-radius: 2px !important;
+    border: 1px solid v(secondary);
+    border-radius: 2px;
     &::before {
-      background: linear-gradient(180deg, rgba(255, 255, 255, 0.9) 0%, rgba(0, 0, 0, 0) 100%);
+      background: linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.9) 0%,
+        rgba(255, 255, 255, 0) 100%
+      );
     }
     &::after {
-      background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(255,255,255,.9) 100%);
+      background: linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.9) 100%
+      );
     }
     .count {
-      color: #ec467c;
+      color: v(secondary);
       &::before {
         color: #F4F4F5;
       }
@@ -251,63 +295,49 @@ $size: (
   }
 }
 
-@each $key, $val in $size {
-  .increment-#{$key} {
-    width: 5 * $val;
-    height: 1 * $val;
-    border-radius: .2 * $val;
-    padding: 0.3 * $val 0;
-    &::before {
-      height: 0.3 * $val;
+.increment {
+  width: calc(5 * var(--size));
+  height: calc(1 * var(--size));
+  border-radius: calc(0.2 * var(--size));
+  padding: calc(0.3 * var(--size)) 0;
+  &::before {
+    height: calc(0.3 * var(--size));
+  }
+  &::after {
+    height: calc(0.3 * var(--size));
+  }
+  .count {
+    flex: 1 1 calc(5 * var(--size));
+    line-height: calc(1 * var(--size));
+    font-size: calc(1 * var(--size));
+    transform: translateY(calc(-1 * var(--size)));
+    &.before {
+      transform: translateY(calc(0 * var(--size)));
+      transition: transform 0.2s ease-in;
     }
-    &::after {
-      height: 0.3 * $val;
+    &.after {
+      transform: translateY(calc(-2 * var(--size)));
+      transition: transform 0.2s ease-in;
     }
-    .count {
-      flex: 1 1 5 * $val;
-      line-height: 1 * $val;
-      font-size: 1 * $val;
-      transform: translateY(-1 * $val);
-      &.before {
-        transform: translateY(0 * $val);
-        transition: transform .2s ease-in;
-      }
-      &.after {
-        transform: translateY(-2 * $val);
-        transition: transform .2s ease-in;
-      }
+  }
+  input {
+    flex: 1 1 calc(5 * var(--size));
+    font-size: calc(0.7 * var(--size));
+    margin: 0 calc(0.25 * var(--size));
+    border-radius: calc(0.2 * var(--size));
+  }
+  button {
+    height: calc(1 * var(--size));
+    width: calc(1 * var(--size));
+    flex: 0 0 calc(1 * var(--size));
+    line-height: calc(1 * var(--size));
+    font-size: calc(0.6 * var(--size));
+    &:first-child {
+      margin-left: calc(0.2 * var(--size));
     }
-    input {
-      flex: 1 1 5 * $val;
-      font-size: 0.7 * $val;
-      margin: 0 0.25 * $val;
-      border-radius: 0.2 * $val;
-    }
-    button {
-      height: 1 * $val;
-      width: 1 * $val;
-      flex: 0 0 1 * $val;
-      line-height: 1 * $val;
-      font-size: 0.6 * $val;
-      &:first-child {
-        margin-left: 0.2 * $val;
-      }
-      &:last-child {
-        margin-right: 0.2 * $val;
-      }
+    &:last-child {
+      margin-right: calc(0.2 * var(--size));
     }
   }
 }
-
-// @media (max-width: 374px) {
-//   .increment-rwd-xs {
-//     padding: 0;
-//     &::before {
-//       content: unset;
-//     }
-//     &::after {
-//       content: initial;
-//     }
-//   }
-// }
 </style>
