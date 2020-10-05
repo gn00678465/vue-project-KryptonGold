@@ -10,9 +10,7 @@
       <p class="content">
         <slot name="content"></slot>
       </p>
-      <div class="button">
-        <slot name="button"></slot>
-      </div>
+      <slot name="button"></slot>
     </div>
   </div>
 </template>

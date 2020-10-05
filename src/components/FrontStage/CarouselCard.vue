@@ -4,9 +4,7 @@
       class="CarouselCard__img"
       :src="data.imageUrl[0]"
     >
-    <div class="CarouselCard__details">
-      <h3 class="title">{{ data.title }}</h3>
-    </div>
+    <h3 class="title">{{ data.title }}</h3>
   </div>
 </template>
 
@@ -48,12 +46,6 @@ export default {
       width: 100%;
       transform: translateY(-2rem);
       transition: all .3s;
-    }
-    // details
-    &__details {
-      width: 100%;
-      z-index: 1;
-      margin-top: -2rem;
     }
   }
   .title {

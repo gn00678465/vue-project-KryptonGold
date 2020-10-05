@@ -115,7 +115,7 @@ $logo-font: 'Kaushan Script';
 .nav-light {
   color: v(secondary);
   .nav__item, .nav__cart {
-    &:not(.disabled):hover {
+    &:not(.disabled):not(.active):hover {
       background: rgba(#b65219, .5);
       color: #fff;
     }

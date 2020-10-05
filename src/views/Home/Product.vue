@@ -5,9 +5,7 @@
       :is-full-page="true">
       <LoadEffect slot="default"/>
       </loading>
-    <div>
-      <BackBtn @click-emit="goBack">繼續購物</BackBtn>
-    </div>
+    <BackBtn @click-emit="goBack">繼續購物</BackBtn>
     <div class="product" v-if="product">
       <div class="product__photo" :style="{backgroundImage: `url(${product.imageUrl[1]})`}">
         <!-- <img :src="product.imageUrl[1]"> -->

@@ -265,13 +265,13 @@ export default {
       background: linear-gradient(
         180deg,
         rgba(255, 255, 255, 0.9) 0%,
-        rgba(0, 0, 0, 0) 100%
+        rgba(255, 255, 255, 0) 100%
       );
     }
     &::after {
       background: linear-gradient(
         180deg,
-        rgba(0, 0, 0, 0) 0%,
+        rgba(255, 255, 255, 0) 0%,
         rgba(255, 255, 255, 0.9) 100%
       );
     }
