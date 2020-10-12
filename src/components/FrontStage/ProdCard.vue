@@ -6,8 +6,8 @@
     <div class="ItemCard__content">
       <h4 class="ItemCard__title">{{ data.title }}</h4>
       <div class="ItemCard__tag">
-        <Tag bgColor="info"><template #tag>{{ data.options.type }}</template></Tag>
-        <Tag bgColor="info"><template #tag>{{ data.options.ml|ml }}</template></Tag>
+        <Tag bgColor="success"><template #tag>{{ data.options.type }}</template></Tag>
+        <Tag bgColor="success"><template #tag>{{ data.options.ml|ml }}</template></Tag>
       </div>
       <p class="ItemCard__description">{{ ellipsisContent }}</p>
       <footer class="ItemCard__footer">

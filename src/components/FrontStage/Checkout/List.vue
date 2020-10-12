@@ -3,18 +3,13 @@
     <h4 class="h4">
       <p class="mask text-bold">購物車清單</p>
       <font-awesome-icon icon="chevron-up" class="mobile-arrow" @click.prevent="isShow = !isShow"
-      v-if="!isEmpty" :class="{rotate: isShow}" />
+      :class="{rotate: isShow}" />
     </h4>
-      <transition name="fade" v-if="!isEmpty">
+      <transition name="fade">
         <div class="items" v-show="!isShow">
           <Item v-for="(data) in CartDatas" :key="data.product.id" :data="data"/>
         </div>
       </transition>
-      <div class="emptyShow" v-else>
-        <h5 class="h5">目前購物車內無品項。<br />
-          趕緊<a href="#" class="emptyShow__link" @click="goProducts">購物</a>去吧!
-        </h5>
-      </div>
   </div>
 </template>
 
@@ -48,9 +43,6 @@ export default {
   computed: {
     CartDatas() {
       return this.$store.cartList;
-    },
-    isEmpty() {
-      return this.$store.cartList.length === 0;
     },
   },
 };
@@ -92,25 +84,6 @@ export default {
 .fade-enter, .fade-leave-to {
   opacity: 0;
   max-height: 0;
-}
-
-.emptyShow {
-  display: block;
-  text-align: center;
-  padding-bottom: .5rem;
-  .h5 {
-    line-height: 1.5;
-    font-weight: 500;
-  }
-  &__link {
-    font-weight: 700;
-    color: v(info);
-  }
-  &__link:hover {
-    font-weight: 700;
-    color: v(danger);
-    text-decoration: none;
-  }
 }
 
 @media (min-width: 768px) {

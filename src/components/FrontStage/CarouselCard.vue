@@ -30,7 +30,7 @@ export default {
 <style lang="scss" scoped>
 .CarouselCard {
   border: 1px solid rgba(33, 33, 33, 0.5);
-  border-radius: 0.3rem;
+  border-radius: 0.25rem;
   cursor: pointer;
   display: flex;
   flex-direction: column;
@@ -49,12 +49,15 @@ export default {
     }
   }
   .title {
-    margin-bottom: 0;
-    align-items: center;
-    text-align: center;
     padding: .5rem 0;
     background: v(secondary);
     width: 100%;
+    height: 40px;
+    margin-top: -20px;
+    margin-bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     text-align: center;
     color: v(light);
   }

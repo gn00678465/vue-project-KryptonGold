@@ -1,5 +1,5 @@
 <template>
-  <div class="container vld-parent">
+  <div class="container vld-parent" :style="rootStyle">
     <loading :active.sync="isLoading"
       :can-cancel="true"
       :is-full-page="true">
@@ -15,17 +15,17 @@
       </div>
       <div class="product__info">
         <div class="product__content" ref="content">
-          <p class="title">{{ product.title }}( 1 {{ product.unit }})</p>
+          <p class="title">{{ product.title }}</p>
           <p class="subtext">
             {{ product.options.type }} /
             {{ product.options.ml|ml }} /
             {{ product.options.percent|percent }}
           </p>
           <div class="product__price">
-            <p class="discount">售價：NT{{ product.price|Dollar }}</p>
+            <p class="discount">NT{{ product.price|Dollar }}</p>
             <p class="origin"
               v-if="product.origin_price !== product.price">
-              原價：NT{{ product.origin_price|Dollar }}
+              NT{{ product.origin_price|Dollar }}
             </p>
           </div>
           <div class="active">
@@ -135,6 +135,11 @@ export default {
   computed: {
     showMoreBtn() {
       return this.product.description.length > this.len;
+    },
+    rootStyle() {
+      return {
+        '--nav-height': `${this.$attrs.navHeight}px`,
+      };
     },
   },
   watch: {

@@ -1,5 +1,5 @@
 <template>
-  <footer class="footer">
+  <footer class="footer" ref="foo">
     <div class="container">
       <div class="row">
         <div class="col-md-8 col-xs-12">
@@ -108,7 +108,7 @@ $social-colors: (
   width: 100%;
   text-align: center;
   letter-spacing: 0.5rem;
-  font-size: 2rem;
+  font-size: 1.5rem;
   line-height: 1.5;
   color: #fff;
 }

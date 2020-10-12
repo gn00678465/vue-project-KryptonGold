@@ -1,8 +1,8 @@
 <template>
   <div class="home" ref="home">
     <Navbar ref="navbar">Confidant</Navbar>
-    <router-view class="stky-body"></router-view>
-    <Footer/>
+    <router-view class="stky-body" :navHeight="navHeight" :fooHeight="fooHeight"></router-view>
+    <Footer ref="footer"/>
     <GoTop />
   </div>
 </template>
@@ -20,6 +20,32 @@ export default {
     Navbar,
     Footer,
     GoTop,
+  },
+  data() {
+    return {
+      navHeight: 0,
+      fooHeight: 0,
+    };
+  },
+  methods: {
+    getNavHeight() {
+      const { height } = this.$refs.navbar.$refs.nav.getBoundingClientRect();
+      this.navHeight = height;
+    },
+    getFooHeight() {
+      const { height } = this.$refs.footer.$refs.foo.getBoundingClientRect();
+      this.fooHeight = height;
+    },
+  },
+  mounted() {
+    this.getNavHeight();
+    this.getFooHeight();
+  },
+  watch: {
+    screenWidth() {
+      this.getNavHeight();
+      this.getFooHeight();
+    },
   },
 };
 </script>

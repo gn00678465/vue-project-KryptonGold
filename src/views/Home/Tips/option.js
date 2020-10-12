@@ -4,6 +4,7 @@ export default {
   initialSlide: 0,
   loop: false,
   speed: 1600,
+  height: 984,
   pagination: {
     el: '.swiper-pagination',
     clickable: true,

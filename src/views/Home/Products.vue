@@ -1,16 +1,14 @@
 <template>
-  <div class="products vld-parent">
+  <div class="products vld-parent" :style="rootStyle">
     <loading :active.sync="isLoading"
       :is-full-page="true">
       <LoadEffect slot="default"/>
       </loading>
-    <div class="banner">
-      <img class="slide" src="https://hexschool-api.s3.us-west-2.amazonaws.com/custom/PLKhk6JeCtmopqGlcl7jphiYmfpXreT4aMUWjwNzF8prekNolukphssTKiRrLt2FGbCAhu5MJZ6plErksVT8ETngzFIOJEWk2hoI3m7dFAyxQWw1nWh43aidPsRcOt91.jpg"/>
-    </div>
+    <img class="banner" src="https://hexschool-api.s3.us-west-2.amazonaws.com/custom/PLKhk6JeCtmopqGlcl7jphiYmfpXreT4aMUWjwNzF8prekNolukphssTKiRrLt2FGbCAhu5MJZ6plErksVT8ETngzFIOJEWk2hoI3m7dFAyxQWw1nWh43aidPsRcOt91.jpg"/>
     <div class="container my-3">
       <div class="row">
         <div class="col-lg-3">
-          <Nav :list="categoryList" :filter.sync="filter" ref="nav"/>
+          <CategoryList :list="categoryList" />
         </div>
         <div class="col-lg-9 mt-3 mt-md-0">
           <section>
@@ -34,12 +32,12 @@
 </template>
 
 <script>
-import Nav from 'components/FrontStage/CategoryList/UL.vue';
+import CategoryList from 'components/FrontStage/CategoryList.vue';
 import FrontProductAPI from 'assets/Frontend_mixins/Product';
 
 export default {
   name: 'Products',
-  components: { Nav },
+  components: { CategoryList },
   mixins: [FrontProductAPI],
   data() {
     return {
@@ -92,9 +90,11 @@ export default {
       }
       return this.products;
     },
-    // sticky() {
-    //   return this.$store.ScrollTop + this.NavHeight > this.NavData.top;
-    // },
+    rootStyle() {
+      return {
+        '--nav-height': `${this.$attrs.navHeight}px`,
+      };
+    },
   },
   watch: {
     filter() {
@@ -111,20 +111,24 @@ export default {
 
 <style lang="scss" scoped>
 .products {
-  padding-top: 46px;
+  padding-top: var(--nav-height);
 }
 .banner {
-  .slide {
-    display: block;
-    height: 500px;
-    object-fit: cover;
-    width: 100%;
-  }
+  display: block;
+  height: 300px;
+  object-fit: cover;
+  width: 100%;
 }
 
 @media screen and (min-width: 768px){
-  .products {
-    padding-top: 62px;
+  .banner {
+    height: 400px;
+  }
+}
+
+@media screen and (min-width: 992px){
+  .banner {
+    height: 500px;
   }
 }
 </style>

@@ -1,12 +1,12 @@
 <template>
-  <validation-observer tag="form" class="container mt-3" v-slot="{ invalid }"
+  <validation-observer tag="form" class="container" v-slot="{ invalid }"
     @submit.prevent.stop="submitHandler($event)">
     <loading :active.sync="isLoading"
       :can-cancel="true"
       :is-full-page="true">
       <LoadEffect slot="default"/>
     </loading>
-    <div class="row">
+    <div class="row" v-if="!isEmpty">
       <div class="col-sm-12 col-md-6 col-lg-7 detail mb-3">
         <!-- detail -->
         <Detail ref="detial"/>
@@ -52,6 +52,13 @@
               </div>
             </div>
       </div>
+    </div>
+    <div class="emptyShow" v-else>
+      <h4 class="h4">目前購物車內無品項，請到所有商品選購。</h4>
+      <button type="button" class="pure-button pure-button-primary mt-3"
+        @click.prevent="goProducts">
+        回到產品列表
+      </button>
     </div>
   </validation-observer>
 </template>
@@ -125,6 +132,22 @@ export default {
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+}
+
+.emptyShow {
+  text-align: center;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-top: 10rem;
+  &__link {
+    font-weight: 700;
+    color: v(info);
+  }
+  &__link:hover {
+    font-weight: 700;
+    color: v(danger);
+    text-decoration: none;
   }
 }
 

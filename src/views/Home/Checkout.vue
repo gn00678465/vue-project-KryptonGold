@@ -1,6 +1,6 @@
 <template>
-  <div class="checkout">
-    <Progressbar :steps="steps" :current.sync="current"/>
+  <div class="checkout" :style="rootStyle">
+    <Progressbar ref="Progressbar" class="mb-3 mt-2" :steps="steps" :current.sync="current"/>
     <transition>
       <component :is="displayComponent" @nextStep="nextHandler"></component>
     </transition>
@@ -33,10 +33,18 @@ export default {
     nextHandler() {
       this.current += 1;
     },
+    goProducts() {
+      this.$router.push({ name: 'products' });
+    },
   },
   computed: {
     displayComponent() {
       return this.componentsId[this.current - 1];
+    },
+    rootStyle() {
+      return {
+        '--nav-height': `${this.$attrs.navHeight}px`,
+      };
     },
   },
 };
@@ -44,12 +52,6 @@ export default {
 
 <style lang="scss" scoped>
 .checkout {
-  padding-top: 46px;
-}
-
-@media (min-width: 768px) {
-  .checkout {
-    padding-top: 62px;
-  }
+  padding-top: var(--nav-height);
 }
 </style>

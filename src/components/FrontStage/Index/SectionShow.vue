@@ -44,14 +44,14 @@ export default {
       CardSet: [
         {
           bgColor: '#ffffff',
-          RWDColor: '#ffffff80',
+          RWDColor: 'rgba(255,255,255,0.9)',
           color: '#000',
           id: 'null',
           imgUrl: 'https://images.unsplash.com/photo-1509404969887-525aab7cc41a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=80',
         },
         {
           bgColor: '#010e2a',
-          RWDColor: '#010e2a80',
+          RWDColor: 'rgba(1, 14, 42, .9)',
           color: '#FFF',
           id: 'moon1001',
           imgUrl: 'https://hexschool-api.s3.us-west-2.amazonaws.com/custom/THSfe4eZCkgy20JmJ9YhTdxNbJCTxEGGM3ilwiilx3hnTBca3d1AV1p8Jp3TZPeXccnCGE5c6AlwUqtkiG5CrNbDkIj9CylGdJUuMB2DwYz7VapEbj9PaCIiZJjpvNSq.png',
@@ -60,7 +60,7 @@ export default {
       ProdSets: [
         {
           bgColor: '#367110',
-          RWDColor: '#36711080',
+          RWDColor: 'rgba(54, 113, 16, .9)',
           btnClass: 'pure-button pure-button-outline-light',
           color: '#FFF',
           id: 'kvEtBaFq40fIlGGIvCscqOpqU7QRsEFQAKnSi76PeEWwfx4tFoVrxEVYqPvDbeE1',
@@ -68,7 +68,7 @@ export default {
         },
         {
           bgColor: '#e1db2e',
-          RWDColor: '#e1db2e80',
+          RWDColor: 'rgba(225, 219, 46, .9)',
           btnClass: 'pure-button pure-button-outline-secondary',
           color: '#000',
           id: 'R1MqWITs63hZW5pdOLoVAeZxdGoKnFAxOK9yXk9MLEx7mj6M6zHEMYoPRB1daFyL',

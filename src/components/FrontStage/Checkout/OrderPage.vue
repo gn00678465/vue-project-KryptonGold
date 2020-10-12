@@ -1,5 +1,5 @@
 <template>
-  <div class="container mb-3 mt-md-3">
+  <div class="container mb-3">
     <loading :active.sync="isLoading"
       :can-cancel="true"
       :is-full-page="true">
@@ -116,17 +116,16 @@ p, .h4 {
   height: 100%;
   position: relative;
   &__img {
-    max-height: 65vh;
-    max-width: 100%;
+    display: none;
   }
   &__content {
-    position: absolute;
+    min-height: 65vh;
     left: 50%;
     top: 0;
     height: 100%;
     transform: translateX(-50%);
-    backdrop-filter: saturate(120%) blur(5px);
-    color: #fff;
+    background: #ffffff;
+    color: #000;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -181,6 +180,8 @@ p, .h4 {
 @media (min-width: 768px) {
   .order {
     &__img {
+      display: block;
+      max-height: 65vh;
       border-top-left-radius: 5px;
       border-bottom-left-radius: 5px;
     }
@@ -199,10 +200,6 @@ p, .h4 {
       border-top-right-radius: 5px;
       border-bottom-right-radius: 5px;
     }
-  }
-  .h4 {
-    width: auto;
-    @include mark(#{v(hightlight)}, 40%);
   }
 }
 </style>

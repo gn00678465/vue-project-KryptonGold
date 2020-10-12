@@ -5,6 +5,7 @@ export const store = Vue.observable({
   orderID: '',
   ScrollTop: 0,
   clientWidth: 0,
+  clientHeight: 0,
   filter: '所有品項',
 });
 
@@ -20,6 +21,9 @@ export const mutation = {
   },
   setClientWidth(val) {
     store.clientWidth = val;
+  },
+  setClientHeight(val) {
+    store.clientHeight = val;
   },
   setFilter(val) {
     store.filter = val;

@@ -1,5 +1,5 @@
 <template>
-  <div class="root container-xl">
+  <div class="root container-xl" ref="bar">
     <ul class="progressbar">
       <li class="progressbar-indicator"
         :class="{active: current >= (i + 1), now: current === (i + 1)}"
