@@ -154,7 +154,7 @@
   
       &-content {
         right: 30%;
-        top: 50%;
+        top: calc((100vh - var(--nav-height) - var(--foo-height)) / 2);
         transform: translateY(-50%);
         width: 100%;
         max-width: 380px;
