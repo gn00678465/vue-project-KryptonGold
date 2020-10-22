@@ -1,10 +1,10 @@
 <template>
   <div>
-    <h4 class="h4">
-      <p class="text-bold">購物車清單</p>
+    <div class="title">
+      <h4 class="text-bold">購物車清單</h4>
       <font-awesome-icon icon="chevron-up" class="mobile-arrow" @click.prevent="isShow = !isShow"
       :class="{rotate: isShow}" />
-    </h4>
+    </div>
       <transition name="fade">
         <div class="items" v-show="!isShow">
           <Item v-for="(data) in CartDatas" :key="data.product.id" :data="data"/>
@@ -51,7 +51,7 @@ export default {
 <style lang="scss" scoped>
 @import 'bootstrap';
 
-.h4 {
+.title {
   cursor: pointer;
   display: flex;
   align-items: center;
