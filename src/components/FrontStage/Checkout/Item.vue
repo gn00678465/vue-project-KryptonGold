@@ -72,8 +72,8 @@ export default {
 $card-space: 5px;
 
 img {
-  width: 100%;
-  height: 100%;
+  max-width: 100%;
+  object-fit: cover;
 }
 .CartCard {
   display: flex;
@@ -95,13 +95,13 @@ img {
   }
   &__content {
     flex: 1 0 0;
-    margin-left: -10px;
+    margin-left: -20px;
   }
 }
 .CartCard {
   &__img {
-    flex: 0 0 90px;
-    transform: translate(-20px, -25px);
+    flex: 0 0 85px;
+    transform: translate(-20px, -20px);
   }
   &__title {
     margin-bottom: .5rem;
@@ -131,6 +131,15 @@ img {
   }
   &__trash:active {
     transform: scale(1.1);
+  }
+}
+
+@media (min-width: 540px) {
+  .CartCard__img {
+    transform: translate(-10px, -20px);
+  }
+  .CartCard__content {
+    margin-left: 0;
   }
 }
 </style>

@@ -21,7 +21,8 @@
         <p class="label">運費：</p>
         <p class="value" :class="{ through:Shipping === 0 }">{{ Shipping|Dollar }}元</p>
       </li>
-      <li class="list-group-item summary__item">
+      <li class="list-group-item summary__item"
+        :class="DisCount !== 0 ? 'applyDiscount' : 'noDiscount'">
         <p class="label">折扣：</p>
         <AnimatedIngeter class="value" :value="DisCount" >元</AnimatedIngeter>
       </li>
@@ -97,6 +98,13 @@ export default {
   }
   .label, .value {
     margin: 0;
+  }
+  .noDiscount {
+    text-decoration: line-through;
+  }
+  .applyDiscount {
+    color: var(--success);
+    font-weight: 700;
   }
 }
 

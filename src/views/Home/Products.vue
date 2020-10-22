@@ -8,7 +8,7 @@
     <div class="container my-3">
       <div class="row">
         <div class="col-lg-3">
-          <CategoryList :list="categoryList" />
+          <CategoryList :list="categoryList" v-bind="$attrs"/>
         </div>
         <div class="col-lg-9 mt-3 mt-md-0">
           <section>

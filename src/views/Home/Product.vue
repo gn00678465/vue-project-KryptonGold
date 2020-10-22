@@ -51,7 +51,7 @@
       </div>
     </div>
     <section class="" v-if="product">
-      <h4 class="h4 text-bold brush d-inline-block">詳細資訊</h4>
+      <h4 class="h4 text-bold d-inline-block">詳細資訊</h4>
       <ul class="information">
         <li class="item">
           <font-awesome-icon :icon="['fas', 'beer']" />
@@ -80,7 +80,7 @@
         </li>
       </ul>
     </section>
-    <Carsouel :id="id" class="mb-5" v-if="product" :brush="true">
+    <Carsouel :id="id" class="mb-5" v-if="product" :brush="false">
       <template #h4>其他人也看了</template>
     </Carsouel>
   </div>

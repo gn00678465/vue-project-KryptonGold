@@ -169,6 +169,7 @@ p, .h4 {
     }
     .value {
       flex: 1 0 0;
+      word-break: break-all;
     }
   }
 }

@@ -43,6 +43,11 @@ export default {
       lists.unshift('所有品項');
       return lists;
     },
+    rootStyle() {
+      return {
+        '--nav-height': `${this.$attrs.navHeight + 15}px`,
+      };
+    },
   },
   render() {
     return (
@@ -132,8 +137,17 @@ export default {
   .menu {
     max-height: 999em;
     display: block;
+    position: sticky;
+    top: var(--nav-height);
+    border: 1px solid #eee;
+    .item {
+      border-bottom: 1px solid #eee;
+    }
     .item:first-of-type {
       border-bottom: 2px solid v(success);
+    }
+    .item:last-of-type {
+      border-bottom: none;
     }
     .mobile {
       display: none;

@@ -1,7 +1,7 @@
 <template>
   <div class="row">
     <div class="col-12">
-      <h4 class="h4 brush">輸入訂購人資料</h4>
+      <h4 class="h4">輸入訂購人資料</h4>
       <InputSlot rules="required|is_not:0">
         <template #label>
             <label for="payment">付款方式<small class="required">*</small></label>
